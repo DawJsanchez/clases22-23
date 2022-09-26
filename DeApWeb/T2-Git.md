@@ -17,9 +17,11 @@ Duración: 4 horas.
 ![Chuleta](https://i123.duckdns.org/daw/git/cheat_sheet_git.png)
 
 + [Doc OFICIAL](https://git-scm.com/docs)
++ [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
 + [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
 + [Libro - Pro Git](https://git-scm.com/book/en/v2)
 + [Otros libros y apuntes de interés](https://i123.duckdns.org)
++ Resetear autor: `git rebase -r HASH_COMMIT_ANTERIOR  --exec 'git commit --amend --no-edit --reset-author'`
 + [Resetear history](https://whitep4nth3r.com/blog/rewrite-git-history/)
 
 ### Vídeos
@@ -70,6 +72,9 @@ Pues que tenemos que unir los caminos. Tenemos 2 opciones: merge y rebase.
   *Ventaja*: Visualmente más sencillo ya que el histrial aparece lineal. \
   *Inconveniente*: Los creadores de los commits que desaparecen pierden el seguimiento de sus cambios por los HASH. \
 ![merge-rebase](https://miro.medium.com/max/720/1*UDKJF0BHO_USMuovMgdylQ.png)
+
+### *REPASO*:
+[Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
 
 ## Método Kanban
 ![Kanban](https://aktiasolutions.com/wp-content/uploads/2019/08/Kanban-Method-Kanban-Methodology-Basic-Featured-Image-AKTIA-Solutions.png)
