@@ -1,0 +1,91 @@
+* Introducción
+  Este es el repositorio de trabajo para el curso 22-23 en el IES Castelar.
+
+* Normas
+
++ NO se puede traer al instituto ningún objeto que no sea necesario para la actividad escolar.
++ Las fuentes están desconectadas, si el alumno quiere beber agua debe hacerlo desde su botella personal.
++ No está permitido comer ni beber dentro del aula.
++ En los descansos entre cambio de clase, NO está permitido salir del aula al pasillo.
+
++ Asignación temporal de sitio.
++ Horario
+# ![Horario](https://i123.duckdns.org/assets/img/horario-1DAW.png)
+
+[[https://i123.duckdns.org/assets/img/horario-1DAW.png]]
+
+
+*IMPORTANTE:*
++ *NO* se pueden utilizar los MÓVILES, sin el consentimiento del profesor, en ningún espacio del Centro. EN EL RECREO TAMPOCO.
++ *NO* está permitido entrar patín / patinete eléctrico en ningún espacio del centro salvo en el parking de entrada de la puerta principal.
+
+* [[https://github.com/luiscastelar/clases22-23/tree/main/DeApWeb][Despliegue de Aplicaciones Web (DAW2)]]
+  + Total: 100 horas.
+  + Módulo parcialmente dualizado, esto es, la primera evaluación será no dualizada. La segunda, aquellos alumnos que sean *elegibles* podrán pasar a modalidad parcialmente dual, por lo que 2 horas se impartiran en aula y otras 3 en centro de trabajo.\\
+    Aquellos no elegibles, continuarán la segunda evaluación en formato presencial en aula.
+  + Resúmen de contenidos:
+	1. Bases del despligue.
+	2. Introducción a Git.
+	3. Virtualización asistida (Vagrant).
+	4. SSH: cliente, servidor y bastionado.
+	5. Introducción a Docker.
+	6. Docker-compose.
+	7. Servicios de nombres de dominio (DNS).
+	8. Servidor web básico.
+	9. Proxy inverso.
+	10. Servidor de aplicaciones.
+	11. Despliegue en servidor real.
+	12. Configuración avanzada servidor web.
+	13. Monitorización.
+	14. Igualdad en la informática.
+	15. Kubernetes.
+	16. Introducción a LDAP.
+	17. Ansible.
+	18. LDAP.
+
+* [[https://github.com/luiscastelar/clases22-23/tree/main/Prog][Programación (DAW1)]]
+  + Total: 224 horas.
+  + Resúmen de contenidos:
+<<<<<<< HEAD
+	1. Introducción a la programación
+	2. Elementos de un programa
+	3. POO
+	4. Estructuras de control
+	5. Arrays
+	6. Cadenas
+	7. Colecciones
+	8. POO II
+	9. Ficheros
+	10. BBDD
+	11. JavaEE (JSP/Servlets)
+	12. Igualdad
+=======
+	1. Introducción a Git
+	2. Introducción a la programación
+	3. Elementos de un programa
+	4. POO
+	5. Estructuras de control
+	6. Arrays
+	7. Cadenas
+	8. Colecciones
+	9. POO II
+	10. Ficheros
+	11. BBDD
+	12. JavaEE (JSP/Servlets)
+	13. Igualdad
+>>>>>>> refs/rewritten/Custom-Merge-commit
+  + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
+
+* [[https://github.com/luiscastelar/clases22-23/tree/main/BBDD][Bases de Datos (DAW1)]]
+  + Total: 192 horas.
+  + Resúmen de contenidos:
+	1. Sistemas de almacenamiento de información
+	2. Diseño lógico de una BBDD.
+	3. Diseño físico de una BBDD.
+	4. DML I: Realización de consultas.
+	5. DML II: Edición de datos.
+	6. Programación de BBDD.
+	7. BBDD objeto-relacionales.
+	8. Not Only SQL (NoSQL).
+	9. Igualdad.
+  + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.

@@ -1,0 +1,1 @@
+docker run -d -e "CONTAINER_TIMEZONE=Europe/Madrid" -e "GITPROJECT=test" -v $PWD:/var/lib/git:ro --name gitweb -p 80:80 fraoustin/gitweb
