@@ -20,6 +20,7 @@ Duración: 4 horas.
 + [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
 + [Libro - Pro Git](https://git-scm.com/book/en/v2)
 + [Otros libros y apuntes de interés](https://i123.duckdns.org)
++ Resetear autor: `git rebase -r HASH_COMMIT_ANTERIOR  --exec 'git commit --amend --no-edit --reset-author'`
 + [Resetear history](https://whitep4nth3r.com/blog/rewrite-git-history/)
 
 ### Vídeos
