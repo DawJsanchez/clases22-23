@@ -159,13 +159,13 @@ $ nmap IP/CIDR
 
 # Tareas (entregables):
 1. Dado el mapa de red, asigna direcciones de forma coherente y razonada a TODOS los dispositivos en sus interfaces de capa 3. \
-![mapa](./T1-mapa_de_red.png)
+![mapa](./img/T1-mapa_de_red.png)
 2. Obtén las cabeceras de una petición GET a *amazon.es* pero disfrazando el *user-agent* para parecer un Firefox versión 105.0.1.
 3. Sobre un entorno linux (virtualizado o no), investiga todas los procesos con referencias a los puertos 67 y 68 y cómo interactuán. \
    Info: si la máquina está virtualizada esté conectada directamente a la red lan sin NAT. \
    P.D.: Un par de párrafos por puerto serán suficientes para demostar que sabes sus funciones.
 
-> Fecha de entrega: 4 de octubre.
+> Fecha de entrega: 4 de octubre. \
 > Forma de entrega: Sibir como README.md a repositorio privado en una carpeta T1-BasesDelDespligue y compartir con @luiscastelar.
 
 ---
