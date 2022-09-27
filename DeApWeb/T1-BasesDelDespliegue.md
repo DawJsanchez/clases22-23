@@ -129,11 +129,21 @@ IP+Puerto => identificación de un servicio de manera única.
 
 #### Ejerccios:
 Ver sockets activos en el servidor:
-+ Equipo propio: ss, netstat, lsof
-+ Otro equipo:
-  - $ nc -vc IP PUERTO
-  - $ nmap IP
-  - $ nmap IP/CIDR
+   + Equipo propio:
+```
+$ ss -tapon
+# ss -tapon
+$ netstat -tapon
+# netstat -tapon
+$ lsof -i -P -n
+```
+> $ para usuario sin privilegios y # para root. Éste segundo nos dará información más detallada, como el nombre de los procesos entre otros.
+   + Otro equipo:
+```
+$ nc -vc IP PUERTO
+$ nmap IP
+$ nmap IP/CIDR
+```
 
 > Para Windows (poco habitual en servidores: \
 > Información de puestos y conexiones:
@@ -146,3 +156,17 @@ Ver sockets activos en el servidor:
 >
 > Extra: Información sobre los procesos
 >> CMD:	tasklist /FI "pid eq NUM_PID_DEL_PROCESO" /V /FO List
+
+# Tareas (entregables):
+1. Dado el mapa de red, asigna direcciones de forma coherente y razonada a TODOS los dispositivos en sus interfaces de capa 3. \
+![mapa](./T1-mapa_de_red.png)
+2. Obtén las cabeceras de una petición GET a *amazon.es* pero disfrazando el *user-agent* para parecer un Firefox versión 105.0.1.
+3. Sobre un entorno linux (virtualizado o no), investiga todas los procesos con referencias a los puertos 67 y 68 y cómo interactuán. \
+   Info: si la máquina está virtualizada esté conectada directamente a la red lan sin NAT. \
+   P.D.: Un par de párrafos por puerto serán suficientes para demostar que sabes sus funciones.
+
+> Fecha de entrega: 4 de octubre.
+> Forma de entrega: Sibir como README.md a repositorio privado en una carpeta T1-BasesDelDespligue y compartir con @luiscastelar.
+
+---
+*Fin de tema*
