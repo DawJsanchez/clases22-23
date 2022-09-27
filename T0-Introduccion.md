@@ -70,3 +70,4 @@ Será condición necesaria para poder obtener calificación positiva en el trime
 ### Temas transversales
 + Diversidad y no discriminación.
 + Copias de seguridad: a lo largo del curso se producirán **seguro** incidencias técnicas que provocarán la pérdida parcial o total de los datos almacenados en el equipo de clase. **VOSOTROS** y sólo vosotros sois los responsables de establecer un sistema de *backup* que os salve del embrollo. Se recomienda la [metodología 3-2-1](https://www.ionos.es/digitalguide/servidores/seguridad/regla-backup-3-2-1/)
+.
