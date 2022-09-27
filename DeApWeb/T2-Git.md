@@ -109,7 +109,7 @@ Personalmente me gustan las columnas: To-Do, Working, Waiting, Done y Cancel.
 7. Invítame (@luiscastelar) a colaborar.
 8. Marca la práctica 1 como "en espera"
 
-> Fecha de entrega: 11 de octubre. \
+> Fecha de entrega: **11 de octubre**. \
 > Forma de entrega: Sibir como README.md a repositorio privado en una carpeta T2-Git y compartir con @luiscastelar.
 
 ### Examen
