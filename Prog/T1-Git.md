@@ -33,7 +33,7 @@ Seguir las indicaciones del vídeo para captar los pasos básicos de git:
 1. Configurar los --global:
 ```
 git config --global user.name "nombre"
-git config --global user.mail "email_alumno@iescastelar.com"
+git config --global user.email "email_alumno@iescastelar.com"
 ```
 2. Crear un repositorio en un directorio vacío `git init`
 3. Comprendiendo relación *dir_trabajo - staging - repositorio (local)*
