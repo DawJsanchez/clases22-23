@@ -79,6 +79,54 @@ end
 + Archivos: `config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"`
 + Scripts: `config.vm.provision "shell", path: "script.sh"` o `config.vm.provision "shell", path: "https://example.com/provisioner.sh"`
 
+### Ejemplo completo:
+Ejemplo de ejecución de script tras el arrenque de la VM:
+```
+Vagrant.configure("2") do |config|
+  ...
+  config.vm.provision :shell, path: "bootstrap.sh"
+  ...
+end
+```
+
+El archivo *bootstrap.sh* deberá ubicarse en el mismo directorio que tu *Vagrantfile* y podría contener por ejemplo la carga de un ***cron***:
+```
+#!/bin/bash
+# Adds a crontab entry to curl google.com every hour on the 5th minute
+
+# Cron expression
+cron="5 * * * * curl http://www.google.com"
+    # │ │ │ │ │
+    # │ │ │ │ │
+    # │ │ │ │ └───── day of week (0 - 6) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)
+    # │ │ │ └────────── month (1 - 12)
+    # │ │ └─────────────── day of month (1 - 31)
+    # │ └──────────────────── hour (0 - 23)
+    # └───────────────────────── min (0 - 59)
+
+# Escape all the asterisks so we can grep for it
+cron_escaped=$(echo "$cron" | sed s/\*/\\\\*/g)
+
+# Check if cron job already in crontab
+crontab -l | grep "${cron_escaped}"
+if [[ $? -eq 0 ]] ;
+  then
+    echo "Crontab already exists. Exiting..."
+    exit
+  else
+    # Write out current crontab into temp file
+    crontab -l > mycron
+    # Append new cron into cron file
+    echo "$cron" >> mycron
+    # Install new cron file
+    crontab mycron
+    # Remove temp file
+    rm mycron
+fi
+```
+
+**Nota:** Recuerda que por defecto los *provisioners* son ejecutados por el **root** del sistema. Si no es lo que deseas, deberás indicarlo con `config.vm.provision :shell, path: "bootstrap.sh", privileged: false`.
+
 ## Network
 Configuración de redes de las VM.
 + Port Forwarding (Reenvío de puertos): Con esta acción, mal llamada comúnmente *abrir puertos*, vagrant conectará puertos de nuestro *HOST* al máquina virtual seleccionada. \
