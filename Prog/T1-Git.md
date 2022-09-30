@@ -5,7 +5,7 @@
 # T1 Introducción a Git
 
 Duración: 4 horas.
-*Fecha de examen: ??*
+Fecha de examen: **Lunes 10 de octubre**
 
 ## [OFF-TOPIC] Markdown:
 + [Doc **OFICIAL**](https://www.markdownguide.org/basic-syntax)
@@ -14,15 +14,14 @@ Duración: 4 horas.
 + [Tablas en md](https://www.tablesgenerator.com/markdown_tables)
 
 ## Git
-![Chuleta](https://i123.duckdns.org/daw/git/cheat_sheet_git.png)
+![Chuleta](https://luiscastelar.duckdns.org/Prog/git/cheat_sheet_git.png)
 
 + [Doc OFICIAL](https://git-scm.com/docs)
-+ [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
++ **Recomendado**: [Cap 2 Libro](https://luiscastelar.duckdns.org/Prog/git/GIT-Magic%20-%20Ben%20Lynn.pdf)
 + [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
++ [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
 + [Libro - Pro Git](https://git-scm.com/book/en/v2)
-+ [Otros libros y apuntes de interés](https://i123.duckdns.org)
-+ Resetear autor: `git rebase -r HASH_COMMIT_ANTERIOR  --exec 'git commit --amend --no-edit --reset-author'`
-+ [Resetear history](https://whitep4nth3r.com/blog/rewrite-git-history/)
++ [Otros libros y apuntes de interés](https://luiscastelar.duckdns.org)
 
 ### Vídeos
 + [Pelao Nerd - 1](https://youtu.be/kEPF-MWGq1w)
@@ -41,6 +40,7 @@ git config --global user.email "email_alumno@iescastelar.com"
    - Debemos añadirlos (`git add ARCHIVOS`) al *stage area* (zona de paso) para realizar el seguimiento de los cambios. \
      Una vez añadidos, *git* realiza un seguimiento de sus cambios.
    - Debemos realizar *commit* (`git commit -m "Texto"`) para validar el cambio de los archivos **rastreados** y por tanto pasarlo al repositorio (local). Con `git commit -a` validaremos *TODOS* los archivos con seguimiento. Los rastreados y los que no TAMBIÉN.
+*Ejemplo:*
 ```
 nano README.md
 git status
@@ -52,7 +52,7 @@ git status
 5. Comprendiendo relación *repositorio local - repositorio remoto*
    - Creo repositorio remoto. *Mejor vacío sin README ni licencia*.
    - Añado repositorio remoto a mi git:
-     1. Añadimos una rama con `git branch -M RAMA` (la inicial normalmente main o master).
+     1. Añadimos una rama con `git branch -M RAMA` ,donde RAMA normalmente es `main` o `master`.
      2. Añadirmos el remoto con `git remote add origin git@github.com:USUARIO_GIT/REPOSITORIO.git`, donde el REPOSITORIO del USUARIO_GIT debe existir.
    - Sincronización:
      + Iniciarla con `git push -u origin RAMA`
@@ -60,7 +60,9 @@ git status
      + Hacia arriba: `git push`\
      > Lo normal es comenzar el día con un `git pull` y acabarlo con un `git push` ... podéis tomarlo como los buenos días y buenas noches.
 
-> Cuando hayáis llegado al punto 5 veréis que falla... deberemos primero depositar nuestra llave pública en el repositorio remoto.
+> Cuando hayáis llegado al punto 5 veréis que falla... deberemos primero depositar nuestra llave pública en el repositorio remoto. \
+> Para crear dicha llave usaremos `ssh-keygen -t rsa -b 2048`, dejando los valores por **defecto** en todas las preguntas. \
+> La llave pública estará en el archivo `~/.ssh/id_rsa.pub` y podemos copiarla con un `cat`.
 
 ### Merge y rebase
 ¿Qué ocurre cuando trabajamos con ramas o hemos realizado cambios desde 2 equipos distintos? \
@@ -74,7 +76,17 @@ Pues que tenemos que unir los caminos. Tenemos 2 opciones: merge y rebase.
 ![merge-rebase](https://miro.medium.com/max/720/1*UDKJF0BHO_USMuovMgdylQ.png)
 
 ### *REPASO*:
-[Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
++ [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
++ [Configura Git](https://www.atlassian.com/es/git/tutorials/setting-up-a-repository)
++ [Git init](https://www.atlassian.com/es/git/tutorials/setting-up-a-repository/git-init)
++ [Git clone](https://www.atlassian.com/es/git/tutorials/setting-up-a-repository/git-clone)
+
+
+### Otros TIPs interesantes:
++ Resetear autor: `git rebase -r HASH_COMMIT_ANTERIOR  --exec 'git commit --amend --no-edit --reset-author'`
++ [Resetear history](https://whitep4nth3r.com/blog/rewrite-git-history/)
+
+
 
 ## Método Kanban
 ![Kanban](https://aktiasolutions.com/wp-content/uploads/2019/08/Kanban-Method-Kanban-Methodology-Basic-Featured-Image-AKTIA-Solutions.png)
@@ -109,4 +121,7 @@ Personalmente me gustan las columnas: To-Do, Working, Waiting, Done y Cancel.
 7. Invítame (@luiscastelar) a colaborar.
 8. Marca la práctica 1 como "en espera"
 
-### Examen
+**Fecha de entrega**: Miércoles 5 de octubre.
+
+---
+Fin de tema.
