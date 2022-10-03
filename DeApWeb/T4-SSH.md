@@ -38,12 +38,13 @@ Duración: 3 horas.
 
 ## Práctica
 Montaremos un entorno de desarrollo (`Vagrant`) con soporte `ssh server` bastionado con `fail2ban` y `knockd`.
-1- Crearemos un primer Vagrant con Ubuntu Server 20.04 de "gusztavvargadr/ubuntu-server". Con él vamos a montar una servidor con una ip pública, instalaremos `fail2ban` y `knockd` y pondremos una copia de los ficheros de configuración que necesitamos modificar (`sshd_config`, `knockd.conf` y `knockd`).
-2- Realizaremos los cambios y sobreescribiremos los ficheros originales con un `provisioning`.
-3- Probamoos a entrar hasta que nos banee. Guardar captura de `/var/log/fail2ban.log`.
-4- Probaremos el sistema de port-knocking y guardaremos capturas. \
+1. Crearemos un primer Vagrant con Ubuntu Server 20.04 de "gusztavvargadr/ubuntu-server". Con él vamos a montar una servidor con una ip pública, instalaremos `fail2ban` y `knockd` y pondremos una copia de los ficheros de configuración que necesitamos modificar (`sshd_config`, `knockd.conf` y `knockd`).
+2. Realizaremos los cambios y sobreescribiremos los ficheros originales con un `provisioning`.
+3. Probamoos a entrar hasta que nos banee. Guardar captura de `/var/log/fail2ban.log`.
+4. Probaremos el sistema de port-knocking y guardaremos capturas. \
 Por supuesto todos los ficheros estarán en un directorio de vuestro git.
 
+### [Opcional] **EXTRA**: Configura Fail2ban para remitir avisos por [Telegram](https://github.com/shafiqsaaidin/fail2ban-telegram-notification)
 
 ---
 Fin de tema.
