@@ -79,6 +79,18 @@ end
 + Archivos: `config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"`
 + Scripts: `config.vm.provision "shell", path: "script.sh"` o `config.vm.provision "shell", path: "https://example.com/provisioner.sh"`
 
+> Nota: el `provisioning` se produce en el momento de creación de la máquina, por lo que si queremos alterar algo `shell` o `file` deberemos utilizar el comando `vagrant provision` o `vagrant up --provision` en caso de estar detenida la VM.
+>
+> Nota2: el `provisioning` de archivos se realiza por `scp` por el usuario por defecto, por lo que si tenemos que ubicarlo en un directorio privilegiado deberemos realizarlo en 2 pasos: subir a un temporar y moverlo por `shell` con privilegios. P.e.:
+```
+config.vm.provision "file", source: "./sshd_config", destination: "sshd_config"
+config.vm.provision "shell" do |s|
+  s.inline = "mv sshd_config /etc/ssh/"
+  s.privileged = true
+end
+```
+
+
 ### Ejemplo completo:
 Ejemplo de ejecución de script tras el arrenque de la VM:
 ```
