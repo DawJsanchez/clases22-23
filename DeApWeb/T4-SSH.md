@@ -18,7 +18,7 @@ Duración: 3 horas.
   La configuración del cliente se guarda en `/etc/ssh/ssh_config`
 
 + En Windows: normalmente con `puTTY`, pero si tienes `git` te instala `minTTY`, aunque con `PowerShell`viene integrado un cliente. \
-  **Importente**: Recuerda que la separación de rutas en windows es '\', pero en entornos UN*X es '/', y que las unidades están bajo el paraguas de la raíz (`/`).
+  **Importente**: Recuerda que la separación de rutas en windows es '\\', pero en entornos UN*X es '/', y que las unidades están bajo el paraguas de la raíz (`/`).
 
 ## Servidores:
 + En GNU/Linux: se instala `openssh-server`. En entornos `systemd` se controla con `sudo systemctl COMANDO sshd`. \
