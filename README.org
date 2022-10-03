@@ -1,4 +1,4 @@
-* Introducción
+* Introducción.
   Este es el repositorio de trabajo para el curso 22-23 en el IES Castelar.
 
 * Normas
