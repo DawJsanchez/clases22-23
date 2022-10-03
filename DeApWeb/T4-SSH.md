@@ -27,12 +27,13 @@ Duración: 3 horas.
 
 ## Bastionado:
 ### Fail2ban
-+[Doc OFICIAL](https://www.fail2ban.org/wiki/index.php/MANUAL_0_8#Introduction)
-+[Guía](https://www.ionos.es/digitalguide/servidores/seguridad/fail2ban-la-herramienta-ideal-para-proteger-tu-servidor/)
++ [Doc OFICIAL](https://www.fail2ban.org/wiki/index.php/MANUAL_0_8#Introduction)
++ [Guía completa](http://albertomagallon.es/fail2ban-bastionado-de-servicios-remotos-en-linux/)
++ [Guía](https://www.ionos.es/digitalguide/servidores/seguridad/fail2ban-la-herramienta-ideal-para-proteger-tu-servidor/)
 
 ### Port-knoking
-+[Guía](https://www.tecmint.com/port-knocking-to-secure-ssh/)
-+[Guía esp](https://rm-rf.es/port-knocking-en-debian-con-knockd/)
++ [Guía](https://www.tecmint.com/port-knocking-to-secure-ssh/)
++ [Guía esp](https://rm-rf.es/port-knocking-en-debian-con-knockd/)
 
 
 ## Práctica
