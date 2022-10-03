@@ -1,7 +1,7 @@
 * Introducción
   Este es el repositorio de trabajo para el curso 22-23 en el IES Castelar.
 
-* Normas
+* Normas.
 
 + NO se puede traer al instituto ningún objeto que no sea necesario para la actividad escolar.
 + Las fuentes están desconectadas, si el alumno quiere beber agua debe hacerlo desde su botella personal.
