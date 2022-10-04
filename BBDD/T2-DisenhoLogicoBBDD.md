@@ -20,12 +20,16 @@ Cada  producto  tiene  un  nombre  y  un  código,  así  como  un  precio  unit
 
 Los  productos  son  suministrados  por  diferentes  proveedores.  Se  debe  tener  en  cuenta que un producto sólo puede ser suministrado por un proveedor, y que un  proveedor  puede  suministrar  diferentes  productos.  De  cada  proveedor  se  desea conocer el NIF, nombre y dirección.
 
+[*SOLUCIÓN*](./img/T2-ejercicio1.drawio.png)
+
 #### Ejercicio 2:
 Se  desea  informatizar  la  gestión  de  una  empresa  de  transportes  que  reparte paquetes  por  toda  España.  Los  encargados  de  llevar  los  paquetes  son  los camioneros,  de  los  que  se  quiere  guardar  el  dni, nombre,  teléfono,  dirección, salario y población en la que vive.
 
 De los paquetes transportados interesa conocer el código de paquete, descripción, destinatario  y  dirección  del  destinatario.  Un  camionero  distribuye  muchos paquetes,  y  un  paquete  sólo  puede  ser  distribuido  por  un  camionero.  De  las provincias a las que llegan los paquetes interesa guardar el código de provincia y el  nombre.  Un  paquete  sólo  puede  llegar  a  una  provincia.  Sin  embargo,  a  una provincia pueden llegar varios paquetes.
 
 De los camiones que llevan los camioneros, interesa conocer la matrícula, modelo, tipo  y  potencia.  Un  camionero  puede  conducir  diferentes  camiones  en  fechas diferentes, y un camión puede ser conducido por varios camioneros
+
+[*SOLUCIÓN*](./img/T2-ejercicio2.drawio.png)
 
 #### Ejercicio 3:
 Se desea diseñar la base de datos de un Instituto. En la base de datos se desea guardar  los  datos  de  los  profesores  del  Instituto  (DNI,  nombre,  dirección  y teléfono).
