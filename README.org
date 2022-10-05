@@ -46,20 +46,6 @@
 * [[https://github.com/luiscastelar/clases22-23/tree/main/Prog][Programación (DAW1)]]
   + Total: 224 horas.
   + Resúmen de contenidos:
-<<<<<<< HEAD
-	1. Introducción a la programación
-	2. Elementos de un programa
-	3. POO
-	4. Estructuras de control
-	5. Arrays
-	6. Cadenas
-	7. Colecciones
-	8. POO II
-	9. Ficheros
-	10. BBDD
-	11. JavaEE (JSP/Servlets)
-	12. Igualdad
-=======
 	1. Introducción a Git
 	2. Introducción a la programación
 	3. Elementos de un programa
@@ -73,7 +59,7 @@
 	11. BBDD
 	12. JavaEE (JSP/Servlets)
 	13. Igualdad
->>>>>>> refs/rewritten/Custom-Merge-commit
+
   + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
 
 * [[https://github.com/luiscastelar/clases22-23/tree/main/BBDD][Bases de Datos (DAW1)]]
