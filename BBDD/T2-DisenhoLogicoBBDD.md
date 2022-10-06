@@ -4,10 +4,8 @@
 
 # T2 DISEÑO LÓGICO DE UNA BASE DE DATOS
 
-Duración: 27 horas.
-{::comment}
-*Fecha de examen: ??*
-{:/comment}
+Duración: 27 horas. \
+{::comment}*Fecha de examen: ??*{:/comment}
 
 ## Modelo ENTIDAD-RELACIÓN
 [Presentación](https://moodle.educarex.es/iescastelarfp/course/view.php?id=128)
@@ -53,3 +51,16 @@ Esta práctica la iremos resolviendo por partes encajando al final todas las pie
 6. Los módulos pertenecen a alguno de los ciclos formativos (DAW, DAM, SMR, ASIR, etc.).
 7. Los grupos también pertenecen a los mismos ciclos.
 7. Los módulos rellenan horario total ocupando horas completas organizadas con código L1 para lunes a primera o X4 para miércoles a cuarta.
+
+## Modelo RELACIONAL
+[Presentación modelo RELACIONAL](https://moodle.educarex.es/iescastelarfp/mod/url/view.php?id=29859)
+
+## Repaso:
+1. Identificar **ENTIDADES** => *Hacer una lista*.
+2. Sacar atributos => *Hacer un grafo*.
+3. Elegir los atributos clave => ***PK***.
+4. Encontrar las **relaciones** , sus *atributos* y **cardinalidades**.
+5. Diseño del diagrama **ENTIDAD-RELACIÓN**.
+6. Transformar a modelo **RELACIONAL**.
+> En el tema 3:
+> 7. Transformar al modelo **FÍSICO**.
