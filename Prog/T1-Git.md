@@ -18,6 +18,7 @@ Fecha de examen: **Lunes 10 de octubre**
 
 + [Doc OFICIAL](https://git-scm.com/docs)
 + **Recomendado**: [Cap 2 Libro](https://luiscastelar.duckdns.org/Prog/git/GIT-Magic%20-%20Ben%20Lynn.pdf)
++ **Recomendado**: [Curso Git](https://github.com/jocode/git-github-pro)
 + [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
 + [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
 + [Libro - Pro Git](https://git-scm.com/book/en/v2)
