@@ -14,7 +14,25 @@ Duración: 5 horas.
 + Docker CLI sobre WSL (Windows subsystem for Linux): *no recomendado por Docker Inc.*
 + Docker CLI sobre VM (vagrant).
 
-## Docker sobre VPS
+### Docker Desktop sobre WSL
+*Incluída la versión HOME del sistema.*
+
+1. [Instalar WSL2](https://www.docker.com/blog/docker-desktop-for-windows-home-is-here/)
+2. [Config WSL2](https://learn.microsoft.com/en-us/windows/wsl/wsl-config)
+   En */etc/wsl.conf*:
+   ```
+   [network]
+   hostname = WSL-NOMBRE_DEL_HOST
+   #generateHosts = false
+   ```
+   En */etc/hosts* añadir el NOMBRE_DEL_HOST:
+   ```
+   127.0.0.1   WSL-NOMBRE_DEL_HOST.local   WSL-NOMBRE_DEL_HOST
+   ```
+3. [WSL2 modo BRIDGE](https://develmonk.com/2021/06/05/easiest-wsl2-bridge-network-without-hyper-v-virtual-network-manager/)
+3. b. [WSL2 modo BRIDGE con interfaz virtual](https://randombytes.substack.com/p/bridged-networking-under-wsl). *Puede hacerse con otros sistemas de virtualización además de Hyper-V.
+
+## DOCKER sobre VPS
 Como ya comentamos en clase, el desarrollo completo vamos a realizarlo fundamentalmente sobre VPS proporcionando las siguientes opciones al alumnado:
 1. [Oracle Cloud](https://signup.cloud.oracle.com/?sourceType=_ref_coc-asset-opcSignIn&language=en_ES?redirect_uri=https://cloud.oracle.com/) - requiere tarjeta de crédito.
 2. [GigaRocket](https://www.gigarocket.net/free-vps.php) - requiere participación activa (15 post) en los foros.
