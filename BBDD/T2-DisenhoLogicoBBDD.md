@@ -50,10 +50,17 @@ Esta práctica la iremos resolviendo por partes encajando al final todas las pie
 5. Los grupos se componen de módulos y se imparten en aulas. Algunos módulos se imparten en grupos distintos.
 6. Los módulos pertenecen a alguno de los ciclos formativos (DAW, DAM, SMR, ASIR, etc.).
 7. Los grupos también pertenecen a los mismos ciclos.
-7. Los módulos rellenan horario total ocupando horas completas organizadas con código L1 para lunes a primera o X4 para miércoles a cuarta.
+8. Los módulos rellenan horario total ocupando horas completas organizadas con código L1 para lunes a primera o X4 para miércoles a cuarta.
+9. Úne los apartados anteriores en un único modelo ER completo.
 
 ## Modelo RELACIONAL
 [Presentación modelo RELACIONAL](https://moodle.educarex.es/iescastelarfp/mod/url/view.php?id=29859)
+
+### Ejercicios:
+Repite los ejercicios 1, 2 y 3 pasándolos al modelo RELACIONAL.
+
+## Práctica Modelo RELACIONAL:
+Repite los 9 pasos de la práctica de modelo ER pasándolo a RELACIONAL.
 
 ## Repaso:
 1. Identificar **ENTIDADES** => *Hacer una lista*.
