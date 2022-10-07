@@ -5,7 +5,7 @@
 # T2 DISEÑO LÓGICO DE UNA BASE DE DATOS
 
 Duración: 27 horas. \
-{::comment}*Fecha de examen: ??*{:/comment}
+Fecha de examen: **miércoles 19 octubre**.
 
 ## Modelo ENTIDAD-RELACIÓN
 [Presentación](https://moodle.educarex.es/iescastelarfp/course/view.php?id=128)
@@ -53,6 +53,9 @@ Esta práctica la iremos resolviendo por partes encajando al final todas las pie
 8. Los módulos rellenan horario total ocupando horas completas organizadas con código L1 para lunes a primera o X4 para miércoles a cuarta.
 9. Úne los apartados anteriores en un único modelo ER completo.
 
+> Fecha de entrega: **jueves 13 octubre**
+> Forma de entrega: Subir como README.md a repositorio privado en una carpeta T2-ModeloER y compartir con @luiscastelar.
+
 ## Modelo RELACIONAL
 [Presentación modelo RELACIONAL](https://moodle.educarex.es/iescastelarfp/mod/url/view.php?id=29859)
 
@@ -61,6 +64,10 @@ Repite los ejercicios 1, 2 y 3 pasándolos al modelo RELACIONAL.
 
 ## Práctica Modelo RELACIONAL:
 Repite los 9 pasos de la práctica de modelo ER pasándolo a RELACIONAL.
+
+
+> Fecha de entrega: **18 octubre**
+> Forma de entrega: Subir como README.md a repositorio privado en una carpeta T2-ModeloRelacional y compartir con @luiscastelar.
 
 ## Repaso:
 1. Identificar **ENTIDADES** => *Hacer una lista*.
