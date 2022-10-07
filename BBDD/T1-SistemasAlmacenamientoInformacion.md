@@ -33,6 +33,9 @@ Subir a Github *cuando se conozca*:
 >> El nombre de usuario es vuestro NÚMERO-DE-LISTA_db_NOMBRE-COMPUESTO \
 >> El password lo daré en clase. Por cada vez que deba repetirse el pass (por pérdida) se reducirá la nota asociada a la práctica en un 20% (sobre la parte a realizar 70%).
 
+> Fecha de entrega: **martes 11 octubre**
+> Forma de entrega: Subir como README.md a repositorio privado en una carpeta T1-SistemasAlmacenamientoInformacion y compartir con @luiscastelar.
+
 ### Para practicar [NO obligatorio]
 Base: [SQLite](https://www.sqlite.org/index.html) y [SQLite Browser](https://sqlitebrowser.org/)
 
