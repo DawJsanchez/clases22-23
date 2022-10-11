@@ -18,9 +18,9 @@ Fecha de examen: **Lunes 10 de octubre**
 
 + [Doc OFICIAL](https://git-scm.com/docs)
 + **Recomendado**: [Cap 2 Libro](https://luiscastelar.duckdns.org/Prog/git/GIT-Magic%20-%20Ben%20Lynn.pdf)
++ **Recomendado**: [Curso Git](https://github.com/jocode/git-github-pro)
 + [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
 + [Aprende Git](https://www.atlassian.com/es/git/tutorials/learn-git-with-bitbucket-cloud)
-+ [Tutorial básico Hostinger](https://www.hostinger.es/tutoriales/comandos-de-git)
 + [Libro - Pro Git](https://git-scm.com/book/en/v2)
 + [Otros libros y apuntes de interés](https://luiscastelar.duckdns.org)
 
@@ -114,11 +114,11 @@ Personalmente me gustan las columnas: To-Do, Working, Waiting, Done y Cancel.
    + Módulos a revisar (los que te imparto)
 5. Crea un subdirectorio con NOMBRE-DEL-MÓDULO
    + Crea un README.md con listado de tareas y su estado (método Kanban).
-   + Crea un archivo *md* con nombre T1-PracticaGit.md
+   + Crea un archivo *md* con nombre T2-PracticaGit.md
 6. En otra carpeta, clona tu repositorio remoto.
    + Captura de pantalla.
    + Súbela a ./img
-   + Enlázala a T1-PracticaGit.md
+   + Enlázala a T2-PracticaGit.md
 7. Invítame (@luiscastelar) a colaborar.
 8. Marca la práctica 1 como "en espera"
 
