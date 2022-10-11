@@ -9,6 +9,7 @@ Fecha de examen: **no evaluable**
 
 ## Recuperar REPO a estado anterior
 - Modo **SEGURO**: `git checkout HASH_COMMIT` -> Crea una nueva rama donde todos los archivos están con el estado del commit pasado.
+- Modo **SEGURO**: `git revert` -> Crea un commit que revierte el último commit. Para más cambios ver doc oficial.
 
 - Modo *inseguro*: `git reset -soft HASH_COMMIT` -> borra todo lo posterior a ese commit, pero *mantiene* los archivos que estén en el *staing area*.
 - Modo **muy** *inseguro*: `git reset -hard HASH_COMMIT` -> borra todo lo posterior a ese commit
