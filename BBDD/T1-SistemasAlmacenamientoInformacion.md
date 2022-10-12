@@ -19,7 +19,7 @@ Se desea informatizar el registro de compra-venta de una cencesionario. Para ell
 
 1. Crear las tablas personas y vehículos.
 2. Crear la tabla compra-venta, relacionándola con las anteriores.
-5. Guardar el *sqlite* para subir a Github cuando conozcamos la herramienta.
+5. Guardar el archivo de documenación (en formato markdown) y subir a Github a la carpeta correspondiente al módulo BBDD..
 
 Subir a Github *cuando se conozca*:
 1. Crear directorio NOMBRE-MÓDULO
