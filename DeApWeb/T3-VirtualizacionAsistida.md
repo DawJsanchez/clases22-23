@@ -5,7 +5,7 @@
 # T3 Virtualización asistida (Vagrant)
 
 Duración: 2 horas.
-*Fecha de examen: ??*
+Fecha de examen: **18 oct**
 
 ## Vagrant
 Es una aplicación que nos permite crear entornos de desarrollo virtuales o de contenedores, portables ya que se basan en ficheros de configuración (`Vagrantfile`) creados en Ruby.

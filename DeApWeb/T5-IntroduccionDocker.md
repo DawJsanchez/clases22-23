@@ -5,7 +5,7 @@
 # T5 Introducción a Docker
 
 Duración: 5 horas.
-*Fecha de examen: ??*
+Fecha de examen: **25 oct**
 
 ## Play with docker
 + Docker CLI: En nativo (base GNU/Linux). Será lo que utilicemos.
@@ -41,3 +41,10 @@ Como ya comentamos en clase, el desarrollo completo vamos a realizarlo fundament
 
 ## Tutorial
 [Tutorial](https://moodle.educarex.es/iescastelarfp/pluginfile.php/46278/mod_resource/content/1/contenedores.pdf)
+
+
+## Práctica
+(Pendiente de publicar)
+
+> Fecha de entrega: **25 de octubre.**
+> Forma de entrega: Subir como README.md a repositorio privado en una carpeta T5-Docker.

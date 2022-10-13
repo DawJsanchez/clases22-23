@@ -5,7 +5,7 @@
 # T4 SSH: Cliente, servidor y bastionado
 
 Duración: 3 horas.
-*Fecha de examen: ??*
+
 
 ## Clientes
 + En GNU/Linux: viene de "serie" `openssh`. Ejecución:
@@ -46,7 +46,7 @@ Por supuesto todos los ficheros estarán en un directorio de vuestro git.
 
 ### [Opcional] **EXTRA**: Configura Fail2ban para remitir avisos por [Telegram](https://github.com/shafiqsaaidin/fail2ban-telegram-notification)
 
-> Fecha de entrega: 25 de octubre.
+> Fecha de entrega: **24 de octubre.**
 > Forma de entrega: Subir como README.md a repositorio privado en una carpeta T4-SSH y compartir con @luiscastelar.
 ---
 Fin de tema.

@@ -24,27 +24,3 @@
 *IMPORTANTE:*
 + *NO* se pueden utilizar los MÓVILES, sin el consentimiento del profesor, en ningún espacio del Centro. EN EL RECREO TAMPOCO.
 + *NO* está permitido entrar patín / patinete eléctrico en ningún espacio del centro salvo en el parking de entrada de la puerta principal.
-
-* [[https://github.com/luiscastelar/clases22-23/tree/main/DeApWeb][Despliegue de Aplicaciones Web (DAW2)]]
-  + Total: 100 horas.
-  + Módulo parcialmente dualizado, esto es, la primera evaluación será no dualizada. La segunda, aquellos alumnos que sean *elegibles* podrán pasar a modalidad parcialmente dual, por lo que 2 horas se impartiran en aula y otras 3 en centro de trabajo.\\
-    Aquellos no elegibles, continuarán la segunda evaluación en formato presencial en aula.
-  + Resúmen de contenidos:
-	1. Bases del despligue.
-	2. Introducción a Git.
-	3. Virtualización asistida (Vagrant).
-	4. SSH: cliente, servidor y bastionado.
-	5. Introducción a Docker.
-	6. Docker-compose.
-	7. Servicios de nombres de dominio (DNS).
-	8. Servidor web básico.
-	9. Proxy inverso.
-	10. Servidor de aplicaciones.
-	11. Despliegue en servidor real.
-	12. Configuración avanzada servidor web.
-	13. Monitorización.
-	14. Igualdad en la informática.
-	15. Kubernetes.
-	16. Introducción a LDAP.
-	17. Ansible.
-	18. LDAP.
