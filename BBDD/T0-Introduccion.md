@@ -36,11 +36,7 @@ Para la valoración será similar a la de los alumnos dualizados En este caso, e
    - los nuevos conocimientos adquiridos.
    - la presentación del trabajo/proyecto en el centro educativo.
 
-<<<<<<< HEAD
-## Calificación periodo no dualizado:
-=======
 ## Calificación:
->>>>>>> refs/rewritten/Custom-Merge-commit
 + Actitud 10%
 + Trabajos y prácticas 40%. El alumnado deberá entregar las actividades en tiempo y forma que le indique el profesorado. Si esto no es así, se tendrá en cuenta en la calificación final, pudiéndose decidir **no calificar** las actividades y trabajos entregados **fuera de plazo**. Si se trata de actividades prácticas en el aula, aparte de la calificación durante su realización, se puede solicitar la entrega de memorias de prácticas cuya entrega será **obligatoria**.
 + Pruebas objetivas 50%. Se trata de pruebas teórica y/o prácticas, tanto escritas, como utilizando un sistema informático o herramientas propias de su perfil profesional. Estas pruebas objetivas se desarrollarán en el aula para tratar de evaluar de forma objetiva e individual la correcta asimilación de los contenidos y elementos de capacidad objeto del Módulo.\\
@@ -54,20 +50,12 @@ Será condición necesaria para poder obtener calificación positiva en el trime
 
 ### En los trabajos:
 + Lo que se indique en cada trabajo.
-<<<<<<< HEAD
-+ Las fechas de entrega son las que son. Excepcionalmente y con reducción de 2 puntos de la nota, se dispondrá de 1 dia extra. 
-=======
 + Las fechas de entrega son las que son. Excepcionalmente y con reducción de 2 puntos de la nota, se dispondrá de 1 dia extra.
->>>>>>> refs/rewritten/Custom-Merge-commit
 
 ### En las prácticas:
 + Lo que se indique (70% de la nota)
 + Limpieza (10% de la nota)
-<<<<<<< HEAD
-+ Documentación. La documentación debe responder:
-=======
 + Documentación (20% de la nota). La documentación debe responder:
->>>>>>> refs/rewritten/Custom-Merge-commit
 >1. ¿Qué vamos a hacer?
 >2. ¿Con qué lo vamos a hacer?
 >3. ¿Cómo se ha hecho?

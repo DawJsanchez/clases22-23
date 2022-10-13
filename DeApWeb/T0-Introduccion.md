@@ -55,7 +55,7 @@ Será condición necesaria para poder obtener calificación positiva en el trime
 ### En las prácticas:
 + Lo que se indique (70% de la nota)
 + Limpieza (10% de la nota)
-+ Documentación. La documentación debe responder:
++ Documentación (20% de la nota). La documentación debe responder:
 >1. ¿Qué vamos a hacer?
 >2. ¿Con qué lo vamos a hacer?
 >3. ¿Cómo se ha hecho?
