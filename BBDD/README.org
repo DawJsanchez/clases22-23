@@ -1,0 +1,31 @@
+* Bases de Datos (DAW1)
+
+** Calendario
+| *Tema*                     | *Pract* | *Exam* | *Comentario* |
+|----------------------------+---------+--------+--------------|
+| TODO:                      |         |        |              |
+|----------------------------+---------+--------+--------------|
+| T2 DISEÑO LÓGICO (ER)      | 13 oct  | 14 oct |              |
+| T2 D. LÓGICO (RELACIONAL)  | 18 oct  | 14 oct |              |
+| T2 Normalizacion           | 21 oct  | 26 oct |              |
+|                            |         |        |              |
+|----------------------------+---------+--------+--------------|
+| DONE:                      |         |        |              |
+|----------------------------+---------+--------+--------------|
+| T1 Sis almacenamiento info | 11 oct  | X      |              |
+|----------------------------+---------+--------+--------------|
+
+
+** Resumen de temas
+  + Total: 192 horas.
+  + Resúmen de contenidos:
+	1. Sistemas de almacenamiento de información
+	2. Diseño lógico de una BBDD.
+	3. Diseño físico de una BBDD.
+	4. DML I: Realización de consultas.
+	5. DML II: Edición de datos.
+	6. Programación de BBDD.
+	7. BBDD objeto-relacionales.
+	8. Not Only SQL (NoSQL).
+	9. Igualdad.
+  + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
