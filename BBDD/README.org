@@ -3,14 +3,14 @@
 ** Calendario
 | *Tema*                     | *Pract* | *Exam* | *Comentario* |
 |----------------------------+---------+--------+--------------|
-| TODO:                      |         |        |              |
+| *TODO:*                    |         |        |              |
 |----------------------------+---------+--------+--------------|
 | T2 DISEÑO LÓGICO (ER)      | 13 oct  | 14 oct |              |
 | T2 D. LÓGICO (RELACIONAL)  | 18 oct  | 14 oct |              |
 | T2 Normalizacion           | 21 oct  | 26 oct |              |
 |                            |         |        |              |
 |----------------------------+---------+--------+--------------|
-| DONE:                      |         |        |              |
+| *DONE:*                    |         |        |              |
 |----------------------------+---------+--------+--------------|
 | T1 Sis almacenamiento info | 11 oct  | X      |              |
 |----------------------------+---------+--------+--------------|
@@ -28,4 +28,7 @@
 	7. BBDD objeto-relacionales.
 	8. Not Only SQL (NoSQL).
 	9. Igualdad.
-  + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
+
+#+BEGIN_QUOTE
+Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
+#+END_QUOTE
