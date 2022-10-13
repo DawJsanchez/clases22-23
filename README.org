@@ -48,22 +48,3 @@
 	16. Introducción a LDAP.
 	17. Ansible.
 	18. LDAP.
-
-* [[https://github.com/luiscastelar/clases22-23/tree/main/Prog][Programación (DAW1)]]
-  + Total: 224 horas.
-  + Resúmen de contenidos:
-	1. Introducción a Git
-	2. Introducción a la programación
-	3. Elementos de un programa
-	4. POO
-	5. Estructuras de control
-	6. Arrays
-	7. Cadenas
-	8. Colecciones
-	9. POO II
-	10. Ficheros
-	11. BBDD
-	12. JavaEE (JSP/Servlets)
-	13. Igualdad
-
-  + Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
