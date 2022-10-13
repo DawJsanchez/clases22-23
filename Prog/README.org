@@ -1,0 +1,38 @@
+* Programación (DAW1)
+
+** Calendario
+| *Tema*                | *Pract* | *Exam* | *Comentario* |
+|-----------------------+---------+--------+--------------|
+| *TODO:*               |         |        |              |
+|-----------------------+---------+--------+--------------|
+| T2 Intro Programación | 13 oct  | 17 oct |              |
+| T3 Elementos programa | 18 oct  | 19 oct |              |
+| T4 POO                |         |        |              |
+|                       |         |        |              |
+|-----------------------+---------+--------+--------------|
+| *DONE:*               |         |        |              |
+|-----------------------+---------+--------+--------------|
+| T1 GIT                | 5 oct   | 10 oct |              |
+|-----------------------+---------+--------+--------------|
+
+
+** Resumen de temas
+  + Total: 224 horas.
+  + Resúmen de contenidos:
+	1. Introducción a Git
+	2. Introducción a la programación
+	3. Elementos de un programa
+	4. POO
+	5. Estructuras de control
+	6. Arrays
+	7. Cadenas
+	8. Colecciones
+	9. POO II
+	10. Ficheros
+	11. BBDD
+	12. JavaEE (JSP/Servlets)
+	13. Igualdad
+
+#+BEGIN_QUOTE
+Pendientes: Alumnos pendientes deben tener en cuenta que se rigen por esta programación y por tanto ser conscientes de los posibles cambios con respecto a la programación de 2021/22.
+#+END_QUOTE

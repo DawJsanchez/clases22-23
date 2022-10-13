@@ -1,0 +1,42 @@
+* Despliegue de Aplicaciones Web (DAW2)
+
+** Calendario
+| *Tema*                  | *Pract* | *Exam* | *Comentario* |
+|-------------------------+---------+--------+--------------|
+| *TODO:*                 |         |        |              |
+|-------------------------+---------+--------+--------------|
+| T2 Introducción a Git   | 11 oct  | ??     |              |
+| T3 Virt asistida        | 18 oct  | 18 oct |              |
+| T4 SSH                  | 24 oct  | X      |              |
+| T5 Intro ~Docker~       | 25 oct  | 25 oct |              |
+| T6 ~docker-compose~     |         |        |              |
+|                         |         |        |              |
+|-------------------------+---------+--------+--------------|
+| *DONE:*                 |         |        |              |
+|-------------------------+---------+--------+--------------|
+| T1 Bases del despliegue | 4 oct   | X      |              |
+|-------------------------+---------+--------+--------------|
+
+** Resumen de temas
+  + Total: 100 horas.
+  + Módulo parcialmente dualizado, esto es, la primera evaluación será no dualizada. La segunda, aquellos alumnos que sean *elegibles* podrán pasar a modalidad parcialmente dual, por lo que 2 horas se impartiran en aula y otras 3 en centro de trabajo.\\
+    Aquellos no elegibles, continuarán la segunda evaluación en formato presencial en aula.
+  + Resúmen de contenidos:
+	1. Bases del despligue.
+	2. Introducción a Git.
+	3. Virtualización asistida (Vagrant).
+	4. SSH: cliente, servidor y bastionado.
+	5. Introducción a Docker.
+	6. Docker-compose.
+	7. Servicios de nombres de dominio (DNS).
+	8. Servidor web básico.
+	9. Proxy inverso.
+	10. Servidor de aplicaciones.
+	11. Despliegue en servidor real.
+	12. Configuración avanzada servidor web.
+	13. Monitorización.
+	14. Igualdad en la informática.
+	15. Kubernetes.
+	16. Introducción a LDAP.
+	17. Ansible.
+	18. LDAP.
