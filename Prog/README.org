@@ -6,7 +6,7 @@
 | *TODO:*               |         |        |              |
 |-----------------------+---------+--------+--------------|
 | T2 Intro Programación | 13 oct  | 17 oct |              |
-| T3 Elementos programa | 18 oct  | 19 oct |              |
+| T3 Elementos programa | 18 oct  | 20 oct |              |
 | T4 POO                |         |        |              |
 |                       |         |        |              |
 |-----------------------+---------+--------+--------------|
