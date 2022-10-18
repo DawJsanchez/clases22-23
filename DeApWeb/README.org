@@ -6,9 +6,9 @@
 | *TODO:*                 |         |        |              |
 |-------------------------+---------+--------+--------------|
 | T2 Introducción a Git   | 11 oct  | ??     |              |
-| T3 Virt asistida        | 18 oct  | 18 oct |              |
+| T3 Virt asistida        | 18 oct  | 25 oct |              |
 | T4 SSH                  | 24 oct  | X      |              |
-| T5 Intro ~Docker~       | 25 oct  | 25 oct |              |
+| T5 Intro ~Docker~       | 25 oct  | 31 oct |              |
 | T6 ~docker-compose~     |         |        |              |
 |                         |         |        |              |
 |-------------------------+---------+--------+--------------|
