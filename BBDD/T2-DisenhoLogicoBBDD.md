@@ -38,6 +38,30 @@ De cada alumno se desea guardar el nº de expediente, nombre, apellidos y fecha 
 
 Cada  curso  tiene  un  grupo  de  alumnos,  uno  de  los  cuales  es  el  delegado  del grupo.
 
+### Ejercicio 3:
+Normaliza la práctica de modelo ER.
+
+### Ejercicio 4:
+Aprovechando las subvenciones que ofrece el gobierno español, la federación nacional de curling desea informatizar su gestión.
+
+Como buenos aficionados a este precioso deporte, sabéis que los presupuestos que manejan los equipos son muy ajustados por lo que el sistema de gestión abarcará no sólo a la federación, si no que se lo ofrecerá a todos los equipos y federaciones regionales, nacionales.
+
+Sabemos de *la liga* tiene un funcionamiento de play-off que está compuesta por 2 estratos:
++ Ligas regionales (máximo 8 equipos) Nor-Oeste, Nor-Este, Sur-O y S-E que juegan liguilla a ida y vuelta.
++ Liga nacional "primera división" que juegan los 2 primeros clasificados de cada liga regional que juegan un único partido con cada contrincante.
+
+Los equipos son de 7 jugadores, entrenador y presidente, y todos firman compromisos por temporadas completas.
+
+Queremos:
+1. Saber de forma rápida la clasificación de cada equipo de cada liga regional y por tanto los equipos que pasan.
+2. Igual para la liga nacional, cuando se juegue.
+3. Saber el máximo puntuador de la liga (contando los puntos de la fase regional y final.
+4. Los componentes de cada equipo en cada temporada.
+5. Los jugadores que participan en cada partido y su resultado (puntos de equipo, equipo ganador y puntos individuales).
+
+Diseña desde la fase de recogida de datos (proporcionada) hasta la de normalización en 3FN.
+*Nota: Si tienes dudas es normal, pero en esta época del año está toda la liga concentrada y no atienden a nadie por lo que te verás obligado a tomar tus propias decisiones interpretativas las cuales documentarás adecuadamente.
+
 ## Práctica Modelo E-R (**pdt de revisión**)
 Esta práctica la iremos resolviendo por partes encajando al final todas las piezas en el diagrama ER de la gestión educativa de un centro.
 1. En nuestro centro educativo nos centramos en las personas, ya sean alumnos, profesores u otras. \
