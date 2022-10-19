@@ -44,7 +44,15 @@ Como ya comentamos en clase, el desarrollo completo vamos a realizarlo fundament
 
 
 ## Práctica
-(Pendiente de publicar)
+Deberéis crear un conjunto de microservicios (con docker) compuesto por 3 contenedores:
++ Red interna para la comunicación entre contenedores
++ Microservicio `mariaDB` no accesible desde el mundo, sólo desde la red interna. Éste debe inicializarse con la creación del usuario `pepe`y el pass `despliegue`.
++ Microservicio `php-apache` que pueda acceder a la bbdd y desde el exterior en el puerto 80. Debe contener un `phpinfo()` en el archivo `info.php` de la raíz púbilica.
++ Microservicio `phpMyAdmin`que pueda accedar a la bbdd y sea accesible desde el exterior en el puerto 8080 o 443 si lo realizas desde un VPS. \
+*Nota: para simplificar esta última conexión deberéis pasarle la variable de entorno `PMA_HOST=nombre_contenedor_mariaDB`.
+
+
+*Nota: El sistema debe ser accesible por cualquiera desde internet (VPS) o ser facilitado en un entorno reproducible (vagrant) con instrucciones claras para su ejecución.*
 
 > Fecha de entrega: **25 de octubre.**
 > Forma de entrega: Subir como README.md a repositorio privado en una carpeta T5-Docker.
