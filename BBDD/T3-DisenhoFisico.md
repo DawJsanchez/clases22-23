@@ -196,12 +196,10 @@ we have improved readability for DDL (Data Definition Language) operations to ma
 **Documentación:**
 + [documentación OFICIAL](https://mariadb.com/kb/en/sql-statements-structure/)
 + [doc MySQL](https://dev.mysql.com/doc/refman/8.0/en/)
-+ [doc OBSOLETA en ES](https://www.sql-easy.com/es/)
-+ [a]()
++ [doc OBSOLETA en ES](https://luiscastelar.duckdns.org/BBDD/refman-5.0-es.pdf)
 
 **Tutoriales:**
 + [Lo más simple](https://www.sql-easy.com/es/)
-+ []
 + [W3School.com](https://www.w3schools.com/mysql/default.asp)
 
 **Video-tutoriales**
