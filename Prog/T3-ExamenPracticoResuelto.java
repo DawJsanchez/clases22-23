@@ -50,7 +50,7 @@ public class ExamenT3 {
 		// 5b. Más elegante
 		mayor = ( operando1 > operando2 )? operando1 : operando2 ;
 		menor = ( operando1 <= operando2 )? operando1 : operando2 ;
-		System.out.println( "La división de " + mayor + " entre " + menor + " es = " + division );
+		System.out.println( "La división de " + mayor + " entre " + menor + " es = " + mayor/menor );
 
 		// 6. Paso de variables de entorno
 		// Se debe invocar la clase desde la CLI con `java -Dturbo=valor ExamenT3 nombre`
