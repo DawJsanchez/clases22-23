@@ -9,6 +9,39 @@ Duración: 5 horas.
 ## Teoría
 [CIFP Rodolfo Ucha](https://wiki.cifprodolfoucha.es/index.php?title=Teor%C3%ADa_sobre_o_Servizo_de_nomes_de_dominio)
 
+## Cliente DNS:
+Jerarquía de resolución:
+1. Archivo `/etc/host`: \
+Fichero para la resolución estática de nombres (normalmente de la red local).
+
+Incluye nuevas líneas en este fichero para la resolución de nombres de la red local. Las líneas de /etc/hosts tienen el formato:
+>
+> \# dirección_IP nombre_largo nombre_corto \
+> 127.0.0.1 localhost.localdomain localhost \
+> 192.168.45.123 sauron.mordor.com sauron \
+> \# bannear a youtuble \
+> 127.0.0.2 youtuble.com \
+>
+Comprueba su funcionamiento haciendo ping a las máquinas que has incluido.
+
+*Nota*: en Windows el archivo es `C:\Windows\System32\drivers\etc\host`.
+
+*Nota 2*: Firefox no respeta el uso de este archivo.
+
+
+2. Servicio DNS indicado en `/etc/resolv.conf`
+Fichero que especifica los servidores DNS y los dominios de búsqueda... salvo que en las nuevas versiones de S.O.s basados en Gnu/Linux ya no podemos editarlo directamente. El archivo es controlado por *systemd*.
+
+Ahora:
+1. Modificar archivo `/etc/system/resolved.conf`
+2. Enlazar el sistema *antiguo* `sudo ln -sf /run/systemd/resolve/resolv.conf /etc/resolv.conf`
+3. Reiniciar servicio:
+   + `sudo systemctl stop systemd-resolved`
+   + `sudo systemctl start systemd-resolved`
+
+> Nota: En cierta bibliografía aparecerá como `sudo systemctl stop systemd-resolved.service`. Deberéis saber que systemd toma por defecto *.service* si se omite el tipo de *demonio* (service, socket, ...)
+
+
 ### Referencias webgráficas
 + [ngi.es](https://www.ngi.es/configurar-servidor-dns-con-dnsmasq/)
 + [Jose Domingo Muñoz](https://www.josedomingo.org/pledin/2020/12/servidor-dns-dnsmasq/)
