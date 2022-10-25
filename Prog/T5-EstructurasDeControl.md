@@ -24,7 +24,20 @@ if (*condicion*) {
 	...
 }
 ```
-+ Anidación de condicionales con IF (poco limpio).
++ Anidación de condicionales con IF-ELSE IF:
+```
+if (*condicion*) {
+	*sentencias si verdadero*
+	...
+} else if (*condicion2*) {
+	*sentencias si condicion2*
+	...
+} else {
+	*sentencias si falso*
+	...
+}
+```
+
 + Condicionales múltiples con SWITCH-CASE:
 ```
 switch (*expresion*) {
