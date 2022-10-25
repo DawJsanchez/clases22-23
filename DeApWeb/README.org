@@ -5,16 +5,16 @@
 |-------------------------+---------+--------+--------------|
 | *TODO:*                 |         |        |              |
 |-------------------------+---------+--------+--------------|
-| T2 Introducción a Git   | 11 oct  | ??     |              |
-| T3 Virt asistida        | 18 oct  | 25 oct |              |
-| T4 SSH                  | 24 oct  | X      |              |
-| T5 Intro ~Docker~       | 25 oct  | 31 oct |              |
-| T6 ~docker-compose~     |         |        |              |
+| T5 Intro ~Docker~       | 25 oct  | 8 oct  |              |
+| T6 ~docker-compose~     | 7 oct   | 8 oct  |              |
 |                         |         |        |              |
 |-------------------------+---------+--------+--------------|
 | *DONE:*                 |         |        |              |
 |-------------------------+---------+--------+--------------|
 | T1 Bases del despliegue | 4 oct   | X      |              |
+| T2 Introducción a Git   | 11 oct  | ??     |              |
+| T3 Virt asistida        | 18 oct  | 25 oct |              |
+| T4 SSH                  | 24 oct  | X      |              |
 |-------------------------+---------+--------+--------------|
 
 ** Resumen de temas
