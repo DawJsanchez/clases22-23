@@ -34,10 +34,17 @@ public class ExamenT3 {
 		operando1 = lector.nextInt();
 
 		System.out.println( "Introduce otro ENTERO:" );
-		//operando2 = Integer.parseInt(lector.next());
-		//System.out.println( "El segundo op:" + operando2 );
-		operando2 = Integer.valueOf(lector.next());
+		operando2 = Integer.parseInt(lector.next());
+		// Integer.parseInt(String num)
+		// 		Sólo acepta String
+		// 		Retorna un primitivo int
 		System.out.println( "El segundo op:" + operando2 );
+
+		//operando2 = Integer.valueOf(lector.next());
+		// Integer.valueOf(String num)
+		//		Acepta String o int
+		//		Retorna un objeto Int
+		//System.out.println( "El segundo op:" + operando2 );
 
 		// 4. Resto de la división
 		System.out.println( "Resto: " + operando1 % operando2 );
