@@ -110,7 +110,9 @@ Para eliminarla: `DROP DATABASE nombreBaseDeDatos;`
 Para usarla: `USE nombreBaseDeDatos`
 
 ## LDD - Creación de tablas:
-Ver ejemplo en apartado de documentación.
+Ver ejemplo en apartado de documentación sobre creación de una tabla.
+
+Si ya tenemos una tabla con el nombre `ciclista` al ejecutar la sentencia arrojaría error, por lo que podemos asegurarla añadiendo la partícula IF NO EXISTS, esto es, `CREATE TABLE IF NO EXISTS nombreTabla...`
 
 ### Palabras reservadas en SQL
 [Ver doc oficial](https://dev.mysql.com/doc/refman/8.0/en/keywords.html)
@@ -150,6 +152,21 @@ Como en `Java` deberemos escapar ciertos caracteres:
 ### Ejercicio:
 Crea el resto de tablas del ejercicio propuesto de examen Modelo ER y RELACIONAL.
 
+
+### Consulta la estructura de una tabla
+Podemos consultar la estructura de una tabla con `DESCRIBE nombreTabla`, lo cual nos mostrará algo como:
+```
+| Field                   | Type      | Null | Key | Default | Extra                         |
++-------------------+-----------+----- -+------+------------+------------------------+
+| id                          | int(11) | NO    | PRI | NULL       | auto_increment |
+| idVendedor    | int(11) | NO    | PRI | NULL       |                                     |
+| idComprador | int(11) | NO    | PRI | NULL       |                                     |
+| idVehiculo      | int(11) | NO    | PRI | NULL       |                                     |
++-------------------+----------+--------+-----+------------+------------------------+
+```
+
+Aunque también podemos consultar la sentencia que nos premitiría reconstruir la tabla de nuevo con `SHOW CREATE TABLE nombreTabla`
+
 ## LDD - Modificación de tablas:
 `ALTER TABLE` será la sentencia a utilizar para modificar una tabla que ya existe.
 
@@ -182,7 +199,53 @@ ALTER TABLE ciclista
 ### Ejercicio
 Crea las modificaciones necesarias para crear las FK vinculantes.
 
-## LDD - Creación/Eliminación de DB, index, tablas y vistas:
+### LDD - Eliminación de tablas (Drop)
+Para eliminar usaremos la sentencia `DROP TABLE nombreTabla;`. \
+Ésta sentencia no puede desacerse por lo que se recomienda asegurarse del nombre antes de ejecutarla y tener copias de seguridad.
+
+Podemos asegurar la senctencia con la partícula IF EXISTS, esto es, `DROP TABLE IF EXISTS nombreTabla;`
+
+## [off-topic] COPIAS DE SEGURIDAD
+Como venimos hablando desde el comienzo del curso, las copias de seguridad son **FUNDAMENTALES** en nuestro trabajo (en realidad en todos los trabajos) por lo que vamos a proceder a aprender los métodos básicos para realizarlas.
+
+### Copias LÓGICAS
+```
+mysqldump performs a logical backup. It is the most flexible way to perform a backup and restore, and a good choice when the data size is relatively small.
+
+For large datasets, the backup file can be large, and the restore time lengthy.
+
+mysqldump dumps the data into SQL format (it can also dump into other formats, such as CSV or XML) which can then easily be imported into another database. The data can be imported into other versions of MariaDB, MySQL, or even another DBMS entirely, assuming there are no version or DBMS-specific statements in the dump.
+
+mysqldump dumps triggers along with tables, as these are part of the table definition. However, stored procedures, views, and events are not, and need extra parameters to be recreated explicitly (for example, --routines and --events). Procedures and functions are however also part of the system tables (for example mysql.proc).
+```
++ [Doc OFICIAL](https://mariadb.com/kb/en/mariadb-dumpmysqldump/)
++ Uso:
+     + Todas la db, pero sólo las db:	  `mysqldump -h host_IP -u usuario -p$(cat ruta_a_credencial/credencial.pass) -Ppuerto -A > ruta_de_bakups/`date +"%Y%m%d%H%M%S"`-todas-las-db.sql`
+     + Con rutinas: `-R` o `--routines`
+	 + Sólo las tablas especificadasa: `mysqldump ... my_database my_table1 my_table2 my_table3 > my_backup.sql`
+     + Comprimido Gzip: `mysqldump ... my_app | gzip -8 > my_backup.sql.gz`
+	 + Con `trigger` (disparadores): `mysqldum ... --triggers ...`
+	 + Eventos: `mysqldump ... --events ... `
++ [Guru MariadbDump](https://mysqldump.guru/backup-one-multiple-or-all-database-at-once-using-mysqldump.html)
+
+#### Restauración de copias
+`mysql [-h host_IP] -u [username] -p [DATABASE name] < [backup filename].sql`
+
+### Copias FÍSICAS
+Son más rápidas de realizar y restaurar. No son tan universales, pero dan opciones extra como encriptar las copias. \
+
+Son más aptas para db grandes y permiten realizar los backup sin bloqueo de tablas, por lo que pueden ser realizadas en *caliente* `hot plug`.
++ [Doc OFICIAL](https://mariadb.com/kb/en/mariabackup-overview/)
+
+
+## VISTAS
+
+
+
+## ÍNDICES
+
+
+
 
 ## Atomic DDL
 Desde MariaDB 10.6.1, existen algunas operaciones son realizadas de forma atómica y proporcionan seguridad de ser serguras ante *crash* (desastres).
