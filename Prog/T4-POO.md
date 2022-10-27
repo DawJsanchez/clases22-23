@@ -38,6 +38,14 @@ Debes establecer los criterios más restrictivos posibles de visibilidad.
 - Método `devolucion` que decremente el atributo correspondiente cuando se produzca la devolución de un libro. No se podrán devolver libros que no se hayan prestado. Devuelve true si se ha podido realizar la operación y false en caso contrario.
 - Método `toString` para mostrar los datos de los libros. Este método se heredada de Object y lo debemos modificar (override) para adaptarlo a la clase Libro. \
 Escribe un programa para probar el funcionamiento de la clase Libro.
+*Nota: uso de @Override*
+```
+...
+@Override
+public String toString() {
+    return "El texto que queramos " + atr_objeto ;
+}
+```
 
 
 ## Práctica
