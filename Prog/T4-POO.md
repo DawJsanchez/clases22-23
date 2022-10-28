@@ -46,7 +46,7 @@ public String toString() {
     return "El texto que queramos " + atr_objeto ;
 }
 ```
-
+[Ejercicios POO](./T4/EjerciciosClasesYObjetos-UCM.pdf)
 
 ## Práctica
 -Pdte-
