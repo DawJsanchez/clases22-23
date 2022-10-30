@@ -13,11 +13,13 @@ _actualiza_repo(){
 		echo "Actualizando $F"
 		cd "$PWD/${1}/${F}"
 		git pull
+		git push
 		cd $RAIZ
 	done
 }
 
 # Llamo a cada conjunto de repos a actualizar
 #	Requiere que los repos sean `git clone` de un repo remoto
+_actualiza_repo 'mios'
 _actualiza_repo '1-DAW'
 _actualiza_repo '2-DAW'
