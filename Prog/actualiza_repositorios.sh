@@ -10,6 +10,7 @@ RAIZ="$PWD"
 #	Recorre todo el DIR realizando `git pull` de todos los repos contenidos en él
 _actualiza_repo(){
 	for F in `ls $1/` ; do
+		echo "-----------------------------------------------"
 		echo "Actualizando $F"
 		cd "$PWD/${1}/${F}"
 		git pull
