@@ -37,7 +37,7 @@ Debes establecer los criterios más restrictivos posibles de visibilidad.
 - Método `prestamo` que incremente el atributo correspondiente cada vez que se realice un préstamo del libro. No se podrán prestar libros de los que no queden ejemplares disponibles para prestar. Devuelve true si se ha podido realizar la operación y false en caso contrario.
 - Método `devolucion` que decremente el atributo correspondiente cuando se produzca la devolución de un libro. No se podrán devolver libros que no se hayan prestado. Devuelve true si se ha podido realizar la operación y false en caso contrario.
 - Método `toString` para mostrar los datos de los libros. Este método se heredada de Object y lo debemos modificar (override) para adaptarlo a la clase Libro. \
-Escribe un programa para probar el funcionamiento de la clase Libro.
+Escribe un programa para probar el funcionamiento de la clase Libro. \
 *Nota: uso de `@Override`. Devuelve una representación textual del objeto.*
 ```
 ...
@@ -49,7 +49,18 @@ public String toString() {
 [Ejercicios POO](./T4/EjerciciosClasesYObjetos-UCM.pdf)
 
 ## Práctica
--Pdte-
+Basándonos en el ejercicio 3 donde nos pedían realizar una clase Libro para gestionar una biblioteca:
++ Añade un constructor que reciba el título y los ejemplares totales disponibles en la biblioteca.
++ Realiza una clase para probar todos los métodos desarrollados.
+
+**Fecha de entrega**: 7 noviembre
+**Recuerda**:
++ Crea un directorio para ella P4-POO
++ Súbela como archivo README.md
++ Añade los archivos fuente y las capturas que creas oportuno.
++ Además, marca la práctica como "en espera" en tu lista de prácticas (README.md de la carpeta REPOSITORI_PERSONAL/PROGRAMACION).
+
+
 
 ---
 Fin de tema.
