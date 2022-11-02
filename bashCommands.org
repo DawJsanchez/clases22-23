@@ -1,0 +1,70 @@
+#+Tittle COMANDOS IMPRESCINDIBLES DE BASH
+
+* File commands
+1. ls: listar archivos
+   * ls -la: listar todos y con permisos
+2. pwd: directorio actual
+3. mkdir: crea directorio
+   * mkdir -p: crea directorio incluído padres si no existen
+4. rm: borra archivo
+   * rm -r: de forma recursiva
+   * rm -rf: aunque no estén vacio
+5. cd: change directory
+6. cp: copia archivo
+7. mv: mueve y/o renombra archivo
+8. ln -s: crea enlace simbólico
+9. touch: crea archivo vacío o actualiza fechas (acceso, creación, ...)
+10. cat: vuelca archivo en salida estandar
+11. tail: vuelca las última líneas de archivo
+
+* File permission
+1. chmod: cambia permisos
+2. chown: cambia propietarios
+
+* Process
+1. ps aux: muestra procesos
+2. bg: continúa trabajos en background
+3. fg: continúa trabajos en foreground
+
+* System
+1. hostname: información del nombre del sistema
+   * hostname -I: IPs del sistema
+2. date: fecha y hora
+
+* Hardware
+1. dmesg: infor hardware y boot
+
+* Network
+1. ip link: info relativa a IP e interface
+2. ping: echo request
+3. dig: get dns
+4. wget: descarga archivo o web
+5. netstat -tapon: lista puertos
+
+* Search
+1. grep: busca patron en archivos
+2. find: busca archvos por nombre o características
+
+* SSH
+1. ssh: conectar a máquina
+2. scp: copiar entre máquinas
+3. rsync: idem
+
+* MENOS imprescindibles
+
+** File command
+1. df -h: espacio libre en disco
+2. du -sh: espacio usado por directorio
+
+** Process
+1. htop: muestra procesos
+
+** System
+
+** Hardware
+1. LS ...
+   * lshw: listar hardware
+   * lsblk: listar dispositivos de bloques
+   * lspci -tv: listar dispositivos pci
+   * lsusb -tv: listar dispositivos usb
+2. free -h: memoria usada
