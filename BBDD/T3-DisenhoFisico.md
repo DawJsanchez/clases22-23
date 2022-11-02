@@ -205,6 +205,21 @@ Para eliminar usaremos la sentencia `DROP TABLE nombreTabla;`. \
 
 Podemos asegurar la senctencia con la partícula IF EXISTS, esto es, `DROP TABLE IF EXISTS nombreTabla;`
 
+## [off-topic] MySQL SHELL
+Para el acceso al servidor de bases de datos:
+1. Descargar e instalar [mysql-shell](https://dev.mysql.com/downloads/shell/)
+     + Requiere paquete adicional [Visual C++ redistributing](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-160)
+2. Acceso al servidor:  `\connect USUARIO@dbcli.luiscastelar.duckdns.org:45682`
+3. Pasar al modo SQL `\sql`
+4. Probar `show databases;`
+5. MySQLDump:
+	+ Pasamos al modo JS `\JS`
+	+ Ejecutamos `util.dumpSchemas(["00_db_Luis"], "~/NOMBRE_DEL_DUMP.dump"])`
+6. Carga de archivos: `\source ~/ARCHIVO.sql` \
+     *Nota: puedes sustituir `\source` por un dot `.`.
+
+[Documentación OFICIAL](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-commands.html)
+
 ## [off-topic] COPIAS DE SEGURIDAD
 Como venimos hablando desde el comienzo del curso, las copias de seguridad son **FUNDAMENTALES** en nuestro trabajo (en realidad en todos los trabajos) por lo que vamos a proceder a aprender los métodos básicos para realizarlas.
 
