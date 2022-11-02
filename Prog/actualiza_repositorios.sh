@@ -57,7 +57,7 @@ _actualiza_repo(){
 			if [[ 'Ya está actualizado.' == "$salida" ]]; then
 				echo -e "\t $F sin cambios."
 			else
-				LOG="$HOME/repos/.${1}-${F}.log"
+				LOG="$HOME/repos/mios/privados/logs/.${1}-${F}.log"
 				echo "Actualizando $F"
 				echo "$salida"
 				#echo "$(date) - cambios:" >> "$LOG"
