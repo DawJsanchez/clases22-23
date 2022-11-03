@@ -67,6 +67,7 @@ _actualiza_repo(){
 			fi
 
 			# git pull
+			git status
 			git push 1>"$HOME/salida.txt" 2> "$HOME/error.txt"
 			alDia=$(cat ~/error.txt);
 			if [[ 'Everything up-to-date' == "$alDia" ]]; then 
