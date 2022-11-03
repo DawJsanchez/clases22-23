@@ -213,8 +213,8 @@ Para el acceso al servidor de bases de datos:
 3. Pasar al modo SQL `\sql`
 4. Probar `show databases;`
 5. MySQLDump:
-	+ Pasamos al modo JS `\JS`
-	+ Ejecutamos `util.dumpSchemas(["00_db_Luis"], "~/NOMBRE_DEL_DUMP.dump"])`
+	+ Pasamos al modo JS `\js`
+	+ Ejecutamos `util.dumpSchemas(["00_db_Luis"], "~/NOMBRE_DEL_DUMP.dump")`
 6. Carga de archivos: `\source ~/ARCHIVO.sql` \
      *Nota: puedes sustituir `\source` por un dot `.`.
 
