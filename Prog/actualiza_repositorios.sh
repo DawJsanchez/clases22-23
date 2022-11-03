@@ -54,10 +54,11 @@ _actualiza_repo(){
 
 			git pull 1>"$HOME/salida.txt" 2> /dev/null;
 			salida=$(cat ~/salida.txt);
-			if [[ 'Ya está actualizado.' == "$salida" ]]; then
+			if [[ ('Ya está actualizado.' == "$salida") || ('Already up to date.' == "$salida") ]]; then
 				echo -e "\t $F sin cambios."
 			else
-				LOG="$HOME/repos/mios/privados/logs/.${1}-${F}.log"
+				LOG="$RAIZ/mios/privado/logs/.${1}-${F}.log"
+				if [[ ! -f "$LOG" ]]; then touch "$LOG"; fi
 				echo "Actualizando $F"
 				echo "$salida"
 				#echo "$(date) - cambios:" >> "$LOG"
