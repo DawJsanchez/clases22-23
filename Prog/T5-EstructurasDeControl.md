@@ -134,8 +134,18 @@ for (multiplicando=0;multiplicando<10;multiplicando++){
 + [Cuanta los minutos - 148](https://www.aceptaelreto.com/problem/statement.php?id=148&cat=5)
 + [¿Qué lado de la calle?](https://www.aceptaelreto.com/problem/statement.php?id=217&cat=5)
 
-## Práctica
--Pdte-
+## PRÁCTICA
++ [Altura de un árbol general](https://www.aceptaelreto.com/problem/statement.php?id=310&cat=10)
+
+Deberéis implementarlo mediante objetos, bucles y condicionales... vamos, lo que hemos visto en clase y sólo eso.
+
+*Rúbrica*:
++ Descripción del problema [2p]
++ Implementación de objeto controlador:
+	+ Captura de entrada [1p]
+	+ Bucles [2p]
+	+ Condicionales [2p]
++ Implementación de objeto [3p]
 
 ---
 Fin de tema.
