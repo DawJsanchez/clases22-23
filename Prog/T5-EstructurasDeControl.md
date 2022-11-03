@@ -130,6 +130,10 @@ for (multiplicando=0;multiplicando<10;multiplicando++){
 }
 ```
 
+## ACEPTA EL RETO
++ [Cuanta los minutos - 148](https://www.aceptaelreto.com/problem/statement.php?id=148&cat=5)
++ [¿Qué lado de la calle?](https://www.aceptaelreto.com/problem/statement.php?id=217&cat=5)
+
 ## Práctica
 -Pdte-
 
