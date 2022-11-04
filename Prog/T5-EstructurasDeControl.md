@@ -134,6 +134,34 @@ for (multiplicando=0;multiplicando<10;multiplicando++){
 + [Cuanta los minutos - 148](https://www.aceptaelreto.com/problem/statement.php?id=148&cat=5)
 + [¿Qué lado de la calle?](https://www.aceptaelreto.com/problem/statement.php?id=217&cat=5)
 
+## Excepciones
+En ocasiones se pueden recibir valores no esperados (p.e. solicitar un número y recibir una letra) o recursos no disponibles que no podremos detectar al compilar ya que se producen en tiempo de ejecución.
+
+Para poder gestionarlos y no tener salidas prematuras y abruptas de la aplicación utilizaremos las palabras reservadas `try` y `catch` (intenta y atrapa).
+
+Su funcionamiento es sencillo como podemos ver en el ejemplo siguiente:
+```
+...
+int a = 7, b = 0, c;
+try {
+	c = a / b;
+} catch (Exception e) {
+	System.out.println(e.getMessage());
+		// Imprime un mensaje descriptivo
+	System.out.println(e.toString());
+		// Imprime la clase que generó la excepción y un mensaje descriptivo
+	System.out.println(e.printStackTrace());
+		// Imprime el método y el mensaje... lo mismo que si no lo controláramos.
+}
+```
+*Nota: Éstos mensajes son muy útiles en el `desarrollo`, pero deberemos ocultarlos en la puesta en `producción` para no dar pistas a usuarios maliciosos.*
+
+El control de excepciones también dispone de la palabra `finally` que nos abrirá un sección de código que se ejecutará tanto si se ha producido una excepción como si no, y donde ubicaremos las instrucciones que lleven a un estado seguro limpiando.
+
+Además, podemos tener un desarrollo más detallado con varios `catch` según el tipo de excepción que llamarán a objetos que heredan de la clase `Exception` por lo que disponen de los métodos anteriores. \
+Ver referencia completa en  [control de errores - jorgesanchez.net](https://www.jorgesanchez.net/manuales/viejos/fpr/fpr0809.pdf) ).
+
+
 ## PRÁCTICA
 + [Altura de un árbol general](https://www.aceptaelreto.com/problem/statement.php?id=310&cat=10)
 
