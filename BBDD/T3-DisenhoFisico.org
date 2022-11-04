@@ -18,17 +18,16 @@ Nosotros utilizaremos MariaDB en su rama 10.X. La misma fue compatible
 plenamente con MySQL hasta la versión 5.5 en la que ambos desarrollos
 separaron caminos.
 
-Se divide en 3 partes: + LDD (lenguaje de definición de datos): Incluye
-sentencias para gestionar las estructuras, esto es, la creación y
-modificación de tablas. + LMD (lenguaje de manipulación de datos):
-Incluye sentencias para gestionar los datos.\\
-LMD por tanto se encargará de realizar los CRUD: - C de Create:
-insertará nuevos registros. - R de Read: consultará los datos de las
-tablas. - U de Update: actualizará total o parcialmente los registros. -
-D de Delete: eliminará los registros. + LCD (lenjuage de control de
-datos): Incluye sentencias para gestionar la seguridad y los permisos.\\
-Creción de usuarios, roles y asignación granular de permisos de
-lectura/escritura a vistas, tablas o bases de datos.
+Se divide en 3 partes:
++ LDD (lenguaje de definición de datos): Incluye sentencias para gestionar las estructuras, esto es, la creación y modificación de tablas. 
++ LMD (lenguaje de manipulación de datos): Incluye sentencias para gestionar los datos.\\
+  LMD por tanto se encargará de realizar los CRUD:
+   - C de Create: insertará nuevos registros. 
+   - R de Read: consultará los datos de las tablas.
+   - U de Update: actualizará total o parcialmente los registros. 
+   - D de Delete: eliminará los registros.
++ LCD (lenjuage de control de datos): Incluye sentencias para gestionar la seguridad y los permisos.\\
+Creción de usuarios, roles y asignación granular de permisos de lectura/escritura a vistas, tablas o bases de datos.
 
 ** Cómo documentarnos sobre SQL
    :PROPERTIES:
@@ -159,13 +158,11 @@ partícula IF NO EXISTS, esto es,
     :CUSTOM_ID: palabras-reservadas-en-sql
     :END:
 
-[[https://dev.mysql.com/doc/refman/8.0/en/keywords.html][Ver doc
-oficial]]
+[[https://dev.mysql.com/doc/refman/8.0/en/keywords.html][Ver doc oficial]]
 
 Al contrario que en otros lenguajes, en SQL podremos utilizar las
 palabras reservadas siempre que indiquemos que son una cita (quote),
-esto es, añadir la palabra entre dos " ` ". P.e.: SELECT `fulltex` FROM
-tabla
+esto es, añadir la palabra entre dos " ` ". P.e.: ~SELECT `fulltex` FROM tabla~
 
 *** Tipos de datos
     :PROPERTIES:
@@ -176,7 +173,6 @@ tabla
   ENUN(val1, val2,...), ...
 - Números: BOOL, INT(n), FLOAT(p)
 - Fecha:
-
   - DATE: 'AAAA-MM-DD' (Ojo: el rango es de '1000-01-01' a '9999-12-31')
   - DATETIME: 'AAAA-MM-DD hh:mm:ss' (Ojo: mismo rango)
   - /TIMESTAMP/: El tiempo en UNIX -EPOCH- se mide como la cantidad de
@@ -198,16 +194,13 @@ tabla
 Similar a =Java=, encerrando los valores de texto entre comillas
 simples, p.e. =SELECT * FROM tabla WHERE nombre = 'Pepe'=
 
-Como en =Java= deberemos escapar ciertos caracteres: | Escape sequence |
-Character |
+Como en =Java= deberemos escapar ciertos caracteres: 
+| Esc seq | Character    |   | Esc seq | Character | | Esc seq | Character |
 |----+-------------------+---+---+---------------------+---+---+--------|
-| \0 | ASCII NUL (0x00). |   | ' | Single quote ("'"). |   | " | Double |
-quote (“"”). | | \b              | Backspace. | | \n              |
-Newline, or linefeed,. | | \r              | Carriage return. | |
-\t              | Tab. | | \Z              | ASCII 26 (Control+Z). See
-note following the table. | | \ | Backslash ("”). | | % | “%" character.
-See note following the table. | | _ | A “_” character. See note
-following the table. |
+| \0 | ASCII NUL (0x00). |   | '  | Single quote ("'"). |   | " | Double quote (“"”). |
+| \b | Backspace.        |   | \n | Newline, or linefeed |  | \r | Carriage return. | 
+| \t | Tab.              |   | \Z | ASCII 26 (Control+Z) | | \\ | Backslash ("”). | 
+| %  | “%" character     |   |  _ | A “_” character.     | |    |                 |
 
 *** Resticciones a columnas:
 Para la creación de una tabla tendremos columnas de distinto tipo, siendo su formato ~{nombre} {tipo} [opciones]~
@@ -222,7 +215,7 @@ Donde:
 	+ Permite elegir un índice (único) o una Primary Key
 						~[UNIQUE [KEY] | [PRIMARY] KEY]~
 	+ Crea una FK que apunta a un campo ~NombreColumna~ de otra tabla (~NombreTabla~)
-						~[REFERENCES NombreTabla [(NombreColumna)]~
+						~FOREIGN KEY (NomColDeEstaTabla) REFERENCES NombreTabla (NombreColumna)~
 	+ En el caso de tener referencias (FK), podemos asignar resticciones, esto es, que hacer cuando se borre o actualice una entrada que está referenciada.
 								~[ON DELETE opcion ] [ON UPDATE opcion] ]~
 		+ Opciones:
@@ -232,7 +225,7 @@ Donde:
 Para crear PK compuestas lo definiremos al final del ~CREATE TABLE~ con el formato ~PRIMARY KEY(columna1, columna2, ...)~.
 
 Así mismo, podremos crear índices para acelerar búsquedas. Para ello, al igual que la PK, después de la definición de las columnas añadiremos ~KEY [nombreDelÍndice] (columna1, columna2, ...)~.\\
-/ ~KEY~ e ~INDEX~ son sinónimos./
+/~KEY~ e ~INDEX~ son sinónimos./
 
 *** Ejercicio:
     :PROPERTIES:
@@ -251,13 +244,13 @@ Podemos consultar la estructura de una tabla con =DESCRIBE nombreTabla=,
 lo cual nos mostrará algo como:
 
 #+BEGIN_EXAMPLE
-  | Field                   | Type      | Null | Key | Default | Extra                         |
-  +-------------------+-----------+----- -+------+------------+------------------------+
-  | id                          | int(11) | NO    | PRI | NULL       | auto_increment |
-  | idVendedor    | int(11) | NO    | PRI | NULL       |                                     |
-  | idComprador | int(11) | NO    | PRI | NULL       |                                     |
-  | idVehiculo      | int(11) | NO    | PRI | NULL       |                                     |
-  +-------------------+----------+--------+-----+------------+------------------------+
+  | Field       | Type    | Null | Key | Default | Extra          |
+  +-------------+---------+------+-----+---------+----------------+
+  | id          | int(11) | NO   | PRI | NULL    | auto_increment |
+  | idVendedor  | int(11) | NO   | PRI | NULL    |                |
+  | idComprador | int(11) | NO   | PRI | NULL    |                |
+  | idVehiculo  | int(11) | NO   | PRI | NULL    |                |
+  +-------------+---------+------+-----+---------+----------------+
 #+END_EXAMPLE
 
 Aunque también podemos consultar la sentencia que nos premitiría
@@ -300,20 +293,20 @@ Ejemplos:
 Algo más exahustivo...
 #+BEGIN_QUOTE
 ALTER TABLE NombreTabla
-|  ADD [COLUMN] DefiniciónColumna [FIRST | AFTER NombreColumna]
-|  ADD INDEX [NombreIndice]  [TipoIndice] (NombreColumnasIndice,..)
-|  ADD [CONSTRAINT [Simbolo] ] PRIMARY KEY [TipoIndice] (NombreColumnasIndice,..)
-|  ADD [CONSTRAINT [Simbolo] ] UNIQUE [NombreIndice] [TipoIndice] (NombreColumnasIndice,..)
-|  ADD [FULLTEXT | SPATIAL]  [NombreIndice] (NombreColumnasIndice,..)
-|  ADD [CONSTRAINT [Simbolo] ] FOREIGN KEY [NombreIndice] (NombreColumnasIndice,..)   REFERENCES NombreTabla(NombreColumnasIndice,…)
-|  DROP [COLUMN] NombreColumna
-|  DROP PRIMARY KEY
-|  DROP INDEX NombreIndice
-|  DROP FOREIGN KEY Simbolo
-|  ALTER [COLUMN] NombreColumna {SET DEFAULT texto | DROP DEFAULT}
-|  CHANGE [COLUMN] NombreColumna NuevaDefinicionColumna [FIRST | AFTER NombreColumna]
-|  MODIFY [COLUMN] NuevaDefinicionColumna [FIRST | AFTER NombreColumna]
-|  RENAME NuevoNombreTabla
+|  ADD [COLUMN] DefiniciónColumna [FIRST \vert AFTER NombreColumna] |
+|  ADD INDEX [NombreIndice]  [TipoIndice] (NombreColumnasIndice,..) |
+|  ADD [CONSTRAINT [Simbolo] ] PRIMARY KEY [TipoIndice] (NombreColumnasIndice,..) |
+|  ADD [CONSTRAINT [Simbolo] ] UNIQUE [NombreIndice] [TipoIndice] (NombreColumnasIndice,..) |
+|  ADD [FULLTEXT \vert SPATIAL]  [NombreIndice] (NombreColumnasIndice,..) |
+|  ADD [CONSTRAINT [Simbolo] ] FOREIGN KEY [NombreIndice] (NombreColumnasIndice,..)   REFERENCES NombreTabla(NombreColumnasIndice,…) |
+|  DROP [COLUMN] NombreColumna |
+|  DROP PRIMARY KEY |
+|  DROP INDEX NombreIndice |
+|  DROP FOREIGN KEY Simbolo |
+|  ALTER [COLUMN] NombreColumna {SET DEFAULT texto \vert DROP DEFAULT} |
+|  CHANGE [COLUMN] NombreColumna NuevaDefinicionColumna [FIRST \vert AFTER NombreColumna] |
+|  MODIFY [COLUMN] NuevaDefinicionColumna [FIRST \vert AFTER NombreColumna] |
+|  RENAME NuevoNombreTabla |
 #+END_QUOTE
 
 *** Ejercicio
@@ -437,8 +430,8 @@ Son más rápidas de realizar y restaurar. No son tan universales, pero
 dan opciones extra como encriptar las copias.\\
 
 Son más aptas para db grandes y permiten realizar los backup sin bloqueo
-de tablas, por lo que pueden ser realizadas en /caliente/ =hot plug=. +
-[[https://mariadb.com/kb/en/mariabackup-overview/][Doc OFICIAL]]
+de tablas, por lo que pueden ser realizadas en /caliente/ =hot plug=.
++ [[https://mariadb.com/kb/en/mariabackup-overview/][Doc OFICIAL]]
 
 ** MOTORES
 Los SGBD permiten utilizar distintos motores de almacenamiento según nuestras necesidades. Los más utilizados son:
