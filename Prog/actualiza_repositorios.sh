@@ -67,14 +67,22 @@ _actualiza_repo(){
 			fi
 
 			# git pull
-			git status
-			git push 1>"$HOME/salida.txt" 2> "$HOME/error.txt"
-			alDia=$(cat ~/error.txt);
-			if [[ 'Everything up-to-date' == "$alDia" ]]; then 
-				echo -e "\t \t Al día"
-			else
-				echo -e "\t \t $(cat $HOME/salida.txt)"
-				echo -e "\t \t $FgRed $(cat $HOME/error.txt) $Reset"
+			git status 1>"$HOME/salida" 2> "$HOME/error.txt"
+			#cat "$HOME/salida" | grep -q 'Tu rama está actualizada con '
+			cat "$HOME/salida" | grep -q -E 'Cambios no rastreados|Archivos sin seguimiento'
+			if [[ $? -eq 0 ]]; then
+				#cat "$HOME/salida"
+				git status
+				git push 1>"$HOME/salida.txt" 2> "$HOME/error.txt"
+				alDia=$(cat ~/error.txt);
+				if [[ 'Everything up-to-date' == "$alDia" ]]; then 
+					echo -e "\t \t Al día (push)"
+				else
+					echo -e "\t \t $(cat $HOME/salida.txt)"
+					echo -e "\t \t $FgRed $(cat $HOME/error.txt) $Reset"
+				fi
+			else 
+				echo -e "\t \t Al día (status)"
 			fi
 			cd $RAIZ
 		fi
