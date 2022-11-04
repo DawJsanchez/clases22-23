@@ -209,6 +209,31 @@ note following the table. | | \ | Backslash ("”). | | % | “%" character.
 See note following the table. | | _ | A “_” character. See note
 following the table. |
 
+*** Resticciones a columnas:
+Para la creación de una tabla tendremos columnas de distinto tipo, siendo su formato ~{nombre} {tipo} [opciones]~
+Donde:
++ nombre: es el nombre del atributo (columna)
++ tipo: es el formato de datos (int, date, ...)
++ opciones:
+	+ Permitir o no ~NULL~ o asignar valores por defecto.
+						~[NOT NULL | NULL] [DEFAULT ValorPorDefecto]~
+	+ Crear un autoincremental.
+						~[AUTO_INCREMENT]~
+	+ Permite elegir un índice (único) o una Primary Key
+						~[UNIQUE [KEY] | [PRIMARY] KEY]~
+	+ Crea una FK que apunta a un campo ~NombreColumna~ de otra tabla (~NombreTabla~)
+						~[REFERENCES NombreTabla [(NombreColumna)]~
+	+ En el caso de tener referencias (FK), podemos asignar resticciones, esto es, que hacer cuando se borre o actualice una entrada que está referenciada.
+								~[ON DELETE opcion ] [ON UPDATE opcion] ]~
+		+ Opciones:
+								~[ON DELETE RESTRICT | CASCADE | SET NULL | NO ACTION] | SET DEFAULT~
+								~[ON UPDATE RESTRICT | CASCADE | SET NULL | NO ACTION] | SET DEFAULT~
+
+Para crear PK compuestas lo definiremos al final del ~CREATE TABLE~ con el formato ~PRIMARY KEY(columna1, columna2, ...)~.
+
+Así mismo, podremos crear índices para acelerar búsquedas. Para ello, al igual que la PK, después de la definición de las columnas añadiremos ~KEY [nombreDelÍndice] (columna1, columna2, ...)~.\\
+/ ~KEY~ e ~INDEX~ son sinónimos./
+
 *** Ejercicio:
     :PROPERTIES:
     :CUSTOM_ID: ejercicio
@@ -272,6 +297,25 @@ Ejemplos:
       DROP FOREIGN KEY idNacionalidad;
 #+END_EXAMPLE
 
+Algo más exahustivo...
+#+BEGIN_QUOTE
+ALTER TABLE NombreTabla
+|  ADD [COLUMN] DefiniciónColumna [FIRST | AFTER NombreColumna]
+|  ADD INDEX [NombreIndice]  [TipoIndice] (NombreColumnasIndice,..)
+|  ADD [CONSTRAINT [Simbolo] ] PRIMARY KEY [TipoIndice] (NombreColumnasIndice,..)
+|  ADD [CONSTRAINT [Simbolo] ] UNIQUE [NombreIndice] [TipoIndice] (NombreColumnasIndice,..)
+|  ADD [FULLTEXT | SPATIAL]  [NombreIndice] (NombreColumnasIndice,..)
+|  ADD [CONSTRAINT [Simbolo] ] FOREIGN KEY [NombreIndice] (NombreColumnasIndice,..)   REFERENCES NombreTabla(NombreColumnasIndice,…)
+|  DROP [COLUMN] NombreColumna
+|  DROP PRIMARY KEY
+|  DROP INDEX NombreIndice
+|  DROP FOREIGN KEY Simbolo
+|  ALTER [COLUMN] NombreColumna {SET DEFAULT texto | DROP DEFAULT}
+|  CHANGE [COLUMN] NombreColumna NuevaDefinicionColumna [FIRST | AFTER NombreColumna]
+|  MODIFY [COLUMN] NuevaDefinicionColumna [FIRST | AFTER NombreColumna]
+|  RENAME NuevoNombreTabla
+#+END_QUOTE
+
 *** Ejercicio
     :PROPERTIES:
     :CUSTOM_ID: ejercicio-1
@@ -290,6 +334,23 @@ del nombre antes de ejecutarla y tener copias de seguridad.
 
 Podemos asegurar la senctencia con la partícula IF EXISTS, esto es,
 =DROP TABLE IF EXISTS nombreTabla;=
+
+** OTRAS SENTENCIAS
+Como ya hemos visto, existen algunas sentencias que no entran exactamente en el grupo de LDD pero que debemos conocer para manejarnos dentro del Sistema Gestor de Bases de Datos -en adelante SGBD-.
+*** Ejercicio: Rellena la tabla
+| SENTENCIA               | DESCRIPCIÓN |
+| SHOW DATABASES          |             |
+| SHOW TABLES             |             |
+| DESCRIBE tabla          |             |
+| SHOW COLUMNS            |             |
+| SHOW FIELDS             |             |
+| SHOW CREATE DATABASE    |             |
+| SHOW CREATE TABLE tabla |             |
+| SHOW CREATE VIEW vista  |             |
+| SHOW INDEX FROM tabla   |             |
+| SHOW GLOBAL VARIABLES   |             |
+| SHOW SESSION VARIABLES  |             |
+
 
 ** [off-topic] MySQL SHELL
    :PROPERTIES:
@@ -379,6 +440,24 @@ Son más aptas para db grandes y permiten realizar los backup sin bloqueo
 de tablas, por lo que pueden ser realizadas en /caliente/ =hot plug=. +
 [[https://mariadb.com/kb/en/mariabackup-overview/][Doc OFICIAL]]
 
+** MOTORES
+Los SGBD permiten utilizar distintos motores de almacenamiento según nuestras necesidades. Los más utilizados son:
+    + BerkeleyDB o BDB: tablas de transacción segura con bloqueo de página.
+    + HEAP o MEMORY: tablas almacenadas en memoria.
+    + *InnoDB*: tablas de transacción segura con bloqueo de fila y claves foráneas.
+    + MERGE o MRG_MyISAM: una colección de tablas MyISAM usadas como una única tabla.
+    + *MyISAM*: el nuevo motor binario de almacenamiento portable que reemplaza a ISAM.
+
+*Motor de almacenamiento MyISAM:*
+Este motor trata tablas no transaccionales. Son tablas de acceso secuencial indexado, los índices indican la posición relativa en el fichero de datos; por tanto son tablas portables de un equipo a otro. Se consideran óptimas cuando las tablas se usan preferentemente para consultas ya que proporcionan almacenamiento y recuperación de datos rápida, sin embargo para realizar inserciones necesitan más recursos. Se soporta en todas las configuraciones MySQL, y es el motor de almacenamiento por defecto.
+
+*Motor de almacenamiento InnoDB:*
+Este motor de almacenamiento proporciona tablas *transaccionales*. InnoDB también se incluye por defecto en todas las distribuciones binarias de MySQL. En otras se puede activar o desactivar. \\
+Se utiliza en grandes bases de datos que necesitan alto rendimiento puesto que además de la capacidad de recuperación de fallos, InnoDB gestiona múltiples usuarios simultáneamente. Como característica destacada, soporta también restricciones de clave ajena (FOREIGN KEY). \\
+Las tablas InnoDB pueden ser de cualquier tamaño.
+
+*Transacciones*: Es la capacidad de una BBDD de realizar operaciones de forma NUCLEAR de forma que en caso de interrupción se vuelve a un estado seguro. \\
+El procedimiento es encerrar el conjunto de sentencias entre un ~BEGIN~ y un ~COMMIT~ para confirmar o un ~ROLL BACK~ para desechar los cambios.
 * COMMENT T4
 ** VISTAS
    :PROPERTIES:
