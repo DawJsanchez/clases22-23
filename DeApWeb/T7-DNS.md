@@ -7,11 +7,29 @@
 Duración: 5 horas.
 
 ## Teoría
-[CIFP Rodolfo Ucha](https://wiki.cifprodolfoucha.es/index.php?title=Teor%C3%ADa_sobre_o_Servizo_de_nomes_de_dominio)
+1. Textos planos `/etc/hosts`
+2. Sistema gerárquico
+	[TopLevelDomains](./img/T7-tld.jpg)
+	Organización de servidores:
+	+ partiendo de los servidores `root`que son los `.` (dot)
+	+ posteriormente tenemos los Top Level Domains -tld- que tenemos de 2 tipos: geográficos (`.es.`., `.fr.`, `.pt.`, ...) y específicos (`.com.`, `.org.`, `.tv.`, ...).
+	+ después tenemos los de segundo nivel, los denominados dominios, p.e. `google.es.`, `duckdns.org.`
+	+ los subdominios, p.e. `luiscastelar.duckdns.org.` o `mail.google.com.`.
+	+ límites:
+		* Cada nodo del árbol se llama nombre de dominio y tiene una etiqueta con una longitud máxima de 63 caracteres.
+		* La profundidad máxima de una estructura arbórea es 127 niveles y la longitud máxima para un nombre es de 255 caracteres (incluído el punto final **obligatorio**).
+	    * El nombre absoluto de un equipo -FQDN- está relacionado con todas las etiquetas de nodo y que termina con un punto final (`root`)
+3. Mecanismo de funcionamiento:
+	[DNS Iterativo](./img/T7-dns-iterativo.png)
+
+*Nota*: Existe otro mecanismo denominado DNS recursivo.
+
+
+*Bibliografía*: [CIFP Rodolfo Ucha](https://wiki.cifprodolfoucha.es/index.php?title=Teor%C3%ADa_sobre_o_Servizo_de_nomes_de_dominio)
 
 ## Cliente DNS:
 Jerarquía de resolución:
-1. Archivo `/etc/host`: \
+1. Archivo `/etc/hosts`: \
 Fichero para la resolución estática de nombres (normalmente de la red local).
 
 Incluye nuevas líneas en este fichero para la resolución de nombres de la red local. Las líneas de /etc/hosts tienen el formato:
@@ -24,7 +42,7 @@ Incluye nuevas líneas en este fichero para la resolución de nombres de la red 
 >
 Comprueba su funcionamiento haciendo ping a las máquinas que has incluido.
 
-*Nota*: en Windows el archivo es `C:\Windows\System32\drivers\etc\host`.
+*Nota*: en Windows el archivo es `C:\Windows\System32\drivers\etc\hosts`.
 
 *Nota 2*: Firefox no respeta el uso de este archivo.
 
