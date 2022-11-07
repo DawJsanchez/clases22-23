@@ -20,7 +20,7 @@ Duración: 5 horas.
 		* La profundidad máxima de una estructura arbórea es 127 niveles y la longitud máxima para un nombre es de 255 caracteres (incluído el punto final **obligatorio**).
 	    * El nombre absoluto de un equipo -FQDN- está relacionado con todas las etiquetas de nodo y que termina con un punto final (`root`)
 3. Mecanismo de funcionamiento: \
-	[DNS Iterativo](./img/T7-dns-iterativo.png) \
+	![DNS Iterativo](./img/T7-dns-iterativo.png) \
 
 *Nota*: Existe otro mecanismo denominado DNS recursivo.
 
