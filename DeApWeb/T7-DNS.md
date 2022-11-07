@@ -8,8 +8,8 @@ Duración: 5 horas.
 
 ## Teoría
 1. Textos planos `/etc/hosts`
-2. Sistema gerárquico
-	[TopLevelDomains](./img/T7-tld.jpg)
+2. Sistema gerárquico \
+	![TopLevelDomains](./img/T7-tld.jpg) \
 	Organización de servidores:
 	+ partiendo de los servidores `root`que son los `.` (dot)
 	+ posteriormente tenemos los Top Level Domains -tld- que tenemos de 2 tipos: geográficos (`.es.`., `.fr.`, `.pt.`, ...) y específicos (`.com.`, `.org.`, `.tv.`, ...).
@@ -19,8 +19,8 @@ Duración: 5 horas.
 		* Cada nodo del árbol se llama nombre de dominio y tiene una etiqueta con una longitud máxima de 63 caracteres.
 		* La profundidad máxima de una estructura arbórea es 127 niveles y la longitud máxima para un nombre es de 255 caracteres (incluído el punto final **obligatorio**).
 	    * El nombre absoluto de un equipo -FQDN- está relacionado con todas las etiquetas de nodo y que termina con un punto final (`root`)
-3. Mecanismo de funcionamiento:
-	[DNS Iterativo](./img/T7-dns-iterativo.png)
+3. Mecanismo de funcionamiento: \
+	[DNS Iterativo](./img/T7-dns-iterativo.png) \
 
 *Nota*: Existe otro mecanismo denominado DNS recursivo.
 
