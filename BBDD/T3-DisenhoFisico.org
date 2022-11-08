@@ -331,18 +331,19 @@ Podemos asegurar la senctencia con la partícula IF EXISTS, esto es,
 ** OTRAS SENTENCIAS
 Como ya hemos visto, existen algunas sentencias que no entran exactamente en el grupo de LDD pero que debemos conocer para manejarnos dentro del Sistema Gestor de Bases de Datos -en adelante SGBD-.
 *** Ejercicio: Rellena la tabla
-| SENTENCIA               | DESCRIPCIÓN |
-| SHOW DATABASES          |             |
-| SHOW TABLES             |             |
-| DESCRIBE tabla          |             |
-| SHOW COLUMNS            |             |
-| SHOW FIELDS             |             |
-| SHOW CREATE DATABASE    |             |
-| SHOW CREATE TABLE tabla |             |
-| SHOW CREATE VIEW vista  |             |
-| SHOW INDEX FROM tabla   |             |
-| SHOW GLOBAL VARIABLES   |             |
-| SHOW SESSION VARIABLES  |             |
+| SENTENCIA                 | DESCRIPCIÓN |
+| SHOW DATABASES            |             |
+| SHOW TABLES               |             |
+| DESCRIBE tabla            |             |
+| SHOW COLUMNS              |             |
+| SHOW FIELDS               |             |
+| SHOW CREATE DATABASE      |             |
+| SHOW CREATE TABLE tabla   |             |
+| SHOW CREATE TABLE tabla\G |             |
+| SHOW CREATE VIEW vista    |             |
+| SHOW INDEX FROM tabla     |             |
+| SHOW GLOBAL VARIABLES     |             |
+| SHOW SESSION VARIABLES    |             |
 
 
 ** [off-topic] MySQL SHELL
