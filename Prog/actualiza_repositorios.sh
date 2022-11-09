@@ -45,7 +45,7 @@ RAIZ="$PWD"
 _actualiza_repo(){
 	echo ""
 	echo "==================================================="
-	echo -e "${BgGreen}\t \t ${1}${Reset}"
+	echo -e "${FgWhite}${BgGreen}\t \t ${1}${Reset}"
 	echo "==================================================="
 	sleep 1
 	for F in `ls $1/` ; do
@@ -55,12 +55,12 @@ _actualiza_repo(){
 			git pull 1>"$HOME/salida.txt" 2> /dev/null;
 			salida=$(cat ~/salida.txt);
 			if [[ ('Ya está actualizado.' == "$salida") || ('Already up to date.' == "$salida") ]]; then
-				echo -e "${FgGreen}\t $F sin cambios."
+				echo -e "${FgGreen}\t $F sin cambios.${Reset}"
 			else
 				LOG="$RAIZ/mios/privado/logs/.${1}-${F}.log"
 				if [[ ! -f "$LOG" ]]; then touch "$LOG"; fi
-				echo "${FgRed}Actualizando $F"
-				echo "$salida"
+				echo -e "${FgWhite}${BgRed}Actualizando ${F} ${Reset}"
+				echo -e "${FgRed}${salida}${Reset}"
 				#echo "$(date) - cambios:" >> "$LOG"
 				#echo -e "\t $(grep -E 'changed|deletion|insertion' ~/salida.txt)" >> "$LOG"
 				echo -e "$(date), $(grep -E 'changed|deletion|insertion' ~/salida.txt)" >> "$LOG"
@@ -75,14 +75,14 @@ _actualiza_repo(){
 				git status
 				git push 1>"$HOME/salida.txt" 2> "$HOME/error.txt"
 				alDia=$(cat ~/error.txt);
-				if [[ 'Everything up-to-date' == "$alDia" ]]; then 
-					echo -e "${FgGreen}\t \t Al día (push)"
+				if [[ 'Everything up-to-date' == "$alDia" ]]; then
+					echo -e "${FgGreen}\t \t Al día (push)${Reset}"
 				else
-					echo -e "$̣̣{FgRed}\t \t $(cat $HOME/salida.txt)"
-					echo -e "${FgWhite}${BgRed}\t \t $FgRed $(cat $HOME/error.txt) $Reset"
+					echo -e "$̣̣{FgRed}\t \t $(cat $HOME/salida.txt) ${Reset}"
+					echo -e "${FgWhite}${BgRed}\t \t ${FgRed} $(cat $HOME/error.txt) ${Reset}"
 				fi
-			else 
-				echo -e "${FgGreen}\t \t Al día (status)"
+			else
+				echo -e "${FgGreen}\t \t Al día (status)${Reset}"
 			fi
 			cd $RAIZ
 		fi
