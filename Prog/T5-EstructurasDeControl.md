@@ -175,5 +175,10 @@ Deberéis implementarlo mediante objetos, bucles y condicionales... vamos, lo qu
 	+ Condicionales [2p]
 + Implementación de objeto [3p]
 
+*Datos auxiliares*:
++ [String length](https://www.javatpoint.com/java-string-length)
++ [String to Char](https://www.javatpoint.com/java-string-to-char)
++ [Char to int](https://www.javatpoint.com/java-char-to-int)
+
 ---
 Fin de tema.
