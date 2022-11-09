@@ -455,7 +455,7 @@ Las tablas InnoDB pueden ser de cualquier tamaño.
 
 *Transacciones*: Es la capacidad de una BBDD de realizar operaciones de forma NUCLEAR de forma que en caso de interrupción se vuelve a un estado seguro. \\
 El procedimiento es encerrar el conjunto de sentencias entre un ~BEGIN~ y un ~COMMIT~ para confirmar o un ~ROLL BACK~ para desechar los cambios.
-** COMMENT PRÁCTICA:
+** PRÁCTICA:
 Se desea informatizar el servicio de nóminas de una empresa. Para ello deberemos analizar una nómina extrayendo las distintas entidades y relaciones.
 
 Concretamente partiremos de...
