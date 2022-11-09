@@ -1,0 +1,40 @@
+* T4-DML-Consultas
+Duración: 36 horas.\\
+Temporización: 16/11/22 - 18/01/23
+
+** Lenguaje de manipulación de datos: CONSULTAS estructuradas -SQL-
+Vamos a empezar jugando:
++ Tendrá un +0.5 puntos de experiencia el primero que acabe  [[https://www.sql-easy.com/es/][carrera de consultas]] (debes aportar listado y que no hay NINGÚN fallo).
+*** COMMENT pdte
++ Tendrá un +1 punto de experiencia el primero que resuelva [[https://sqlpd.com/][todos los casos]]
++ Tendrá un +1.5 puntos de experiencia el primero que resuelva el [[https://mystery.knightlab.com/][crimen]]
+** VISTAS
+   :PROPERTIES:
+   :CUSTOM_ID: vistas
+   :END:
+
+** ÍNDICES
+   :PROPERTIES:
+   :CUSTOM_ID: índices
+   :END:
+
+** Bibliografía
++ [[https://www.sql-easy.com/es/][Lo más simple]]
+
+* COMMENT Atomic DDL
+  :PROPERTIES:
+  :CUSTOM_ID: atomic-ddl
+  :END:
+
+Desde MariaDB 10.6.1, existen algunas operaciones son realizadas de
+forma atómica y proporcionan seguridad de ser serguras ante /crash/
+(desastres).
+
+Si por tanto se produce una caída del servidor de db en mitad de una de
+estas operaciones existe la posibilidad de regresión al estado anterior.
+Ésta posibilidad es fundamental en ciertos entornos críticos, p.e.
+funcionamiento de la bolsa de Madrid o un banco.
+
+we have improved readability for DDL (Data Definition Language)
+operations to make most of them atomic, and the rest crash-safe, even if
+the server crashes in the middle of an operation.

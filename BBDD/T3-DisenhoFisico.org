@@ -19,16 +19,16 @@ plenamente con MySQL hasta la versión 5.5 en la que ambos desarrollos
 separaron caminos.
 
 Se divide en 3 partes:
-+ LDD (lenguaje de definición de datos): Incluye sentencias para gestionar las estructuras, esto es, la creación y modificación de tablas. 
-+ LMD (lenguaje de manipulación de datos): Incluye sentencias para gestionar los datos.\\
-  LMD por tanto se encargará de realizar los CRUD:
-   - C de Create: insertará nuevos registros. 
++ DDL (lenguaje de definición de datos): Incluye sentencias para gestionar las estructuras, esto es, la creación y modificación de tablas.
++ DML (lenguaje de manipulación de datos): Incluye sentencias para gestionar los datos.\\
+ DML por tanto se encargará de realizar los CRUD:
+   - C de Create: insertará nuevos registros.
    - R de Read: consultará los datos de las tablas.
-   - U de Update: actualizará total o parcialmente los registros. 
+   - U de Update: actualizará total o parcialmente los registros.
    - D de Delete: eliminará los registros.
-+ LCD (lenjuage de control de datos): Incluye sentencias para gestionar la seguridad y los permisos.\\
++ DCL (lenjuage de control de datos): Incluye sentencias para gestionar la seguridad y los permisos.\\
 Creción de usuarios, roles y asignación granular de permisos de lectura/escritura a vistas, tablas o bases de datos.
-
++ [EXTRA] TCL (lenguaje de control de transacciones): ~commit~ y ~rollback~
 ** Cómo documentarnos sobre SQL
    :PROPERTIES:
    :CUSTOM_ID: cómo-documentarnos-sobre-sql
@@ -123,7 +123,7 @@ veremos en las exportaciones/importaciones de database -en adelante db-
 y tablas.\\
 /Si el alumno desea ampliar, puede hacerlo en la documentación oficial/.
 
-** LDD - Creación/Uso/Eliminación de bases de datos:
+** DDL - Creación/Uso/Eliminación de bases de datos:
    :PROPERTIES:
    :CUSTOM_ID: ldd---creaciónusoeliminación-de-bases-de-datos
    :END:
@@ -141,7 +141,7 @@ Para eliminarla: =DROP DATABASE nombreBaseDeDatos;=
 
 Para usarla: =USE nombreBaseDeDatos=
 
-** LDD - Creación de tablas:
+** DDL - Creación de tablas:
    :PROPERTIES:
    :CUSTOM_ID: ldd---creación-de-tablas
    :END:
@@ -194,12 +194,12 @@ esto es, añadir la palabra entre dos " ` ". P.e.: ~SELECT `fulltex` FROM tabla~
 Similar a =Java=, encerrando los valores de texto entre comillas
 simples, p.e. =SELECT * FROM tabla WHERE nombre = 'Pepe'=
 
-Como en =Java= deberemos escapar ciertos caracteres: 
+Como en =Java= deberemos escapar ciertos caracteres:
 | Esc seq | Character    |   | Esc seq | Character | | Esc seq | Character |
 |----+-------------------+---+---+---------------------+---+---+--------|
 | \0 | ASCII NUL (0x00). |   | '  | Single quote ("'"). |   | " | Double quote (“"”). |
-| \b | Backspace.        |   | \n | Newline, or linefeed |  | \r | Carriage return. | 
-| \t | Tab.              |   | \Z | ASCII 26 (Control+Z) | | \\ | Backslash ("”). | 
+| \b | Backspace.        |   | \n | Newline, or linefeed |  | \r | Carriage return. |
+| \t | Tab.              |   | \Z | ASCII 26 (Control+Z) | | \\ | Backslash ("”). |
 | %  | “%" character     |   |  _ | A “_” character.     | |    |                 |
 
 *** Resticciones a columnas:
@@ -256,7 +256,7 @@ lo cual nos mostrará algo como:
 Aunque también podemos consultar la sentencia que nos premitiría
 reconstruir la tabla de nuevo con =SHOW CREATE TABLE nombreTabla=
 
-** LDD - Modificación de tablas:
+** DDL - Modificación de tablas:
    :PROPERTIES:
    :CUSTOM_ID: ldd---modificación-de-tablas
    :END:
@@ -288,6 +288,9 @@ Ejemplos:
   # Eliminar un FK
   ALTER TABLE ciclista
       DROP FOREIGN KEY idNacionalidad;
+
+  # Renombrar tabla
+  ALTER TABLE contratos RENAME p1_contratos;
 #+END_EXAMPLE
 
 Algo más exahustivo...
@@ -316,7 +319,7 @@ ALTER TABLE NombreTabla
 
 Crea las modificaciones necesarias para crear las FK vinculantes.
 
-*** LDD - Eliminación de tablas (Drop)
+** DDL - Eliminación de tablas (Drop)
     :PROPERTIES:
     :CUSTOM_ID: ldd---eliminación-de-tablas-drop
     :END:
@@ -452,36 +455,11 @@ Las tablas InnoDB pueden ser de cualquier tamaño.
 
 *Transacciones*: Es la capacidad de una BBDD de realizar operaciones de forma NUCLEAR de forma que en caso de interrupción se vuelve a un estado seguro. \\
 El procedimiento es encerrar el conjunto de sentencias entre un ~BEGIN~ y un ~COMMIT~ para confirmar o un ~ROLL BACK~ para desechar los cambios.
-* COMMENT T4
-** VISTAS
-   :PROPERTIES:
-   :CUSTOM_ID: vistas
-   :END:
+** COMMENT PRÁCTICA:
+Se desea informatizar el servicio de nóminas de una empresa. Para ello deberemos analizar una nómina extrayendo las distintas entidades y relaciones.
 
-** ÍNDICES
-   :PROPERTIES:
-   :CUSTOM_ID: índices
-   :END:
-
-** COMMENT Atomic DDL
-   :PROPERTIES:
-   :CUSTOM_ID: atomic-ddl
-   :END:
-
-Desde MariaDB 10.6.1, existen algunas operaciones son realizadas de
-forma atómica y proporcionan seguridad de ser serguras ante /crash/
-(desastres).
-
-Si por tanto se produce una caída del servidor de db en mitad de una de
-estas operaciones existe la posibilidad de regresión al estado anterior.
-Ésta posibilidad es fundamental en ciertos entornos críticos, p.e.
-funcionamiento de la bolsa de Madrid o un banco.
-
-we have improved readability for DDL (Data Definition Language)
-operations to make most of them atomic, and the rest crash-safe, even if
-the server crashes in the middle of an operation.
-
-** Bibliografía
+Concretamente partiremos de...
+* Bibliografía
    :PROPERTIES:
    :CUSTOM_ID: bibliografía-1
    :END:
@@ -492,7 +470,6 @@ the server crashes in the middle of an operation.
 + [[https://luiscastelar.duckdns.org/BBDD/refman-5.0-es.pdf][doc OBSOLETA en ES]]
 
 *Tutoriales:*
-+ [[https://www.sql-easy.com/es/][Lo más simple]]
 + [[https://www.w3schools.com/mysql/default.asp][W3School.com]]
 
 *Video-tutoriales*
