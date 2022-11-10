@@ -8,6 +8,11 @@ Vamos a empezar jugando:
 + Tendrá un +1 punto de experiencia el primero que resuelva [[https://sqlpd.com/][todos los casos]]
 *** COMMENT pdte
 + Tendrá un +1.5 puntos de experiencia el primero que resuelva el [[https://mystery.knightlab.com/][crimen]]
+
+** JOINs
++ [[https://www.baulphp.com/inner-join-mysql-ejemplos-completos/][Ejemplos JOIN (BaulPHP.com)]]
++ [[https://www.vichaunter.org/desarrollo-web/joins-mysql-bien-explicado-lo-necesitas-saber][Más JOINs (vichaunter.org)]]
+
 ** VISTAS
    :PROPERTIES:
    :CUSTOM_ID: vistas
