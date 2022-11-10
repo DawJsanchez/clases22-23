@@ -1,0 +1,8 @@
+* Acepta el reto 310 (con clases y bucles)
+** Diagrama:
+[[./alturaArbol.png]]
+
+** Pruebas:
+Os adjunto las clases para que podáis probar vuestras clases contra las mías.
+
+Para que sea ~verboso~ deberéis invocar la clase ~Controlador~ (que tiene el main) ~java -Ddebug=1 Controlador~
