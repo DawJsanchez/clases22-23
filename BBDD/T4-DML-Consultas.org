@@ -5,8 +5,8 @@ Temporización: 16/11/22 - 18/01/23
 ** Lenguaje de manipulación de datos: CONSULTAS estructuradas -SQL-
 Vamos a empezar jugando:
 + Tendrá un +0.5 puntos de experiencia el primero que acabe  [[https://www.sql-easy.com/es/][carrera de consultas]] (debes aportar listado y que no hay NINGÚN fallo).
-*** COMMENT pdte
 + Tendrá un +1 punto de experiencia el primero que resuelva [[https://sqlpd.com/][todos los casos]]
+*** COMMENT pdte
 + Tendrá un +1.5 puntos de experiencia el primero que resuelva el [[https://mystery.knightlab.com/][crimen]]
 ** VISTAS
    :PROPERTIES:
