@@ -2,6 +2,9 @@
 ** Diagrama:
 [[./alturaArbol.png]]
 
+** Otros datos:
+Para que os se más sencillo el ~parseo~ de la entrada podéis cambiar el delimitador de campos del "default" ~spc~ al ~\n~ con el comando ~sc.useDelimiter("\n")~, donde ~sc~ será un objeto de la clase ~Scanner~.
+
 ** Pruebas:
 Os adjunto las clases para que podáis probar vuestras clases contra las mías.
 
