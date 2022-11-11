@@ -458,7 +458,36 @@ El procedimiento es encerrar el conjunto de sentencias entre un ~BEGIN~ y un ~CO
 ** PRÁCTICA:
 Se desea informatizar el servicio de nóminas de una empresa. Para ello deberemos analizar una nómina extrayendo las distintas entidades y relaciones.
 
-Concretamente partiremos de...
+Concretamente partiremos de:
+#+ATTR_ORG: :width 400
+[[./T3-DisenhoFisico/P3-Nominas.drawio.png]]
+
+*Donde*:
++ EMPRESA (CIF, nombre, dir, cp, prov, ccc, tlfID)
++ TRABAJADOR (NIF, nombre, ape1, ape2, tlfID, nss, catID, cotID)
++ TLF (ID, pre, tlf)
++ CAT (ID, nombreCat)
++ COT (ID, grupo)
++ CONTRATO (numContrato, fAlta, fBaja, codContrato, NIF, CIF)
++ TCONTRATO (codContrato, nombre)
++ CONCSALARIO (ID, numContrato, conTipo, cantidad)
++ CONCTIPO (conTipo, nombre, tipo)
++ PERCEPCION <= CONCSALARIO
++ BASESCOT (ID, numContrato, cantidad) 
++ BASESTIPOS (ID, nombre, porcentaje)
++ DEDUCCION (ID, ...)
+---
+/Otras tablas/: - (*) Un mismo trabajador puede realizar n aportaciones en un mes.
+	+ IRPF (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
+	+ DEDCC (ID, anho, mes, NIF, numContrato, cantidad) => SES
+	+ DEDDES (ID, anho, mes, NIF, numContrato, cantidad) => SEPE
+	+ DEDFP (ID, anho, mes, NIF, numContrato, cantidad) => SEXPE
+	+ DEDHEXTRA (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
+	+ DEDHEXTRAFM (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
+... Entonces parace que mejor todas en una sola tabla con el código del tipo de deducción:
++ DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad)
++ TIPODEDUC (tipoDeduccion, nombre, receptor)
+
 * Bibliografía
    :PROPERTIES:
    :CUSTOM_ID: bibliografía-1
