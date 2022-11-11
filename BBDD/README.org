@@ -20,6 +20,15 @@
 | T2 Normalizacion           | 21 oct  | 26 oct |                         |
 |----------------------------+---------+--------+-------------------------|
 
+**Calificaciones**
+El alumnado deberá entregar las actividades en tiempo y forma que le indique el profesorado. Si esto no es así, se tendrá en cuenta en la calificación final, pudiéndose decidir no calificar las actividades y trabajos entregados fuera de plazo. Si se trata de actividades prácticas en el aula, aparte de la calificación durante su realización, se puede solicitar la entrega de memorias de prácticas cuya entrega será obligatoria.
+
+El alumnado que no entregue el 80% de las actividades obligatorias indicadas por el profesorado tendrá la evaluación suspensa.
+
+3. Pruebas objetivas. 50 % de la calificación final. Se trata de pruebas teórica y/o prácticas, tanto escritas, como utilizando un sistema informático o herramientas propias de su perfil profesional. Estas pruebas objetivas se desarrollarán en el aula para tratar de evaluar de forma objetiva e individual la correcta asimilación de los contenidos y elementos de capacidad objeto del Módulo.
+
+Se considera aprobado en una evaluación al alumnado que saque una nota media ponderada de 5 en los apartados antes indicados. Será condición necesaria para poder hacer media obtener una calificación mínima de 4 puntos en cada uno de los apartados y haber realizado al menos el 80% de las actividades obligatorias. Si no se cumplieran estas condiciones no se obtendrá calificación positiva en la evaluación, sin realizarse la media ponderada de las tres partes.
+
 
 ** Resumen de temas
   + Total: 192 horas.
