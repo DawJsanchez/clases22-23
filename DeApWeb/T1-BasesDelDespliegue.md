@@ -92,6 +92,12 @@ curl --header "Content-Type: application/json" \
 *También podéis usar [ReqBin](https://reqbin.com/ "REQ BIN")*
 
 
+### Códigos de respuesta
++ [Status Codes](https://httpstatuses.io/)
++ [en vídeo](https://www.youtube.com/watch?v=LYprAkna7Z4)
++ [Cats Codes](https://httpcats.com/) 🐈
+
+
 ## Pila TCP/IP
 + Modelo de capas
 + Direccionamiento IP
