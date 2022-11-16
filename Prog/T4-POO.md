@@ -60,6 +60,20 @@ Basándonos en el ejercicio 3 donde nos pedían realizar una clase Libro para ge
 + Añade los archivos fuente y las capturas que creas oportuno.
 + Además, marca la práctica como "en espera" en tu lista de prácticas (README.md de la carpeta REPOSITORI_PERSONAL/PROGRAMACION).
 
+## Recursos bibliográficos:
++ [W3S - Creación de clases e instanciación de objetos](https://www.w3schools.com/java/java_classes.asp)
++ [W3Schools](https://www.w3schools.com/java/java_oop.asp)
++ [JavaTPoint](https://www.javatpoint.com/java-oops-concepts)
++ [GeeksForGeeks](https://www.geeksforgeeks.org/object-oriented-programming-oops-concept-in-java/?ref=lbp)
++ [TutorialsPoint](https://www.tutorialspoint.com/java/java_object_classes.htm)
+### Vídeos
++ [Porqué de POO](https://youtu.be/XmUz5WJmJVU?t=142)
++ [Porqué modular](https://youtu.be/RZOSJ2zuxIs?t=528)
+
++ [Pildoras informaticas - Curso Java desde 0 - POO](https://www.youtube.com/watch?v=XmUz5WJmJVU&list=PLU8oAlHdN5BktAXdEVCLUYzvDyqRQJ2lk&index=29)
++ [Pildoras informaticas - Curso Java desde 0 - POO 2](https://www.youtube.com/watch?v=ZY5pwm92cWQ&list=PLU8oAlHdN5BktAXdEVCLUYzvDyqRQJ2lk&index=30)
++ [Pildoras informaticas - Curso Java desde 0 - POO 3](https://www.youtube.com/watch?v=ZY5pwm92cWQ&list=PLU8oAlHdN5BktAXdEVCLUYzvDyqRQJ2lk&index=31)
+
 
 
 ---
