@@ -1,0 +1,42 @@
+---
+ DeApWeb - Despliegue de Aplicaciones Web
+---
+
+* T8 Servidor Web Básico - Nginx
+
+Duración: 4h
+
+Para el enfoque de este tema utilizaremos el servidor Nginx por su simplicidad, rapidez y potencia.
+
+** Requisitos previos:
++ Conocimientos de L3 de TCP/IP
++ Conocimientos de los métodos HTTP/HTTPs
++ [[https://httpstatuses.io/][Códigos de respuesta (actualizado T1)]]
++ VPS o Vagrant con IP pública
++ Docker y docker-compose
+
+** Enfoque
+Si bien como siempre os comento la mayor simplicidad para nuestras pruebas la realizaremos mediante un VPS, dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública.
+
+Para ello, lo primero que partiremos de un Vagrantfile que será común para todas las implementaciones, cambiando únicamente el ~docker-compose.yml~ y los ficheros de configuración que necesitemos.
+
+** Vagrantfile
+Partiremos del ~Vagrantfile~ que hemos realizado para las prácticas anteriores, y que proporciono para que los alumnos descolgados puedan engancharse, aunque no lo entiendan.
+
+Se adjunta en este repositorio.
+
+** Práctica
+En esta práctica dividiremos el trabajo por parejas y además implementaremos una función diferente según la pareja.
+
+Las funciones a implementar serán:
++ Servidor A: servidor nginx en contenedor con vhost activo de forma que responda según la URL solicitada.
++ Servidor B: servidor nginx en contenedor con carpeta de acceso básico restringido (htpasswd).
++ Servidor C: servidor nginx en contenedor con conexión a un intérprete PHP (en otro contenedor).
+
+Las parejas serán formados por los alumnos y comunicadas por el delegado antes del jueves 17.
+
+La fecha de entrega es el **5 de diciembre**. \\
+Forma de entrega: Subir la documentación como README.md a repositorio privado en una carpeta T8-servidorWeb y añadir el `docker-compose.yml` de cada práctica y los ficheros de configuración necesarios.
+
+
+** COMMENT Referencias webgráficas
