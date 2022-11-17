@@ -35,6 +35,16 @@ for (type valor : nombreDelArray) {
 }
 #+END_SRC
 
+** Métodos útiles (java.util.Arrays)
+|Nombre|Descripción|Parámetros|Dato devuelto|
+|binarySearch|"Busca un valor que le pasamos por parámetro devuelve su posición. Debe estar ordenado."|"Un array y un valor. Los dos del mismo tipo. Estos pueden ser un byte, char, double, float, int, long, short , objecto."|int|
+|copyOf|Copia un array y lo devuelve en un nuevo array.|"Un array y la longitud. Si se pasa del tamaño del array original rellena los con ceros las posiciones sobrantes. Estos pueden ser un byte, char, double, float, int, long, short , objecto."|array del mismo tipo que se introduce|
+|copyOfRange|Copia un array y lo devuelve en un nuevo array. Le indicamos la posición de origen y de destino.|"Un array, posición origen y destino. Estos pueden ser un byte, char, double, float, int, long, short , objecto."|array del mismo tipo que se introduce.|
+|equals|Indica si dos arrays son iguales.|Dos arrays del mismo tipo.|true o false|
+|fill|Rellena un array con un valor que le indiquemos como parámetro.|"Un array y el valor a rellenar. Estos pueden ser un byte, char, double, float, int, long, short u objecto."|No devuelve nada|
+|sort|Ordena el array.|"Un array. Estos pueden ser un byte, char, double, float, int, long, short u objecto."|No devuelve nada|
+|toString|Muestra el contenido del array pasado como parámetros|"Un array. Estos pueden ser un byte, char, double, float, int, long, short u objecto."|Devuelve una cadena con el contenido del array.|
+
 ** Arrays multidimensionales (Matrices)
 Las matrices o arrays multidimensionales son una construcción de 2 o más dimensiones, convirtiendo un vector en una matriz de 2 o más dimensiones.
 #+BEGIN_SRC jav
