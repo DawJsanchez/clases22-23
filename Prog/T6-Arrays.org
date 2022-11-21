@@ -58,89 +58,76 @@ Las matrices o arrays multidimensionales son una construcción de 2 o más dimen
 
 * Ejercicios:
 1. Escribe un programa java que pida al usuario que introduzca un texto y una letra. Después el programa tiene que calcular y presentar por pantalla, cuantas veces aparece la letra en el texto. \\
-Utiliza el objeto LeerEntrada del exámen del T5.
+	Utiliza el objeto LeerEntrada del exámen del T5.
 2. Escribe un programa que pida al usuario que introduzca los datos de una factura y luego los presente por pantalla.
-- La factura tendrá tres partes. La cabecera, el listado de productos con sus datos, y el pie de factura con el total de la misma. Cada una deberás implementarse con un objeto.
-- La cabecera tendrá el siguiente texto: Producto, unidades, precio/unidad y total.
-- Le pediremos al usuario que introduzca los datos anteriores para tres productos (utiliza LeerEntrada). Por lo que el cuerpo de la factura tendrá 3 líneas.
+   - La factura tendrá tres partes. La cabecera, el listado de productos con sus datos, y el pie de factura con el total de la misma. Cada una deberás implementarse con un objeto.
+   - La cabecera tendrá el siguiente texto: Producto, unidades, precio/unidad y total.
+   - Le pediremos al usuario que introduzca los datos anteriores para tres productos (utiliza LeerEntrada). Por lo que el cuerpo de la factura tendrá 3 líneas.
+   #+BEGIN_QUOTE
+   Un ejemplo de posible factura impresa sería:
 
-Un ejemplo de posible factura impresa sería:
+   -----
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+   Producto —Unidades —Precio/unidad —Total
 
-Producto —Unidades —Precio/unidad —Total
+   -----
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+   Mesa—7—101.0—707.0
 
-Mesa—7—101.0—707.0
+   Silla—3—45.0—135.0
 
-Silla—3—45.0—135.0
+   Lampara—11—9.0—99.0
 
-Lampara—11—9.0—99.0
+   -----
 
-\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+   Total: 941.0
+   #+END_QUOTE
 
-Total: 941.0
+3. Escribe una clase que reciba un array  de integers que busque un valor dentro del array y borre todas sus ocurrencias, reduciendo la dimensión del array. Es decir, no vale con poner cero en el lugar donde encontremos el valor. \\
+	Crea una clase de prueba donde estará ~hardcodeado~ (en el código) el array. \\
+	El valor a buscar y borrar debe ser introducido por el usuario. \\
+	El programa debe mostrar por pantalla el valor borrado, el array inicial y el array final. \\
+	Una posible salida sería:
+	#+BEGIN_QUOTE
+	/Introduce el numero que quieres borrar:/
+	/5/
+	/Elemento a borrar: 5/
+	/Array inicial: 1 – 5 – 9 – 3 – 45 – 23 – 45 – 12 – 87 – 9 – 6 – 5 –/
+	/Array final  : 1 – 9 – 3 – 45 – 23 – 45 – 12 – 87 – 9 –/
+	#+END_QUOTE
 
-3. Escribe una clase que reciba un array  de integers que busque un valor dentro del array y borre todas sus ocurrencias, reduciendo la dimensión del array. Es decir, no vale con poner cero en el lugar donde encontremos el valor.
+4. Sobre el anterior, modifica la clase ~LeerEntrada~ donde le crearemos el método ~boolean continuar(char default)~ que pregunte al usuario si queremos continuar y reciba un 'y' para valor ~yes~  defecto o un 'n' para valor ~no~. \\
+	El método devolverá ~true~ si recibe por teclado ~y|Y|yes|YES|Yes|Sí|Si|sí|si|SÍ|SI|S|s~ o nada y el valor por defecto es 'y'.\\
+	El método devolverá ~false~ si recibe ~n|N|no|No|NO~ o nada y el valor por defecto es 'n'.
 
-Crea una clase de prueba donde estará ~hardcodeado~ (en el código) el array.
+	Mientras que este método devuleva ~true~ se continuará eliminando elementos del array.
 
-El valor a buscar y borrar debe ser introducido por el usuario.
+5. Sobre el ejercicio anterior, realiza las modificaciones necesarias para crear e instanciar una clase que genere de forma aleatoria el array inicial según los parámetros valor mínimo, valor máximo y número de elementos. \\
+	/Nota: puedes utilizar distintos procedimientos para obtener el número aleatorio. Consulta [[https://www.javatpoint.com/how-to-generate-random-number-in-java][aquí]]/.
 
-El programa debe mostrar por pantalla el valor borrado, el array inicial y el array final.
-
-Una posible salida sería:
-
-/Introduce el numero que quieres borrar:/
-
-/5/
-
-/Elemento a borrar: 5/
-
-/Array inicial: 1 – 5 – 9 – 3 – 45 – 23 – 45 – 12 – 87 – 9 – 6 – 5 –/
-
-/Array final  : 1 – 9 – 3 – 45 – 23 – 45 – 12 – 87 – 9 –/
-
-4. Crea un programa que muestre por pantalla la nota de un estudiante, de entre una lista de estudiantes con sus respectivas notas. Estos datos estarían hardcodeados.
-
-El nombre del estudiante lo introduce el usuario por teclado (usa la clase LeerEntrada).
-
-Usa dos arrays, uno para guardar los nombres de los estudiantes, y el otro para guardar las notas de los mismos. Ambos tendrán 5 elementos. Puedes guardar la información relacionada en ambos arrays con el mismo valor del índice. Es decir, si por ejemplo el estudiante Pedro está en la posición 2 del array de estudiantes, su nota estaría en la posición 2 del array de notas.
-
-Para comparar el nombre del estudiante introducido por teclado con los nombres de los estudiantes en el array de estudiantes, puedes usar el método equals de la Clase String.
-
-5. Repite con un array multidimensional.
-
-6. Crea un programa que reciba por teclado un array de enteros y ordene sus elementos almacenando la posición origial en otro array.
-
-7. Desarrolla un programa java para ser usado por los camareros de un restaurante, que sirva para tomar nota de los menus que los clientes van a tomar.
-- Primer dato a introducir por el camarero es el número de comensales que tendrá que estar en el rango de 1-5, ya que no hay mesas de más de cinco comensales. El valor introducido debe asegurarse de que se encuentra en el rango definido.
-- Entonces el camarero tiene que introducir el menú seleccionado por cada cliente.
-- Tenemos tres menus: #1,#2 y #3. Puedes identificar cada menú por el número: menú 1, menú 2 o menú 3.
-- Una vez introducidos todos los datos, el programa imprimirá por pantalla los menús solicitados por cada comensal.
-- Tienes que emplear un array para registrar los menus que tomará cada comensal. Ten en cuenta que la dimensión de dicho array tendrá que definirse en ejecución, ya que no sabemos a priori cuantos comensales vamos a tener.
-
-- Un ejemplo de una posible salida sería:
-
-Introduce el número de comensales (máximo 5):
-
-3
-
-Introduce el menu pedido por el comensal 1 :
-
-1
-
-Introduce el menu pedido por el comensal 2 :
-
-2
-
-Introduce el menu pedido por el comensal 3 :
-
-1
-
-Comensal 1 va a tomar el menu 1
-
-Comensal 2 va a tomar el menu 2
-
-Comensal 3 va a tomar el menu 1
+6. Crea un programa que muestre por pantalla la nota de un estudiante, de entre una lista de estudiantes con sus respectivas notas. Estos datos estarían hardcodeados. \\
+	El nombre del estudiante lo introduce el usuario por teclado (usa la clase LeerEntrada). \\
+	Usa dos arrays, uno para guardar los nombres de los estudiantes, y el otro para guardar las notas de los mismos. Ambos tendrán 5 elementos. Puedes guardar la información relacionada en ambos arrays con el mismo valor del índice. Es decir, si por ejemplo el estudiante Pedro está en la posición 2 del array de estudiantes, su nota estaría en la posición 2 del array de notas. \\
+	Para comparar el nombre del estudiante introducido por teclado con los nombres de los estudiantes en el array de estudiantes, puedes usar el método equals de la Clase String.
+7. Repite con un array multidimensional.
+8. Crea un programa que reciba por teclado un array de enteros y ordene sus elementos almacenando la posición origial en otro array.
+9. Desarrolla un programa java para ser usado por los camareros de un restaurante, que sirva para tomar nota de los menus que los clientes van a tomar.
+10. Primer dato a introducir por el camarero es el número de comensales que tendrá que estar en el rango de 1-5, ya que no hay mesas de más de cinco comensales. El valor introducido debe asegurarse de que se encuentra en el rango definido.
+11. Entonces el camarero tiene que introducir el menú seleccionado por cada cliente.
+12. Tenemos tres menus: #1,#2 y #3. Puedes identificar cada menú por el número: menú 1, menú 2 o menú 3.
+13. Una vez introducidos todos los datos, el programa imprimirá por pantalla los menús solicitados por cada comensal.
+14. Tienes que emplear un array para registrar los menus que tomará cada comensal. Ten en cuenta que la dimensión de dicho array tendrá que definirse en ejecución, ya que no sabemos a priori cuantos comensales vamos a tener.
+15. Un ejemplo de una posible salida sería:
+	#+BEGIN_QUOTE
+	Introduce el número de comensales (máximo 5):
+	3
+	Introduce el menu pedido por el comensal 1 :
+	1
+	Introduce el menu pedido por el comensal 2 :
+	2
+	Introduce el menu pedido por el comensal 3 :
+	1
+	Comensal 1 va a tomar el menu 1
+	Comensal 2 va a tomar el menu 2
+	Comensal 3 va a tomar el menu 1
+	#+END_QUOTE
