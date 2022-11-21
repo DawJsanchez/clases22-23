@@ -1,0 +1,53 @@
+---
+ DeApWeb - Despliegue de Aplicaciones Web
+---
+
+
+* T9 PROXY
+
+Duración: 5h
+
+Para el enfoque de este tema utilizaremos el servidor Caddy por su simplicidad.
+
+** Requisitos previos:
++ Disponer de un dominio / subdominio,  tener una zona asignada.
++ Configurar actualizador de ip, si procede.
++ VPS o Vagrant con IP pública
++ Docker y docker-compose
+
+** Gestión de zona
+Para ésto necesitaremos contratar una zona o configurar una DNS dinámica. En nuestro caso elegiremos Duckdns por su sencilla integración con docker.
+Pasos:
+1. darnos de alta en el servicio ~duckdns.org~ y elegir un nombre.
+2. configurar contenedor ~lscr.io/linuxserver/duckdns~ para actualizar dirección.
+
+** Enfoque
+[[./img/T9-Proxy.drawio.png]]
+
+Deberemos montar el servicio con los puertos 80 y 443 que tomarán las llamadas a nuestra zona y derivarán donde proceda.
+
+El contenedor de Caddy leerá las etiquetas de todos los contenedores realizando la configuración y redirección de forma automática.
+
+** Vagrantfile
+Partiremos del ~Vagrantfile~ que hemos realizado para las prácticas anteriores (se adjunta en este repositorio).
+
+** Práctica
+En esta práctica necesitamos:
+1. Crear nuestra zona delegada.
+2. Levantar servicio de actualización de ip.
+3. Levantar proxy que escuche las etiquetas del sistema.
+4. Levantar nginx con las etiquetas apropiadas.
+
+La fecha de entrega es el **5 de diciembre**. \\
+Forma de entrega: Subir la documentación como README.md a repositorio privado en una carpeta T9-Proyx.md  y añadir los `docker-compose.yml` de cada servicio y los ficheros de configuración necesarios.
+
+*** Nota:
+Para aquellos que no dispongáis de acceso de entrada directo desde internet deberéis auto delegaros la zona modificando el archivo ~/etc/hosts~ o mediante vuestro propio ~dns~.
+
+** One more thing
+Balanceador de cargas:
+[[https://www.youtube.com/watch?v=twCmZfSSWwc][Vídeo explicativo]] y [[https://github.com/achetronic/youtube/tree/master/01-docker_lets-haproxy][enlace]]
+
+[[https://hub.docker.com/_/haproxy/][HAProxy OFICIAL]]
+
+** COMMENT Referencias webgráficas
