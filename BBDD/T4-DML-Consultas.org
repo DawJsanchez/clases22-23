@@ -12,7 +12,7 @@ Vamos a empezar jugando:
 ** JOINs
 + [[https://www.baulphp.com/inner-join-mysql-ejemplos-completos/][Ejemplos JOIN (BaulPHP.com)]]
 + [[https://www.vichaunter.org/desarrollo-web/joins-mysql-bien-explicado-lo-necesitas-saber][Más JOINs (vichaunter.org)]]
-
++ [[https://www.w3resource.com/mysql-exercises/join-exercises/][Un pintito más (w3resource)]]
 ** VISTAS
    :PROPERTIES:
    :CUSTOM_ID: vistas
