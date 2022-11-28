@@ -1,0 +1,36 @@
+#+Title: Servidor de aplicaciones
+
+* ¿Que es?
+En informática, se denomina servidor de aplicaciones a un servidor en una red de computadores que ejecuta ciertas aplicaciones.
+
+Usualmente se trata de un dispositivo de software que proporciona servicios de aplicación a las computadoras cliente. Un servidor de aplicaciones generalmente gestiona la mayor parte (o la totalidad) de las funciones de lógica de negociación y de acceso a los datos de las aplicaciones. Los principales beneficios de la aplicación de la tecnología de servidores de aplicación son la centralización y la disminución de la complejidad en el desarrollo de aplicaciones.
+
+En el modelo de 3 capas (cliente-servidor-datos), el servidor de aplicaciones desarrolla el modelo de negocio y el acceso a los datos.
+
+Los componentes más básicos (en los que nos centraremos) son las JSP y los Servlets, ambos distribuidos a menudo empaquetados en  archivos ~.war~ análogos a los ~.jar~ de apicaciones S.E.
+
+* Opciones
+
+[[./T10-ServidorDeAplicaciones/cuadro.png]]
+
+Nosotros nos centraremos en Tomcat, aunque TomEE es muy similar al estar construido sobre la base Tomcat.
+
+* Prácticas
+** Mi primer servidor de aplicaciones.
+Tenéis en la carpeta ~1-soloServidor~ el compose base donde deberéis conectar la carpeta aplicaciones con la correspondiente del servidor. \\
+Una vez levantado el servidor de aplicaciones, podréis acceder a las mismas en mediante acceso ~http://localhost:8888/holaMundo~ y ~http://localhost:8888/SampleWebApp~. \\
+** Entendiendo la estructura básica de los archivos ~.war~
+Partiendo de la práctica anterior, y tras analizar los cambios aparecidos en la carpeta de aplicaciones deberéis desempaquetar el ~holaMundo.war~ y personalizando añadiendo vuestro nombre completo y la fecha de edición del mismo. \\
+/Para desempaquetar/: ~jar -xvf paqueteEmpaquetado.war~
+
+Para empaquetar sólo deberéis seguir los pasos: \\
+#+INCLUDE: "./2-jspPropio/README.org"
+
+** Gestor de aplicaciones.
+Modificar el fichero ~tomcat-users.xml~ habilitándole el rol ~magager-gui~ y asignándole dicho rol a un usuario.
+
+Posteriormente, accederemos a la aplicación de gestión en ~http://localhost:8888/manager/html~
+
+
+*Entrega*: 12 diciembre a las *7:00 de la mañana*
+/Formato/: Como siempre deberás aportar todos los archivos fuente utilizados (no capturas) y una explicación coherente de lo realizado (ahora sí con capturas) en formato md.

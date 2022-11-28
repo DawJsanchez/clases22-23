@@ -1,0 +1,13 @@
+* Despliegue de aplicación en servidor de aplicaciones
+1. Crear la aplicación JSP ~index.jsp~
+2. Crear los manifiestos WEB-INF/web.xml:
+#+BEGIN_QUOTE
+<web-app>
+	<display-name>Hola Mundo</display-name>
+</web-app>
+#+END_QUOTE
+3. Empaquetar la aplicación *.war ~jar -cvf holaMundo.war *.jsp WEB-INF/~
+4. Desplegar en servidor de aplicaciones
+
+* Instalacion de servidor con docker
+
