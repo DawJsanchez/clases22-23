@@ -131,3 +131,22 @@ Las matrices o arrays multidimensionales son una construcción de 2 o más dimen
 	Comensal 2 va a tomar el menu 2
 	Comensal 3 va a tomar el menu 1
 	#+END_QUOTE
+
+* PRÁCTICAS:
+** Evaluación de resultados.
+Crear una aplicación que nos evalue los resultados obtenidos en la primera evaluación, esto es, deberéis crear una aplicación que recoga:
+1. Un número indeterminado de alumnos (filas)
+2. Cada alumno tendrá un número indeterminado de módulos (no todos los alumnos tienen los mismos módulos) (columnas)
+3. Determinar la media de las notas del alumno (filas)
+4. Determinar la media de las notas de cada módulo (columnas)
+5. Determinar la media global (filas y columnas)
+
+Restricciones: debe mostrar la tabla completa con los nombres de las materias, de los alumnos y resaltar las medias en colores. Los datos de entrada estarán ~harcodeados~.
+
+** Posicionamiento de brazos robóticos.
+Dado [[https://youtu.be/9zSRNXRuX0g][cinemática de robot (2D)]], se pide generar una matriz de transformación precalculada de forma que podamos  solicitarle a la apliación la ubicación de la punta en unas coordenadas cartesianas (x e y) y nos devuelva los ángulos de posicionamiento de los brazos robóticos. \\
+Se solicita que nos facilitéis la respuesta de ángulos para todos los valores enteros de un cubo de dimensiones 1x1, teniendo en cuenta que el origen de coordenadas está en un vértice y la longitud de los brazos son de 1 ambos.
+
+Restricciones: implementar el método ~float[] cinematicaInversa2D(int x, int y)~ de la clase ~MatricesDeTransformacion~ que podamos utilizar sin instanciar objetos, donde ~float[]~ será un vector con los valores de los 2 ángulos.
+
+** Entrega: 13 diciembre
