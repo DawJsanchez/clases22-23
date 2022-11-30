@@ -1,0 +1,41 @@
+#+Title: Cadena de caracteres STRINGS
+
+* Clase String
+Construcción:
+#+BEGIN_SRC java
+String texto1 = “¡Prueba de texto!”;
+String texto2 =”Este es un texto que ocupa “ +
+	“varias líneas, no obstante se puede “+
+	“perfectamente encadenar”;
+
+// Construcciones especiales
+char[] palabra = {‘P’,’a’,’l’,’b’,’r’,’a’};//Array de char
+String cadena = new String(palabra);
+
+byte[] datos = {97,98,99};
+String codificada = new String (datos, “8859_1”);
+/* En el último ejemplo la cadena codificada se crea desde un array de tipo byte que
+contiene números que serán interpretados como códigos Unicode. Al asignar, el valor
+8859_1 indica la tabla de códigos a utilizar. */
+#+END_SRC
+
+** Métodos NO estáticos
+~cadena1.length()~: devuelve el número de caracteres de la cadena.
+~cadena1.concat(cadena2)~: une ambas cadenas.
+~cadena1.charAt(3)~: devuelve el caracter correspondiente a la posición *4*.
+~cadena1.substring(3,6)~: devuelve 6 caracteres desde el 4º.
+~cadena1.equals(cadena2)~: El resultado es true si la cadena1 es igual a la cadena2. Ambas cadenas son variables de tipo String.
+~cadena1.equalsIgnoreCase(cadena2)~: Como la anterior, pero en este caso no se tienen en cuenta mayúsculas y minúsculas.
+~s1.compareTo(s2)~: Compara ambas cadenas, considerando el orden alfabético. \\
+Si la primera cadena es mayor en orden alfabético que la segunda devuelve 1, si son iguales devuelve 0 y si es la segunda la mayor devuelve -1. Hay que tener en
+cuenta que el orden no es el del alfabeto español, sino que usa la tabla ASCII, en esa tabla la letra ñ es mucho mayor que la o.
+~s1.compareToIgnoreCase(s2)~: Igual que la anterior, sólo que además ignora las mayúsculas.
+
+
+* Ejercicios
+Crea una clase que nos trabaje cadenas:
++ Invierte un texto introducido por teclado (clase LeerEntrada)
++ Elimina los espacios en blanco:
+	+ De antes del texto
+	+ De después del texto
+	+ De dentro del texto (dobles espacios)
