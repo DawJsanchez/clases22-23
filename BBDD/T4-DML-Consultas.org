@@ -9,10 +9,318 @@ Vamos a empezar jugando:
 *** COMMENT pdte
 + Tendrá un +1.5 puntos de experiencia el primero que resuelva el [[https://mystery.knightlab.com/][crimen]]
 
+
+** Estructura de las sentencias de consulta
+
+-------------------------------------
+*Inciso*: ~CREATE TEMPORARY TABLE~ crea una tabla válida sólo para el usuario que la creó y en la sesión actual
+=====================================
+
+#+BEGIN_QUOTE
+SELECT campos
+	FROM tablas
+	[WHERE condiciones]
+	[ORDER BY campos
+		[ASC|DESC] ]
+	[GROUP BY campos		# Agrupa por valores de uno o varios campos. P.e. poblaciónDeLocalidad GROUP BY provincia
+		[WITH ROLLUP] ]		# Totaliza la agrupación. P.e. población total de las todas las provincias
+	[HAVING condicion]		# Similar a WHERE pero con funciones de agrupación (suma, cuenta, media, etc)
+
+SELECT campos
+	FROM tablas
+	WHERE campo IN ( subconsulta );
+
+	# P.E.:
+	#	SELECT nombre FROM alumnos WHERE nif IN (
+			SELECT nif FROM nota WHERE modulo = 'BBDD'
+		)
+#+END_QUOTE
+
++ Referencia webgráfica: [[https://www.mysqltutorial.org]]
 ** JOINs
 + [[https://www.baulphp.com/inner-join-mysql-ejemplos-completos/][Ejemplos JOIN (BaulPHP.com)]]
 + [[https://www.vichaunter.org/desarrollo-web/joins-mysql-bien-explicado-lo-necesitas-saber][Más JOINs (vichaunter.org)]]
 + [[https://www.w3resource.com/mysql-exercises/join-exercises/][Un pintito más (w3resource)]]
+** UNION
+The MySQL UNION Operator
+
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+    Every SELECT statement within UNION must have the same number of columns
+    The columns must also have similar data types
+    The columns in every SELECT statement must also be in the same order
+#+BEGIN_SOURCE sql
+UNION Syntax
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+#+END_SOURCE
+*** Modificadores DISTINCT y ALL
++ ~DISTINCT~ sólo mostrará las que sea diferentes
++ ~ALL~ repetirá los duplicados
++ ~nada~ actuará como ~DISTINCT~
+
+*** Diferencia entre ~JOIN~ y ~UNION~
+A ~JOIN~ combines result sets horizontally, a ~UNION~ appends result set vertically. The following picture illustrates the difference between UNION and JOIN:
+[[./T4-DML-Consultas/MySQL-UNION-vs-JOIN.png]]
+
+
+
+** Tablas derivadas
+A derived table is a virtual table returned from a SELECT statement. A derived table is similar to a temporary table, but using a derived table in the SELECT statement is much simpler than a temporary table because it does not require creating the temporary table.
+[[./T4-DML-Consultas.org/MySQL-Derived-Table.png]]
+
+
+** EXISTS
+The EXISTS operator is a Boolean operator that returns either true or false. The EXISTS operator is often used to test for the existence of rows returned by the subquery.
+
+** FUNCIONES PROPIAS DEL LENGUAJE SQL
+*** Funciones de cadena:
+**** Operaciones sobre cadenas:
+	 #+BEGIN_SRC sql
+			  CONCAT(str1 str2 ...);	-- Une cadenas. Deben ir entre comillas 'hola'
+			  LOWER(STR); 		 		-- Devuelve cadena en minúsculas
+			  UPPER(str);				-- Devuelve cadena en mayúsculas
+			  SUBSTR(str {,|FROM} pos [{,|FOR} long]);
+									   -- Dev. subcadena desde posicion con longitud
+			  INSERT(str,pos,long,nuevo_str)
+			  LOCATE(substr,str [,pos])
+				   /* Devuelve la primera ocurrencia del substr en el str. Si se da una
+					  posicion, comienza a buscar a partir de ella */
+			  TRIM([{BOTH|LEADING|TRAILING} [remstr] FROM] str), TRIM([remstr FROM] str)
+				   /* Devuelve el str sin prefijo or sufijo. Si no se especifica por que
+	   lado, se hará por ambos. Si no se especifica remstr, se eliminan espacios en blanco. */
+			  CHAR_LENGTH(str); 	-- Devuelve la longitud de caracteres (no de bytes).
+			  REPEAT(str,N);		-- Se repite el str N veces.
+			  REPLACE(str,orig_str,nueva_str);
+							-- Reemplaza en str la partícula orig_str por nueva_str.
+			  ...
+	 #+END_SRC
+**** Comparaciones:
+	 #+BEGIN_SRC sql
+	   expr LIKE patron;	/* Busca en la expr el patrón dado. "%" es comodín
+			  multicarácter y "_" unicarácter. */
+	   STRCMP(expr1,expr2); /* Devuelve 0 si son iguales, -1 si el primero es
+			  menor que el segundo y 1 en el resto. */
+	 #+END_SRC
+**** EXPRESIONES REGULARES:
+	 #+BEGIN_SRC sql
+	   expr REGEXP pat;	-- Similar a LIKE, pero con patrón en RegEx
+	   expr RLIKE pat;  -- Igual a REGEXP
+	 #+END_SRC
+     + [[https://www.slideshare.net/alkuy/expresiones-regulares-64990123][Presentacion de expresiones regulares]]
+     + [[https://www.geeksforgeeks.org/write-regular-expressions/][átomos]]
+     + Tabla resúmen:
+#+CAPTION: Chuleta/resumen de expresiones regulares
+	 [[./bbdd/img/ExpresionesRegulares.png]]
+     + Validadores on-line: https://regexr.com/ o https://regex101.com/
+     + Expresiones *CODICIOSAS* "(.*)" y *PEREZOSAS* "(.*?)": las codiciosas buscan la coincidencia más larga y las perezosas la más corta.
+     + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
+     + [[https://jarroba.com/busqueda-de-patrones-expresiones-regulares/][Un pedazo de manual sobre Expresiones Regulares]]
+     + [[https://docs.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions][Man RegEx Microsoft]]
+***** Trabajo: validar formularios de entrada                       :trabajo:
+ #+BEGIN_SRC regex
+     1. ip
+		+ Si => /^((2[0-5][0-9]|[01]?\d{2}|0{0,2}\d{1}).){3}
+                  (2[0-5][0-9]|[01]?\d{2}|0{0,2}\d{1})$/
+		+ No => /^((0{0,2}\d{1}|[01]?\d{2}|2[0-5][0-9]).){3}
+                  (0{0,2}\d{1}|[01]?\d{2}|2[0-5][0-9])$/
+          # El orden es importante ya que al coincidir una de las opciones no sigue buscando más.
+		+ Vale un: /^(\d{1,3}.){3}(\d{1,3})$/
+     2. Puerto 0-65535
+		+ /^(6553[0-5]|655[0-2]\d|65[0-4]\d{2}|6[0-4]\d{3}|[0-5]?\d{1,4})$/
+		+ Vale un: /^\d{1,5}$/
+     3. Usuario /^\w+-\w+$/
+     4. Pass
+		+ /^[a-zA-Z0-9!#$%&? "\.\-_]{6,12}$/
+		+ Vale un: /^[0-9A-Za-z]$/
+		+ Multi-ocurrencia \\
+		 ^.*              : Start \\
+		 (?=.{8,})        : Length \\
+		 (?=.*[a-zA-Z])   : Letters \\
+		 (?=.*\d)         : Digits \\
+		 (?=.*[!#$%&? "]) : Special characters \\
+		 .*$              : End
+     5. BD  /^db_\d{2}_\w+_\w+$/
+     6. DNI /^\d{8}$/
+     7. NIF /^\d{8}[A-Za-z]$/
+     8. NIE /^[xyzXYZ]\d{7}[a-zA-Z]$/
+	 9. CIF
+		+ /^(?i)[abcdefghjnpqrsuvw]\d{7}[a-zA-Z]$/
+		+ Vale un: /^[abcdefghjnpqrsuvwABCDEFGHJNPQRSUVW]\d{7}[a-zA-Z]$/
+	 10. TLF
+		 + /^((\+\d{2})?[6-9]\d{8}|([0]{2}\d{2})?[6-9]\d{8}|(\+\d{2})?
+             (0[1-9]\d{1}|1\d{2}))|([0]{2}\d{2})?(0[1-9]\d{1}|1\d{2})$/
+		 + Vale un: /^\d{9}$/
+ #+END_SRC
+
+*** Funciones matemáticas: ABS, TRUNCATE, SIGN, EXP, POW, SIN, COS, SQRT
+*** Funciones de FECHA, HORA y TIMESTAMP (marca de tiempo)
+**** TIMESTAMP (marca de tiempo):
+     El tiempo en UNIX -EPOCH- se mide como la cantidad de segundos transcurridos desde las 0h00m00s del 1 de enero de 1970 UTC (tiempo universal coordinado), y es un real con signo, por lo que pude medir instantes anteriores indicando los segundos hasta dicho momento.
+     La parte decimal indica fracciones de segundo, esto es, el TIMESTAMP 60.1 corresponde a las 0 horas 01 minutos 00 segundos y una décima, del 1 de enero de 1970 UTC.
+     + ~FROM_UNIXTIME (unix_timestamp[,format])~ => nos premite pasar de EPOCH a formato definido.
+     + ~UNIX_TIMESTAMP([date])~ => nos premite pasar de fecha en formato SQL (YYYY-MM-DD HH:MM:SS) a TIMESTAMP.
+*** Funciones CAST -> conversión de tipos.
+**** ~CONVERT(expr, type)~: Convierte una cadena de una codificación a otra, p.e. de latin1 a utf8, o de cadena a ~date~.
+**** ~CAST(expr AS type)~: Igual al anterior pero acepta atributos multivalor (tambien llamados atributos multivaluados o multi-value indexes).
+***** ¿Qué es un atributo multivalor? (multi-value index):
+	  Imaginemos la tabla clientes de la tienda. Muchos de ellos, cuando nos realizan un pedido nos proporcionan 2 números de teléfono. Para su registro tenemos 3 opciones (de "peor a mejor"):
+	  1. Creamos una tabla con los campos tlf_1, tlf_2, tlf_N -> Muy ineficiente al tener que ocupar sí o sí ~N campos~ aunque sólo tengamos 1 teléfono.
+	  2. Creamos una tabla con un ~multi-value index~ denominado telefonos, que registrará un sólo campo en formato ~separado por comas~, ~separado por |~ o ~JSON~. P.e.: ~{"tlf1": 924123456, "tlf2": 651123456, ...}~
+	  3. Creamos una tabla aparte con un índice a la tabla con el resto de los datos -> Normalización.
+	  De "peor a mejor" según el estandar MER (Modelo Entidad-Relación), pero no así en bbdd NoSQL (Not Only SQL), donde podemos querer guardar campos flexibles, tipo comentarios, pero indexables, tipo JSON.
+**** ~BINARY expr~: Fuerza comparaciones byte a byte ('a' != 'A') y no carácter a carácter ('a' = 'A'), siendo significantes espacios ('a' != 'a ').
+*** Funciones de encriptación y compresión
+      + ~AES_ENCRYPT(str,key_str[,init_vector])~
+      + ~AES_DECRYPT(crypt_str,key_str[,init_vector])~
+
+	   Ejemplo de uso:
+ #+BEGIN_SRC sql
+	  SET block_encryption_mode = 'aes-256-cbc';
+	  SET @key_str = SHA2('My secret passphrase',512);
+		-- @key_str almacena el password "haseado" por seguridad.
+	  SET @init_vector = RANDOM_BYTES(16);
+		-- vector inicial (opcional). Debe tener 16 bytes.
+	  SET @crypt_str = AES_ENCRYPT('text',@key_str,@init_vector);
+		/* @crypt_str es el texto encriptado con la llave y el vector inicial (tipo "salt").
+		Éste es opcional. */
+	  SELECT AES_DECRYPT(@crypt_str,@key_str,@init_vector);
+		-- Devuelve el texto desenciptado
+ #+END_SRC
+*** Funciones de BLOQUEO
+	Son utilizadas para evitar tratar datos a la vez por dos o más usuarios. P.e.: si alguien comienza una transferencia desde su cuenta corriente, no permitir que nadie más comience otra, ya que puede que si la transferencia se completa, la cuenta no tenga suficiente dinero.
+	+ [[https://dev.mysql.com/doc/refman/8.0/en/lock-tables.html][Sintaxis LOCK y UNLOCK (Manual de referencia cap 13.4.5 esp)]]
+*** Funciones de información de la BBDD
+ #+BEGIN_SRC sql
+   LAST_INSERT_ID();	-- devuelve el último valor insertado o actualizado
+   ROW_COUNT(); 		-- devuelve el número de filas afectadas por un SELECT, UPDATE, DELETE o INSERT
+					   --   También para ALTER TABLE y LOAD DATA
+					   --   Devuelve 0 en CREATE y DROP.
+   FOUND_ROWS();		-- La función está desaconsejada. Convertirla en un
+					   --   ~SELECT COUNT(*) FROM tabla WHERE XX~ ... sin aplicar límites
+   CHARSET( str );		-- devuelve la codificación del ~str~
+   COLLATION( str );	/* devuelve la ~collation~ del ~str~ (reglas con las que se
+						  comprueba el ~charset~) */
+ #+END_SRC
+*** Funciones AGREGADAS
+ #+BEGIN_SRC sql
+   AVG([DISTINCT] expr);		-- Realiza la media de los valores recibidos
+   COUNT(expr);   			-- Cuenta el número de registros recibidos (no NULL), no su valor
+   COUNT(DISTINCT expr);	  	-- Cuenta el número de registros DISTINTOS y no NULL
+   GROUP_CONCAT([DISTINCT] expr [ORDER BY ...] [SEPARATOR ";"]
+							 -- Concatena los valores de una columna con el separador ";" o sin separador
+   MIN([DISTINCT] expr)	  	-- Retorna el valor máximo de la columna
+   MAX([DISTINCT] expr)		-- Retorna el valor mínimo de la columna
+   SUM([DISTINCT] expr)		-- Suma los valores de la columna
+ #+END_SRC
+     + Modificadores de GROUP BY
+ #+BEGIN_SRC sql
+   SELECT anho, SUM(ingresos) AS ingresos
+		FROM ventas
+		GROUP BY anho;
+ #+END_SRC
+ #+CAPTION: Ejemplo claúsula ~GROUP BY~
+ #+ATTR_ORG: :width 400
+ [[./bbdd/img/group-by.png]]
+     + Con totales:  ~...GROUP BY anho WITH ROLLUP~
+	 #+CAPTION: Ejemplo claúsula ~GROUP BY ... WITH ROLLUP~
+	 #+ATTR_ORG: :width 400
+	 [[./bbdd/img/with-rollup.png]]
+*** Funciones condicionales
+*IF* 	Returns a value if a condition is TRUE, or another value if a condition is FALSE. P.e. Return "YES" if the condition is TRUE, or "NO" if the condition is FALSE: ~SELECT IF(500<1000, "YES", "NO");~ => ~YES~
+*IFNULL* 	Return a specified value if the expression is NULL, otherwise return the expression. P.e. ~SELECT IFNULL(NULL, "Es null");~ => ~Es null~
+*ISNULL* 	Returns 1 or 0 depending on whether an expression is NULL. P.e. ~SELECT ISNULL(NULL);~ => ~1~ (TRUE)
+*NULLIF* 	Compares two expressions and returns NULL if they are equal. Otherwise, the first expression is returned. P.e. ~SELECT NULLIF(25, 25);~ => ~NULL~
+
+*** Referencias webgraficas:
++ [[https://www.w3schools.com/mysql/mysql_ref_functions.asp][W3School]]
+
+*** Funciones XML
+	#+BEGIN_SRC sql
+	  LOAD XML LOCAL INFILE 'nombre_archivo.xml' INTO TABLE nombre_tabla ROW IDENTIFIED BY 'nombre_fila'
+		-- carga el contenido del archivo en la tabla
+	  ExtractValue(xml_frag, xpath_expr)
+		-- devuelve valor que coincida con la expresión
+	  UpdateXML(xml_target, xpath_expr, new_xml)
+		-- actualiza valor que coincida con la expresión
+	#+END_SRC
+***** Ejercicio: Cargar XML en tabla:
+      1. Crear tabla con estructura de archivo -> ~create table contactos (id int not null auto_increment, name varchar(50) not null, company varchar(50) not null, phone varchar(50) not null, primary key (id) );~
+      2. Verificar estructura -> ~show columns from contactos;~
+      3. Cargar datos desde XML
+	  4. Si lo carga: *bien*.
+	  5. Si da error "ERROR 3950 (42000): Loading local data is disabled; this must be enabled on both the client and server side". Desde *MYSQL SHELL*:
+		 #+BEGIN_SRC sql
+		   SET GLOBAL local_infile=1;
+		   quit;
+		   ~mysql --local-infile=1 -h ip_servidor -uroot -p~ # en bash
+		   use vuestra_db
+		   LOAD XML LOCAL INFILE '/ruta/archivo.xml' INTO TABLE contactos;
+
+							~Query OK, 2 rows affected (0.01 sec)~
+							~Records: 2  Deleted: 0  Skipped: 0  Warnings: 0~
+
+		   SELECT * FROM contactos;
+							|----+---------------+----------------+----------------|
+							| id | name          | company        | phone          |
+							|----+---------------+----------------+----------------|
+							|  1 | Tanmay Patil  | TutorialsPoint | (011) 123-4567 |
+							|  2 | Manisha Patil | TutorialsPoint | (011) 789-4567 |
+							|----+---------------+----------------+----------------|
+							2 rows in set (0.00 sec)
+
+		   SET @xml = LOAD_FILE('users.xml'); -- O la siguiente instrucción
+		   SET @xml = '<a>111<b:c>222<d>333</d><e:f>444</e:f></b:c></a>';
+		   SELECT ExtractValue( '<contact-info><row><name>Tanmay Patil</name>
+				  <company>TutorialsPoint</company><phone>(011) 123-4567</phone>
+				  </row><row><name>Manisha Patil</name><company>TutorialsPoint</company>
+				  <phone>(011) 789-4567</phone> </row></contact-info>',
+				  'contact-info/row[1]/*') as 'fila';
+		   SELECT UpdateXML(@xml, 'contact-info/row[1]/name', 'Pepe') AS val1
+		 #+END_SRC
+*** COMMENT Funciones JSON => NOSQL (Not Only SQL).
+**** Realizaremos una práctica sencilla sobre el manejo de datos JSON... concretamente vamos a realizar un pequeño BOT dataloger para TELEGRAM. :practica:
+     Para ello vamos a utilizar el API de TELEGRAM con el que nos permite enviar y recibir mensajes:
+     + Enviar: ~curl -s -X POST https://api.telegram.org/bot$TOKEN/sendMessage -d chat_id=$ID -d text="$MENSAJE"~
+     + Recibir: ~curl -s -X POST https://api.telegram.org/bot$TOKEN/getUpdates -d chat_id=$ID~
+     Donde: $TOKEN es el código secreto de nuestro BOT, $ID el chat con el que vamos a interaccionar y $MENSAJE es el mensaje a enviar.
+
+     Al recibir, nos llegará algo como ésto:
+ ~{"ok":true,"result":[{"update_id":361424900,
+ "message":{"message_id":2123,"from":{"id":XXXXXXXXX,"is_bot":false,"first_name":"Luis","last_name":"Fe","username":"YYYYYY","language_code":"es"},"chat":{"id":XXXXXXXXX,"first_name":"Luis","last_name":"Fe","username":"YYYYYY","type":"private"},"date":1614882865,"text":"Hola"}}]}~
+     Donde nos interesará almacenar "date" y "text". Si dicho BOT lo tenemos en más de un chat, también será interesante almacenar "id" e incluso "username".
+
+     ¿Cómo obtener el TOKEN y el ID? \\
+	 https://www.shellhacks.com/telegram-api-send-message-personal-notification-bot/
+*** Otras funciones
+**** Funciones de búsqueda en FULL-TEXT
+**** Funciones sobre BITs
+**** Funciones de análisis espacial (cartografía)
+**** Funciones de ventana (de datos)
+**** Funciones matemáticas de precisión (de datos)
+
+** Variables
+*** Variables de usuario (@variable)
+	+ Las variables son de un usuario y conexión dada.
+	+ No es visible para otros usuarios o conexiones.
+	+ Al finalizar la conexión la varible se destruye.
+	+ No puede utilizarse DECLARE, salvo entre un bloque ~BEGIN~ ... ~END~. En este caso, las variables "declaradas" seran locales al ~BEGIN~ ... ~END~.
+	  #+BEGIN_SRC sql
+			SET @nombre_variable = expresión;
+			SET @numero = 17, @n2 = 1;	   -- numero<=17 y n2<=1
+			SET @fecha = CURDATE(); -- Hoy
+			SET @media = ( SELECT AVG(edad) FROM alumnos );
+	  #+END_SRC
+*** Variables de sistema
+	+ Variables globales: ~SET GLOBAL nombre_variable=valor~
+	  - El cambio de una var global es visible para cualquier cliente que cree conexión *DESPUÉS* de que el valor se haya actualizado.
+	  - Los clientes activos seguirán viendo el valor anterior.
+	+ Variables de sesión: similar a las de usuario.
+	+ Variables "presistentes" a reinicios del servidor: ~SET PERSIST max_connections = 1000;~
+	+ Variables "presistentes después del reinicio" y no en el momento: ~SET PERSIST_ONLY back_log = 100;~
+
+
 ** VISTAS
    :PROPERTIES:
    :CUSTOM_ID: vistas
