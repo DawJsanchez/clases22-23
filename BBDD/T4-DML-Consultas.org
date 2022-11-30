@@ -17,22 +17,34 @@ Vamos a empezar jugando:
 =====================================
 
 #+BEGIN_QUOTE
-SELECT campos \\
-	FROM tablas \\
-	[WHERE condiciones] \\
-	[ORDER BY campos \\
-		[ASC|DESC] ] \\
-	[GROUP BY campos		# Agrupa por valores de uno o varios campos. P.e. poblaciónDeLocalidad GROUP BY provincia \\
-		[WITH ROLLUP] ]		# Totaliza la agrupación. P.e. población total de las todas las provincias \\
-	[HAVING condicion]		# Similar a WHERE pero con funciones de agrupación (suma, cuenta, media, etc) \\
+SELECT campos
 
-SELECT campos \\
-	FROM tablas \\
+	FROM tablas 
+	
+	[WHERE condiciones] 
+	
+	[ORDER BY campos 
+	
+		[ASC|DESC] ] 
+		
+	[GROUP BY campos		# Agrupa por valores de uno o varios campos. P.e. poblaciónDeLocalidad GROUP BY provincia 
+	
+		[WITH ROLLUP] ]		# Totaliza la agrupación. P.e. población total de las todas las provincias 
+		
+	[HAVING condicion]		# Similar a WHERE pero con funciones de agrupación (suma, cuenta, media, etc) 
+	
+SELECT campos 
+
+	FROM tablas 
+	
 	WHERE campo IN ( subconsulta ); 
 
-	# P.E.: \\
-	#	SELECT nombre FROM alumnos WHERE nif IN ( \\
-			SELECT nif FROM nota WHERE modulo = 'BBDD' \\
+	# P.E.: 
+	
+	#	SELECT nombre FROM alumnos WHERE nif IN ( 
+	
+			SELECT nif FROM nota WHERE modulo = 'BBDD' 
+			
 		)
 #+END_QUOTE
 
