@@ -115,7 +115,7 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
 	   STRCMP(expr1,expr2); /* Devuelve 0 si son iguales, -1 si el primero es
 			  menor que el segundo y 1 en el resto. */
 	 #+END_SRC
-**** EXPRESIONES REGULARES:
+**** COMMENT EXPRESIONES REGULARES:
 	 #+BEGIN_SRC sql
 	   expr REGEXP pat;	-- Similar a LIKE, pero con patrón en RegEx
 	   expr RLIKE pat;  -- Igual a REGEXP
