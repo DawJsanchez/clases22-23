@@ -73,14 +73,16 @@ SELECT column_name(s) FROM table2;
 + ~nada~ actuará como ~DISTINCT~
 
 *** Diferencia entre ~JOIN~ y ~UNION~
-A ~JOIN~ combines result sets horizontally, a ~UNION~ appends result set vertically. The following picture illustrates the difference between UNION and JOIN:
+A ~JOIN~ combines result sets horizontally, a ~UNION~ appends result set vertically. The following picture illustrates the difference between UNION and JOIN: 
+
 [[./T4-DML-Consultas/MySQL-UNION-vs-JOIN.png]]
 
 
 
 ** Tablas derivadas
 A derived table is a virtual table returned from a SELECT statement. A derived table is similar to a temporary table, but using a derived table in the SELECT statement is much simpler than a temporary table because it does not require creating the temporary table.
-[[./T4-DML-Consultas.org/MySQL-Derived-Table.png]]
+
+[[./T4-DML-Consultas/MySQL-Derived-Table.png]]
 
 
 ** EXISTS
@@ -115,7 +117,7 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
 	   STRCMP(expr1,expr2); /* Devuelve 0 si son iguales, -1 si el primero es
 			  menor que el segundo y 1 en el resto. */
 	 #+END_SRC
-**** COMMENT EXPRESIONES REGULARES:
+**** EXPRESIONES REGULARES:
 	 #+BEGIN_SRC sql
 	   expr REGEXP pat;	-- Similar a LIKE, pero con patrón en RegEx
 	   expr RLIKE pat;  -- Igual a REGEXP
@@ -130,7 +132,18 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
      + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
      + [[https://jarroba.com/busqueda-de-patrones-expresiones-regulares/][Un pedazo de manual sobre Expresiones Regulares]]
      + [[https://docs.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions][Man RegEx Microsoft]]
+
+***** Ejercicios:
+"Parsea" los siguientes datos de entrada: ip, puerto, tlf, usuario.
+
 ***** Trabajo: validar formularios de entrada                       :trabajo:
+Debes indicar las expresiones regulares para verificar que un usuario ha enviado datos correctos de los siguientes campos:
+1. sólo dni (8 dígitos)
+2. sólo nif (dni + letra). /No todas las letras son válidas/
+3. sólo cif (letra + 7 dígitos + letra) /No todas las letras son válidas/
+4. Buscar en un texto todas las apariciones de la falta de ortografía al escribir el verbo "ha" (de haber) sin la h... 
+	/Regla: Se escriben con H las formas verbales HE, HA, HAS Y HAN cuando van seguidas de la preposición DE o de un participio terminado en -ADO, -IDO, -TO, -SO, -CHO./
+****** COMMENT Resuelto
  #+BEGIN_SRC regex
      1. ip
 		+ Si => /^((2[0-5][0-9]|[01]?\d{2}|0{0,2}\d{1}).){3}
