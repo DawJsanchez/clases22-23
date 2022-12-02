@@ -12,43 +12,65 @@ Vamos a empezar jugando:
 
 ** Estructura de las sentencias de consulta
 
--------------------------------------
-*Inciso*: ~CREATE TEMPORARY TABLE~ crea una tabla válida sólo para el usuario que la creó y en la sesión actual
-=====================================
-
 #+BEGIN_QUOTE
 SELECT campos
 
-	FROM tablas 
-	
-	[WHERE condiciones] 
-	
-	[ORDER BY campos 
-	
-		[ASC|DESC] ] 
-		
-	[GROUP BY campos		# Agrupa por valores de uno o varios campos. P.e. poblaciónDeLocalidad GROUP BY provincia 
-	
-		[WITH ROLLUP] ]		# Totaliza la agrupación. P.e. población total de las todas las provincias 
-		
-	[HAVING condicion]		# Similar a WHERE pero con funciones de agrupación (suma, cuenta, media, etc) 
-	
-SELECT campos 
+	FROM tablas
 
-	FROM tablas 
-	
-	WHERE campo IN ( subconsulta ); 
+	[WHERE condiciones]
 
-	# P.E.: 
-	
-	#	SELECT nombre FROM alumnos WHERE nif IN ( 
-	
-			SELECT nif FROM nota WHERE modulo = 'BBDD' 
-			
+	[ORDER BY campos
+
+		[ASC|DESC] ]
+
+	[GROUP BY campos		# Agrupa por valores de uno o varios campos. P.e. poblaciónDeLocalidad GROUP BY provincia
+
+		[WITH ROLLUP] ]		# Totaliza la agrupación. P.e. población total de las todas las provincias
+
+	[HAVING condicion]		# Similar a WHERE pero con funciones de agrupación (suma, cuenta, media, etc)
+
+SELECT campos
+
+	FROM tablas
+
+	WHERE campo IN ( subconsulta );
+
+	# P.E.:
+
+		SELECT nombre FROM alumnos WHERE nif IN (
+
+			SELECT nif FROM nota WHERE modulo = 'BBDD'
+
 		)
 #+END_QUOTE
 
 + Referencia webgráfica: [[https://www.mysqltutorial.org]]
+
+** OPERADORES y Precedencia
++ MySQL RefManual 12.4.1 OPERATOR PRECEDENCE
+
+La precedencia de operadores es la mostrada de más alta a más baja. Los operadores que están en la misma linea tienen la misma precedencia:
+#+BEGIN_QUOTE
+INTERVAL
+BINARY, COLLATE
+!
+- (unary minus), ~ (unary bit inversion)
+^
+*, /, DIV, %, MOD
+-, +
+<<, >>
+&
+|
+= (comparison), <=>, >=, >, <=, <, <>, !=, IS, LIKE, REGEXP, IN, MEMBER OF
+BETWEEN, CASE, WHEN, THEN, ELSE
+NOT
+AND, &&
+XOR
+OR, ||
+= (assignment), :=
+#+END_QUOTE
+Si quisiéramos variar este orden necesitaríamos utilizar paréntesis.
+
 ** JOINs
 + [[https://www.baulphp.com/inner-join-mysql-ejemplos-completos/][Ejemplos JOIN (BaulPHP.com)]]
 + [[https://www.vichaunter.org/desarrollo-web/joins-mysql-bien-explicado-lo-necesitas-saber][Más JOINs (vichaunter.org)]]
@@ -73,16 +95,21 @@ SELECT column_name(s) FROM table2;
 + ~nada~ actuará como ~DISTINCT~
 
 *** Diferencia entre ~JOIN~ y ~UNION~
-A ~JOIN~ combines result sets horizontally, a ~UNION~ appends result set vertically. The following picture illustrates the difference between UNION and JOIN: 
+A ~JOIN~ combines result sets horizontally, a ~UNION~ appends result set vertically. The following picture illustrates the difference between UNION and JOIN:
 
 [[./T4-DML-Consultas/MySQL-UNION-vs-JOIN.png]]
 
 
 
 ** Tablas derivadas
-A derived table is a virtual table returned from a SELECT statement. A derived table is similar to a temporary table, but using a derived table in the SELECT statement is much simpler than a temporary table because it does not require creating the temporary table.
+En ocasiones las consultas toman una complejidad excesiva por lo que puede ser muy interesante dividirlas en sucesivas subconsultas, permitiendo que una subconsulta genere una ~tabla derivada~ con sólo asignale un alias y colocar dicha subconsulta en el campo ~FROM~.
 
 [[./T4-DML-Consultas/MySQL-Derived-Table.png]]
+
+/A derived table is a virtual table returned from a SELECT statement. A derived table is similar to a temporary table, but using a derived table in the SELECT statement is much simpler than a temporary table because it does not require creating the temporary table./
+
+*** Ejercicio:
++ Muestra el nombre e email de los empleados que ganan entre 5.000 y 10.000 € /mes que se dedican a la rama de informática (IT...) cuyo jefe es Steven King.
 
 
 ** EXISTS
@@ -141,7 +168,7 @@ Debes indicar las expresiones regulares para verificar que un usuario ha enviado
 1. sólo dni (8 dígitos)
 2. sólo nif (dni + letra). /No todas las letras son válidas/
 3. sólo cif (letra + 7 dígitos + letra) /No todas las letras son válidas/
-4. Buscar en un texto todas las apariciones de la falta de ortografía al escribir el verbo "ha" (de haber) sin la h... 
+4. Buscar en un texto todas las apariciones de la falta de ortografía al escribir el verbo "ha" (de haber) sin la h...
 	/Regla: Se escriben con H las formas verbales HE, HA, HAS Y HAN cuando van seguidas de la preposición DE o de un participio terminado en -ADO, -IDO, -TO, -SO, -CHO./
 ****** COMMENT Resuelto
  #+BEGIN_SRC regex
