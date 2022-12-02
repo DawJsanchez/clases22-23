@@ -16,7 +16,9 @@ Para el enfoque de este tema utilizaremos el servidor Nginx por su simplicidad, 
 + Docker y docker-compose
 
 ** Enfoque
-Si bien como siempre os comento la mayor simplicidad para nuestras pruebas la realizaremos mediante un VPS, dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública.
+Si bien como siempre os comento la mayor simplicidad para nuestras pruebas la realizaremos mediante un VPS.
+
+Dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública y el servicio [[http://localhost.run/docs/][localhost.run]], [[https://github.com/azimjohn/jprq][jprq]] o [[https://ngrok.com/][ngrok]].
 
 Para ello, lo primero que partiremos de un Vagrantfile que será común para todas las implementaciones, cambiando únicamente el ~docker-compose.yml~ y los ficheros de configuración que necesitemos.
 
