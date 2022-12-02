@@ -52,21 +52,37 @@ SELECT campos
 La precedencia de operadores es la mostrada de más alta a más baja. Los operadores que están en la misma linea tienen la misma precedencia:
 #+BEGIN_QUOTE
 INTERVAL
+
 BINARY, COLLATE
+
 !
+
 - (unary minus), ~ (unary bit inversion)
+
 ^
+
 *, /, DIV, %, MOD
+
 -, +
+
 <<, >>
+
 &
+
 |
+
 = (comparison), <=>, >=, >, <=, <, <>, !=, IS, LIKE, REGEXP, IN, MEMBER OF
+
 BETWEEN, CASE, WHEN, THEN, ELSE
+
 NOT
+
 AND, &&
+
 XOR
+
 OR, ||
+
 = (assignment), :=
 #+END_QUOTE
 Si quisiéramos variar este orden necesitaríamos utilizar paréntesis.
