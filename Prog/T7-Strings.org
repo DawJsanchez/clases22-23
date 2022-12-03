@@ -21,43 +21,44 @@ contiene números que serán interpretados como códigos Unicode. Al asignar, el
 
 ** Métodos NO estáticos
 
-| Método.                 | Descripción                                                |
-|-------------------------+------------------------------------------------------------|
-| cat1.length()           | Devuelve la longitud de la cadena.                         |
-| cat1.charAt(3)          | Devuelve el carácter de la posición 4                      |
-| cad1.concat(cat2)       | Concatena 2 cadenas.                                       |
-| cad1.substring(3,6)     | Devuelve 6 caracteres desde el 4º.                         |
-| cad1.compareTo(cad2)    | Permite comparar dos cadenas entre sí                      |
-|                         | lexicográficamente. Retornará 0 si son iguales,            |
-|                         | un número menor que cero si la cadena (cad1) es            |
-|                         | anterior en orden alfabético a la que se pasa              |
-|                         | por argumento (cad2), y un número mayor que cero           |
-|                         | si la cadena es posterior en orden alfabético.             |
-| cad1.equals(cad2)       | Cuando se comparan si dos cadenas son iguales, no          |
-|                         | se debe usar el operador de comparación "==", sino         |
-|                         | el método equals. Retornará true si son iguales, y         |
-|                         | false si no lo son.                                        |
-| cad1.trim()             | Genera una copia de la cadena eliminando los espacios      |
-|                         | en blanco anteriores y posteriores de la cadena.           |
-| cad1.toLowerCase()      | Genera una copia con los caracteres a minúscula.           |
-| cad1.toUpperCase()      | Genera una copia con los caracteres a mayúsculas.          |
-| cad1.indexOf(cad2)      | Si la cadena o carácter pasado por argumento está          |
-|                         | contenida en la cadena invocante, retorna su posición,     |
-|                         | en caso contrario retornará -1.                            |
-| cad1.indexOf(cad2,num)  | Opcionalmente se le puede indicar la posición a partir     |
-|                         | de la cual buscar, es útil para buscar varias apariciones. |
-| cad1.contains(cad2)     | Retornará true si la cadena pasada por argumento está      |
-|                         | contenida dentro de la cadena. En caso contrario           |
-|                         | retornará false.                                           |
-| cad1.startsWith(cad2)   | Retornará true si la cadena comienza por la cadena pasada  |
-|                         | como argumento. En caso contrario retornará false.         |
-| cad1.endsWith(cad2)     | Retornará true si la cadena acaba por la cadena pasada     |
-|                         | como argumento. En caso contrario retornará false.         |
-| cad1.replace(cad2,cad3) | Generará una copia de la cadena cad1, en la que se         |
-|                         | reemplazarán todas las apariciones de cad2 por cad3.       |
-|                         | El reemplazo se hará de izquierda a derecha, por           |
-|                         | ejemplo: reemplazar "zzz" por "xx" en la cadena "zzzzz"    |
-|                         | generará "xxzz" y no "zzxx".                               |
+| Método.                     | Descripción                                                |
+|-----------------------------+------------------------------------------------------------|
+| cat1.length()               | Devuelve la longitud de la cadena.                         |
+| cat1.charAt(3)              | Devuelve el carácter de la posición 4                      |
+| cad1.concat(cat2)           | Concatena 2 cadenas.                                       |
+| cad1.substring(3,6)         | Devuelve 6 caracteres desde el 4º.                         |
+| cad1.compareTo(cad2)        | Permite comparar dos cadenas entre sí                      |
+|                             | lexicográficamente. Retornará 0 si son iguales,            |
+|                             | un número menor que cero si la cadena (cad1) es            |
+|                             | anterior en orden alfabético a la que se pasa              |
+|                             | por argumento (cad2), y un número mayor que cero           |
+|                             | si la cadena es posterior en orden alfabético.             |
+| cad1.equals(cad2)           | Cuando se comparan si dos cadenas son iguales, no          |
+|                             | se debe usar el operador de comparación "==", sino         |
+|                             | el método equals. Retornará true si son iguales, y         |
+|                             | false si no lo son.                                        |
+| cad1.trim()                 | Genera una copia de la cadena eliminando los espacios      |
+|                             | en blanco anteriores y posteriores de la cadena.           |
+| cad1.toLowerCase()          | Genera una copia con los caracteres a minúscula.           |
+| cad1.toUpperCase()          | Genera una copia con los caracteres a mayúsculas.          |
+| cad1.indexOf(cad2)          | Si la cadena o carácter pasado por argumento está          |
+|                             | contenida en la cadena invocante, retorna su posición,     |
+|                             | en caso contrario retornará -1.                            |
+| cad1.indexOf(cad2,num)      | Opcionalmente se le puede indicar la posición a partir     |
+|                             | de la cual buscar, es útil para buscar varias apariciones. |
+| cad1.contains(cad2)         | Retornará true si la cadena pasada por argumento está      |
+|                             | contenida dentro de la cadena. En caso contrario           |
+|                             | retornará false.                                           |
+| cad1.startsWith(cad2)       | Retornará true si la cadena comienza por la cadena pasada  |
+|                             | como argumento. En caso contrario retornará false.         |
+| cad1.endsWith(cad2)         | Retornará true si la cadena acaba por la cadena pasada     |
+|                             | como argumento. En caso contrario retornará false.         |
+| cad1.replace(cad2,cad3)     | Devuelve un string copia de la cadena cad1, en la que se   |
+|                             | reemplazarán todas las apariciones de cad2 por cad3.       |
+|                             | El reemplazo se hará de izquierda a derecha, por           |
+|                             | ejemplo: reemplazar "zzz" por "xx" en la cadena "zzzzz"    |
+|                             | generará "xxzz" y no "zzxx".                               |
+| cad1.replaceAll(regex, cad) | Reemplaza según la expresión regular                       |
 
 | Método.                        | Descripción                                           |
 |--------------------------------+-------------------------------------------------------|
@@ -129,3 +130,5 @@ No queremos entretenerte más $$nombre$$. Que pases un buen día.
 P.D.: No olvides introducir tu $$email$$ en el sistema al hacer la recarga de
 $$saldo$$ para obtener la oferta de $$oferta$$ % extra.
 #+END_QUOTE
+
+/Nota: el carácter ~$~ se debe sustituir por su varlor literal ~\u0024~ y debe ir escapado ~\\~ /
