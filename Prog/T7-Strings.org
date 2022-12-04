@@ -108,27 +108,19 @@ StringBuilder contiene muchos métodos de la clase String (charAt, indexOf, leng
 	+ Dentro (dobles espacios)
 
 * Práctica
-Realiza un programa que dados los archivos ~carta.txt~ y ~destinatarios.csv~:
-1. Coga un destinario. /En cada fila tenemos 4 campos separados por ',' p.e. luis,luisferreira@iescastelar.com, 1.000, 15
-2. Leea línea a línea la carta sustituyendo los marcadores ~$$nombre$$~, ~$$email$$~, ~$$saldo$$~ y ~$$oferta$$~
-3. Guarde la carta con nombre ~num-nombre.txt~, donde num es un número correlativo.
-
-Para la implementación disponemos de la clase ~TrabajarArchivo~ con los métodos:
-+ ~configurarArchivo(String nombreArchivo):h~ : selecciona el archivo sobre el que trabajar.
-+ ~leerLinea():String~ : lee la siguiente linea.
-+ ~finalArchivo():boolean~ : comprueba si hemos llegado al final del archivo.
-+ ~escribeLinea(String)~ : escribe linea en archivo.
-+ ~cierraArchivo(h):void~ : cierra archivo.
-
+Realiza un programa que dados los archivos ~carta.txt~ y ~destinatarios.csv~ implemente el controlador Main que:
 #+BEGIN_QUOTE
-Querido amigo $$nombre$$:
-Te escribimos porque tu $$email$$ ha salido premiado para recibir un oferta muy
-especial.
-Por cada $$saldo$$ euros que ingreses en nuestro sistema recibirás un $$oferta$$
-% de suplentento.
-No queremos entretenerte más $$nombre$$. Que pases un buen día.
-P.D.: No olvides introducir tu $$email$$ en el sistema al hacer la recarga de
-$$saldo$$ para obtener la oferta de $$oferta$$ % extra.
+0 - Declaración de variables
+1 - Cargamos el archivo CSV y lo parseamos dentro de una instancia de la clase Parametros
+2 - Cargamos la carta a memoria
+3 - Cargamos los datos CSV
+4 - Cargamos los datos a parsear según usuario
+5 - Ahora realizamos las sustituciones:
+6 - Escribimos las cartas y mostramos el resultado
 #+END_QUOTE
+
+Para la implementación disponemos de la clase ~TrabajarArchivo~ cuya ~interface~ podéis verla en ~Github~ y la implementación de la clase ~Parametros~, también en ~Github~.
+
+Tienes disponible en ~Github~ la interfaz de ~TrabajarArchivo~, la implementación de ~Parametro~, la carta y el archivo CSV con los datos a procesar.
 
 /Nota: el carácter ~$~ se debe sustituir por su varlor literal ~\u0024~ y debe ir escapado ~\\~ /
