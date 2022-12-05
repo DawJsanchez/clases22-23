@@ -1,0 +1,108 @@
+#+Title:	COLECCIONES
+
+* Introducción
+Una colección es un conjunto variable de objetos del mimo tipo. Podríamos verla como un ~array~ de tamaño variable.
+
+En realidad, en Java ~Collection~ es un /framework/ que proporciona una arquitectura para el almacenamiento y manipulación de objetos.
+
+La funcionalidad ~collection~ viene dada por el paquete ~java.util~ por lo que deberemos importar todo el paquete con ~import java.util.*;~
+
+Podemos ver la magnitud del /framework/  en la siguiente imágen:
+
+ [[./T8-Collections/java-collection-hierarchy.png]]
+*Interfaces de la Java Collection Framework*:
++ ~Collection~: define métodos para tratar una colección genérica de elementos
++ ~List~: admite elementos repetidos y mantiene un orden inicial
++ ~Set~: colección que no admite elementos repetidos
++ ~SortedSet~: set cuyos elementos se mantienen ordenados según el criterio establecido
++ ~Map~: conjunto de pares clave/valor, sin repetición de claves
++ ~SortedMap~: map cuyos elementos se mantienen ordenados según el criterio establecido
+
+* ~Collection~
+Veamos el ~interface~ de la clase:
+#+BEGIN_SRC jav
+profe@servidor ~ :/$ javap java.util.Collection
+Compiled from "Collection.java"
+public interface java.util.Collection<E> extends java.lang.Iterable<E> {
+  public abstract int size();
+  public abstract boolean isEmpty();
+  public abstract boolean contains(java.lang.Object);
+  public abstract java.util.Iterator<E> iterator();
+  public abstract java.lang.Object[] toArray();
+  public abstract <T> T[] toArray(T[]);
+  public default <T> T[] toArray(java.util.function.IntFunction<T[]>);
+  public abstract boolean add(E);
+  public abstract boolean remove(java.lang.Object);
+  public abstract boolean containsAll(java.util.Collection<?>);
+  public abstract boolean addAll(java.util.Collection<? extends E>);
+  public abstract boolean removeAll(java.util.Collection<?>);
+  public default boolean removeIf(java.util.function.Predicate<? super E>);
+  public abstract boolean retainAll(java.util.Collection<?>);
+  public abstract void clear();
+  public abstract boolean equals(java.lang.Object);
+  public abstract int hashCode();
+  public default java.util.Spliterator<E> spliterator();
+  public default java.util.stream.Stream<E> stream();
+  public default java.util.stream.Stream<E> parallelStream();
+#+END_SRC
+
+Tenemos métodos que hablan por si solos, pero también tenemos otros algo especiales:
++ los ~iterator()~ que nos devolverá un elemento ~Iterator~ que podremos:
+		+ obtener un elemento con ~next()~,
+		+ comprobar si hay más elementos ~hasNext()~ o,
+		+ borrar un elemento ~remove()~.
++ los ~toArray()~ que nos convertirán la colección dinámica en un array estático.
+
+Pero empecemos por el principio...
+** Métodos:
+| método                               | uso                                                                                                                                                      |
+|--------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| boolean add(Object o)                | Añade el objeto a la colección. Devuelve true si se pudo completar la operación. Si no cambió la colección como resultado de la operación devuelve false |
+| boolean remove(Object o)             | Elimina al objeto indicado de la colección.                                                                                                              |
+| int size()                           | Devuelve el número de objetos almacenados en la colección                                                                                                |
+| boolean isEmpty()                    | Indica si la colección está vacía                                                                                                                        |
+| boolean contains(Object o)           | Devuelve true si la colección contiene a o                                                                                                               |
+| void clear()                         | Elimina todos los elementos de la colección                                                                                                              |
+| boolean addAll( Collection otra)     | Añade todos los elementos de la colección otra a la colección actual                                                                                     |
+| boolean removeAll(Collection otra)   | Elimina todos los objetos de la colección actual que estén en la colección otra                                                                          |
+| boolean retainAll(Collection otra)   | Elimina todos los elementos de la colección que no estén en la otra                                                                                      |
+| boolean containsAll(Collection otra) | Indica si la colección contiene todos los elementos de otra                                                                                              |
+| Object[] toArray()                   | Convierte la colección en un array de objetos.                                                                                                           |
+| Iterator iterator()                  | Obtiene el objeto iterador de la colección                                                                                                               |
+
+** Iterator
+Similar a lo que ya hacíamos con la clase Scanner...
+#+BEGIN_SRC java
+Iterator it=colecciónString.iterator();
+while(it.hasNext()){
+		String s=(String)it.next();
+		System.out.println(s);
+}
+#+END_SRC
+
+* ~List~ (listas)
+En esta sección entran los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
+
+** ArrayList
+The ArrayList class implements the List interface. It uses a dynamic array to store the duplicate element of different data types. The ArrayList class maintains the insertion order and is non-synchronized. The elements stored in the ArrayList class can be randomly accessed.
+
+*Esto es: *
+Lista dinámica de elementos de que mantienen el orden de inserción y cuyos elementos *NO* pueden estar duplicados.
+
+Pese a que tienen orden, los elementos pueden ser accedidor de forma aleatoria mediante ~miLista.get(indice)~
+
+Para su construcción lo invocaremos mediante la estructura ~List<Tipo> referencia = new ArrayList <Tipo>()~.
+
+Se debe decir un para de cosas sobre estra construcción:
++ Los ArrayList son una clase derivada de List por lo que podemos crear las referencias del tipo List o ArrayList indistintamente.
++ Los Tipos son obligatoriamente OBJETOS por lo que no podremos crear ArrayList de tipo ~int~, pero  si de tipo ~Integer~.
++ Hemos usado el constructor general, pero tendremos 2 constructores más:
+  + Con capacidad inicial
+  + A partir de un objeto ~Collection~
+
+* ~Set~ (conjuntos)
+* ~Map~ (mapas)
+* ~Queue~ (colas)
+* ~Stack~ (pilas)
+
+* Práctica
