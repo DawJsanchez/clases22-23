@@ -110,12 +110,18 @@ StringBuilder contiene muchos métodos de la clase String (charAt, indexOf, leng
 * Práctica
 Realiza un programa que dados los archivos ~carta.txt~ y ~destinatarios.csv~ implemente el controlador Main que:
 #+BEGIN_QUOTE
-0 - Declaración de variables  \\
-1 - Cargamos el archivo CSV y lo parseamos dentro de una instancia de la clase Parametros \\
-2 - Cargamos la carta a memoria \\
-3 - Cargamos los datos CSV \\
-4 - Cargamos los datos a parsear según usuario \\
-5 - Ahora realizamos las sustituciones \\
+0 - Declaración de variables
+
+1 - Cargamos el archivo CSV y lo parseamos dentro de una instancia de la clase Parametros
+
+2 - Cargamos la carta a memoria
+
+3 - Cargamos los datos CSV
+
+4 - Cargamos los datos a parsear según usuario
+
+5 - Ahora realizamos las sustituciones
+
 6 - Escribimos las cartas y mostramos el resultado
 #+END_QUOTE
 
