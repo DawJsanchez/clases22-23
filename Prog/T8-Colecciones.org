@@ -10,6 +10,7 @@ La funcionalidad ~collection~ viene dada por el paquete ~java.util~ por lo que d
 Podemos ver la magnitud del /framework/  en la siguiente imágen:
 
  [[./T8-Collections/java-collection-hierarchy.png]]
+
 *Interfaces de la Java Collection Framework*:
 + ~Collection~: define métodos para tratar una colección genérica de elementos
 + ~List~: admite elementos repetidos y mantiene un orden inicial
@@ -78,10 +79,15 @@ while(it.hasNext()){
 		String s=(String)it.next();
 		System.out.println(s);
 }
+
+// También mediante el for mejorado
+for( String valor : it ){
+		System.out.println(valor);
+}
 #+END_SRC
 
 * ~List~ (listas)
-En esta sección entran los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
+Esta inferface la implementan los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
 
 ** ArrayList
 The ArrayList class implements the List interface. It uses a dynamic array to store the duplicate element of different data types. The ArrayList class maintains the insertion order and is non-synchronized. The elements stored in the ArrayList class can be randomly accessed.
@@ -97,10 +103,47 @@ Se debe decir un para de cosas sobre estra construcción:
 + Los ArrayList son una clase derivada de List por lo que podemos crear las referencias del tipo List o ArrayList indistintamente.
 + Los Tipos son obligatoriamente OBJETOS por lo que no podremos crear ArrayList de tipo ~int~, pero  si de tipo ~Integer~.
 + Hemos usado el constructor general, pero tendremos 2 constructores más:
-  + Con capacidad inicial
+  + Con capacidad inicial ~List<Tipo> referencia = new ArrayList<Tipo>(4)~
   + A partir de un objeto ~Collection~
 
+*** Ejercicio:
+Crea una clase que:
++ lea números por teclado y almacene en una lista dinámica hasta recibir el comando ~:q~.
++ elimine el comando si se almacenó en la lista.
++ imprima la lista.
++ recorra la lista sumando todos sus elementos.
++ obtenga la media usando el método para obtener el tamaño de la lista.
++ modifica los valores pares de la lista a por su posición, esto es, el segundo valor pase a valer 2 (recuerda que el primer valor es la pos 0).
+** LinkedList
+Son similares al anterior pero su implementación interna los hace mejores en manipulación de sus datos.
+
+Por contra, los ArrayList son mejores para almacenar y consultar los datos.
+
 * ~Set~ (conjuntos)
+Esta interface la implementan los ~HandSet~, los ~LinkedHandSet~ y los ~TreeSet~.
+
+Crea conjuntos de datos *SIN* duplicados.
+
+** HandSet
+
+
+** TreeSet
+Esta clase implementa la interface ~SortSet~ que a su vez deriva de ~Set~.
+
+Se trata de un conjunto ORDENADO de elememntos ÚNICOS.
+
+*** Métodos
+Además de los implementados de la interface ~List~ tenemos los implementados de la interface ~Set~:
+| método                                       | uso                                                                                                                                   |
+|----------------------------------------------+---------------------------------------------------------------------------------------------------------------------------------------|
+| Object first()                               | Obtiene el primer elemento del árbol (el más pequeño)                                                                                 |
+| Object last()                                | Obtiene el último elemento del árbol (el más grande)                                                                                  |
+| SortedSet headSet(Object o)                  | Obtiene un SortedSet que contendrá todos los elementos menores que el objeto o.                                                       |
+| SortedSet tailSet(Object o)                  | Obtiene un SortedSet que contendrá todos los elementos mayores que el objeto o.                                                       |
+| SortedSet subSet(Object menor, Object mayor) | Obtiene un SortedSet que contendrá todos los elementos del árbol cuyos valores ordenados estén entre el menor y mayor objeto indicado |
+| Comparator comparator()                      | Obtiene el objeto comparador de la lista                                                                                              |
+
+
 * ~Map~ (mapas)
 * ~Queue~ (colas)
 * ~Stack~ (pilas)
