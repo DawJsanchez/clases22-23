@@ -125,11 +125,37 @@ En ocasiones las consultas toman una complejidad excesiva por lo que puede ser m
 /A derived table is a virtual table returned from a SELECT statement. A derived table is similar to a temporary table, but using a derived table in the SELECT statement is much simpler than a temporary table because it does not require creating the temporary table./
 
 *** Ejercicio:
-+ Muestra el nombre e email de los empleados que ganan entre 5.000 y 10.000 € /mes que se dedican a la rama de informática (IT...) cuyo jefe es Steven King.
++ De la bbdd de ejercicio: Muestra el nombre e email de los empleados que ganan entre 5.000 y 10.000 € /mes  y cuyo jefe es Steven King y los del departamento de IT.
+
+* Práctica:
++ De la bbdd 00_db_tiendaBicis:
+  + Muestra todos los compradores que tengan más de una compra.
+  + Lista aquellos productos sin stock.
+  + Lista aquellos productos con un stock menor de 3 unidades en orden ascendente.
+  + Lista los 4 productos con más stock:
+	+ En la empresa.
+	+ Por cada tienda.
+	+ Determina el dinero bloqueado en ese stock por empresa y en cada tienda.
+	+ Y en todo el stock de la empresa por empresa y en cada tienda.
+  + Ordena los compradores del más gastoso al menos.
+	+ Lista sólo los 10 más gastosos.
+  + Ordena los compradores del que más productos ha comprado al que menos.
+	+ Lista sólo los 5 que más productos han comprado.
+  + Ordena las tiendas por productos vendidos y por cantidad facturada.
+
+Todos los listados deben tener sentido para un humano... esto es, `customer_id` no es un nombre válido para conocer los compradores, mejor por su nombre y apellido.
+Evidentemente, eso es válido para los stocks de bicis y nombres de tiendas.
+
+Recuerda: para listar la salida queda más bonita numerando los registros:
+	#+BEGIN_SRC mysql
+	SET @i:=0;
+	SELECT (@i:=@i+1 ) as 'n', ... FROM ... ;
+	#+END_SRC
 
 
 ** EXISTS
 The EXISTS operator is a Boolean operator that returns either true or false. The EXISTS operator is often used to test for the existence of rows returned by the subquery.
+~SELECT column_name(s) FROM table_name WHERE EXISTS (SELECT column_name FROM table_name WHERE condition);~
 
 ** FUNCIONES PROPIAS DEL LENGUAJE SQL
 *** Funciones de cadena:
@@ -169,7 +195,7 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
      + [[https://www.geeksforgeeks.org/write-regular-expressions/][átomos]]
      + Tabla resúmen:
 #+CAPTION: Chuleta/resumen de expresiones regulares
-	 [[./bbdd/img/ExpresionesRegulares.png]]
+	 [[./img/ExpresionesRegulares.png]]
      + Validadores on-line: https://regexr.com/ o https://regex101.com/
      + Expresiones *CODICIOSAS* "(.*)" y *PEREZOSAS* "(.*?)": las codiciosas buscan la coincidencia más larga y las perezosas la más corta.
      + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
@@ -177,7 +203,22 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
      + [[https://docs.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions][Man RegEx Microsoft]]
 
 ***** Ejercicios:
-"Parsea" los siguientes datos de entrada: ip, puerto, tlf, usuario.
++ Busca la cadena "pe" dentro de:
+ #+BEGIN_SRC regex
+    PERRO (NO COINCIDE)
+    perro (COINCIDE)
+    pepe (COINCIDE)
+    lep (NO COINCIDE)
+ #+END_SRC
++ Letra mayúscula entre la A y la C
+ #+BEGIN_SRC regex
+    A (COINCIDE)
+    Z (NO COINCIDE)
+    casa (NO COINCIDE)
+    CASA (NO COINCIDE)
+#+END_SRC
+
++ "Parsea" los siguientes datos de entrada: ip, puerto, tlf, usuario.
 
 ***** Trabajo: validar formularios de entrada                       :trabajo:
 Debes indicar las expresiones regulares para verificar que un usuario ha enviado datos correctos de los siguientes campos:
