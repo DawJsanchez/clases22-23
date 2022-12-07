@@ -130,3 +130,35 @@ Para la implementación disponemos de la clase ~TrabajarArchivo~ cuya ~interface
 Tienes disponible en ~Github~ la interfaz de ~TrabajarArchivo~, la implementación de ~Parametro~, la carta y el archivo CSV con los datos a procesar.
 
 /Nota: el carácter ~$~ se debe sustituir por su varlor literal ~\u0024~ y debe ir escapado ~\\~ /
+
+* Expresiones regulares -REGEX-
++ [[https://www.youtube.com/watch?v=M72lwALYRJU][Vídeo introducción]]
+
+     + [[https://www.slideshare.net/alkuy/expresiones-regulares-64990123][Presentacion de expresiones regulares]]
+     + [[https://www.geeksforgeeks.org/write-regular-expressions/][átomos]]
+     + Tabla resúmen:
+#+CAPTION: Chuleta/resumen de expresiones regulares
+	 [[../BBDD/img/ExpresionesRegulares.png]]
+     + Validadores on-line: https://regexr.com/ o https://regex101.com/
+     + Expresiones *CODICIOSAS* "(.*)" y *PEREZOSAS* "(.*?)": las codiciosas buscan la coincidencia más larga y las perezosas la más corta.
+     + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
+     + [[https://jarroba.com/busqueda-de-patrones-expresiones-regulares/][Un pedazo de manual sobre Expresiones Regulares]]
+     + [[https://docs.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions][Man RegEx Microsoft]]
+
+***** Ejercicios:
++ Busca la cadena "pe" dentro de:
+ #+BEGIN_SRC regex
+    PERRO (NO COINCIDE)
+    perro (COINCIDE)
+    pepe (COINCIDE)
+    lep (NO COINCIDE)
+ #+END_SRC
++ Letra mayúscula entre la A y la C
+ #+BEGIN_SRC regex
+    A (COINCIDE)
+    Z (NO COINCIDE)
+    casa (NO COINCIDE)
+    CASA (NO COINCIDE)
+#+END_SRC
+
++ "Parsea" los siguientes datos de entrada: ip, puerto, tlf, usuario.
