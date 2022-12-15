@@ -197,6 +197,7 @@ The EXISTS operator is a Boolean operator that returns either true or false. The
 #+CAPTION: Chuleta/resumen de expresiones regulares
 	 [[./img/ExpresionesRegulares.png]]
      + Validadores on-line: https://regexr.com/ o https://regex101.com/
+     + [[https://regexcrossword.com][Crucigramas en RegEx]]
      + Expresiones *CODICIOSAS* "(.*)" y *PEREZOSAS* "(.*?)": las codiciosas buscan la coincidencia más larga y las perezosas la más corta.
      + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
      + [[https://jarroba.com/busqueda-de-patrones-expresiones-regulares/][Un pedazo de manual sobre Expresiones Regulares]]
