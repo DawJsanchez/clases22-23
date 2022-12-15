@@ -132,18 +132,41 @@ Tienes disponible en ~Github~ la interfaz de ~TrabajarArchivo~, la implementaci�
 /Nota: el carácter ~$~ se debe sustituir por su varlor literal ~\u0024~ y debe ir escapado ~\\~ /
 
 * Expresiones regulares -REGEX-
-+ [[https://www.youtube.com/watch?v=M72lwALYRJU][Vídeo introducción]]
-
+** Teoría sobre expresiones regulares
+     + [[https://www.youtube.com/watch?v=M72lwALYRJU][Vídeo introducción]]
      + [[https://www.slideshare.net/alkuy/expresiones-regulares-64990123][Presentacion de expresiones regulares]]
      + [[https://www.geeksforgeeks.org/write-regular-expressions/][átomos]]
      + Tabla resúmen:
 #+CAPTION: Chuleta/resumen de expresiones regulares
 	 [[../BBDD/img/ExpresionesRegulares.png]]
      + Validadores on-line: https://regexr.com/ o https://regex101.com/
+     + [[https://regexcrossword.com/][Crucigrama de RegEx]]n
      + Expresiones *CODICIOSAS* "(.*)" y *PEREZOSAS* "(.*?)": las codiciosas buscan la coincidencia más larga y las perezosas la más corta.
      + [[https://www.youtube.com/watch?v=eiyFt2lHnAY][Vídeo resúmen]] (52min)
      + [[https://jarroba.com/busqueda-de-patrones-expresiones-regulares/][Un pedazo de manual sobre Expresiones Regulares]]
      + [[https://docs.microsoft.com/es-es/dotnet/standard/base-types/regular-expressions][Man RegEx Microsoft]]
+
+** RegEx en Java
+   #+BEGIN_SRC java
+import java.util.regex.*;
+public class RegexExample1{
+public static void main(String args[]){
+//1st way
+Pattern p = Pattern.compile(".s");//. represents single character
+Matcher m = p.matcher("as");
+boolean b = m.matches();
+
+//2nd way
+boolean b2=Pattern.compile(".s").matcher("as").matches();
+
+//3rd way
+boolean b3 = Pattern.matches(".s", "as");
+
+System.out.println(b+" "+b2+" "+b3);
+}}
+#+END_SRC
+
+[[https://www.javatpoint.com/java-regex][Más info en javaTpoint.com]]
 
 ***** Ejercicios:
 + Busca la cadena "pe" dentro de:

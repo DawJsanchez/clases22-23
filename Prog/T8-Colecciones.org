@@ -86,6 +86,8 @@ for( String valor : it ){
 }
 #+END_SRC
 
++ [[https://www.arquitecturajava.com/java-iterator-vs-foreach/?pdf=6034][Diferencias entre `Iterator` y forEach]] 
+
 * ~List~ (listas)
 Esta inferface la implementan los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
 
