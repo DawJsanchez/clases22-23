@@ -166,7 +166,8 @@ System.out.println(b+" "+b2+" "+b3);
 }}
 #+END_SRC
 
-[[https://www.javatpoint.com/java-regex][Más info en javaTpoint.com]]
++ [[https://www.javatpoint.com/java-regex][Más info en javaTpoint.com]]
++ [[https://www.w3schools.com/java/java_regex.asp][RegEx w3schools]]
 
 ***** Ejercicios:
 + Busca la cadena "pe" dentro de:
