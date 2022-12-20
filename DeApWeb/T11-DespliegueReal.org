@@ -1,0 +1,41 @@
+#+Title: Despliegue REAL
+
+* Introducción
+En esta ocasión toda llevar a la práctica real un todo lo aprendido en lo que llevamos de curso.
+
+Para ello deberemos tener acceso desde cualquier parte del mundo (inicialmente) a vuestro proxy inverso que derivará entre el dominio principal y uno secundario según se solicite.
+
+Como ya sabéis tenemos diversas opciones para ponerlo en marcha, la primera de ellas será siempre un VPS, bien Oracle Cloud Free o cualquier otro gratuito o de pago que os guste más.
+
+Si bien algunos podéis encontraros perdidos podremos realizarlo también a través de nuestra conexión privada si disponéis de acceso al router para su configuración.
+
+* Opción VPS:
+1. Deberéis crear una instancia, elegir el S.O. y dar acceso a los puertos 80 y 443 a dicha instancia.
+2. Disponer de un dominio o subdominio delegado. Recomendable ~duckdns.org~ por ser gratuito, p.e. ~nombre-alumno.duckdns.org~
+3. Una vez realizado ésto, sólo deberéis reproducir la práctica 9 comprobando que podéis acceder sin problema al dominio principal y al secundario, p.e. ~nombre-alumno.duckdns.org~ y ~dominioSecundario.nombre-alumno.duckdns.org~
+
+/Recuerda: el acceso a se realizará con las direcciones gestionadas por ~caddy~ por lo que una vez que os aseguréis que los distintos nginx están trabajando y sirviendo correctamente deberéis cerrarles el puerto al exterior (aunque en realidad no tendrán entrada al no estar abiertos en el firewall)./
+
+* Opción Conexión con medios propios
+En esta ocasión utilizaremos la utilidad ~upnpc~ que hace uso del protocolo ~UPnP~ para gestionar remotamente el router doméstico.
+1. Activar el protocolo ~UPnP~ en el router. P.e.:
+	[[./T11-DespliegueReal/upnpc.png]]
+
+2. Instalar ~upnpc~
+
+3. Verificar estado del servicio
+
+4. Abrir puerto 80 y 443
+
+5. Verifica el nuevo estado
+
+
+A partir de aquí, podremos continuar los pasos 2 y 3 de la opción VPS
+
+* Entrega:
+Para la entrega deberéis documentar el proyecto y añadir el enlace vuesto dominio (o subdominio).
+
+Plazo: 30 de enero.
+
+* Notas:
+Disponéis de archivos auxiliares en el directorio T11-DespliegueReal

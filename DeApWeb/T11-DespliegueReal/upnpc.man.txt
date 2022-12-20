@@ -1,0 +1,80 @@
+UPNPC(1)                                                User Commands                                                UPNPC(1)
+
+NAME
+       upnpc - miniupnpc library test client.
+
+SYNOPSIS
+       Add port redirection:
+       upnpc [options] -a ip port external_port protocol [duration]
+
+       Delete port redirection:
+       upnpc [options] -d external_port protocol <remote host>
+
+       Get Connection status:
+       upnpc [options] -s
+
+       List redirections:
+       upnpc [options] -l
+
+       List redirections (using GetListOfPortMappings (for IGD:2 only):
+       upnpc [options] -L
+
+       Add (any) port redirection allowing IGD to use alternative external_port (for IGD:2 only):
+       upnpc [options] -n ip port external_port protocol [duration]
+
+       Delete range of port redirections (for IGD:2 only):
+       upnpc [options] -N external_port_start external_port_end protocol [manage]
+
+       Add all redirections to the current host:
+       upnpc [options] -r port1 [external_port1] protocol1 [port2 [external_port2] protocol2] [...]
+
+       Add Pinhole (for IGD:2 only):
+       upnpc [options] -A remote_ip remote_port internal_ip internal_port protocol lease_time
+
+       Update Pinhole (for IGD:2 only):
+       upnpc [options] -U uniqueID new_lease_time
+
+       Check if Pinhole is Working (for IGD:2 only):
+       upnpc [options] -C uniqueID
+
+       Get Number of packets going through the rule (for IGD:2 only):
+       upnpc [options] -K uniqueID
+
+       Delete Pinhole (for IGD:2 only):
+       upnpc [options] -D uniqueID
+
+       Get Firewall status (for IGD:2 only):
+       upnpc [options] -S
+
+       Get Outbound Pinhole Timeout (for IGD:2 only):
+       upnpc [options] -G remote_ip remote_port internal_ip internal_port protocol
+
+       Get Presentation url
+       upnpc [options] -P
+
+DESCRIPTION
+       upnpc is a sample program for miniupnpc library.
+
+OPTIONS
+       -e description
+              set description for port mapping.
+
+       -6     use ip v6 instead of ip v4.
+
+       -u url bypass discovery process by providing the XML root description url.
+
+       -m address/interface
+              provide ip address (ip v4) or interface name (ip v4 or v6) to use for sending SSDP multicast packets.
+
+       -z localport
+              SSDP packets local (source) port (1024-65535).
+
+       -p path
+              use this path for MiniSSDPd socket.
+
+       -t ttl set multicast TTL. Default value is 2.
+
+SEE ALSO
+       external-ip(1) http://miniupnp.free.fr/
+
+miniupnpc                                                January 2018                                                UPNPC(1)

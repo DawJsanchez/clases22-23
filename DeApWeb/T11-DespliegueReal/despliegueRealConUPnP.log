@@ -1,0 +1,71 @@
+Intalar paquete upnpc
+
+Verificar estado del servicio
+upnpc : miniupnpc library test client, version 2.2.1.
+ (c) 2005-2020 Thomas Bernard.
+Go to http://miniupnp.free.fr/ or https://miniupnp.tuxfamily.org/
+for more information.
+List of UPNP devices found on the network :
+ desc: http://192.168.0.1:1990/0bda8af0-e510-4b28-aa7b-62c86e3d6fd1/WFADevice.xml
+ st: upnp:rootdevice
+
+UPnP device found. Is it an IGD ? : http://192.168.0.1:1990/
+
+Volver a verificar después de haber activado el protocolo UPnP
+upnpc : miniupnpc library test client, version 2.2.1.
+ (c) 2005-2020 Thomas Bernard.
+Go to http://miniupnp.free.fr/ or https://miniupnp.tuxfamily.org/
+for more information.
+List of UPNP devices found on the network :
+ desc: http://192.168.0.1:49152/rootDesc.xml
+ st: urn:schemas-upnp-org:device:InternetGatewayDevice:1
+
+Found valid IGD : http://192.168.0.1:49152/ctl/IPConn
+Local LAN ip address : 192.168.0.157
+ i protocol exPort->inAddr:inPort description remoteHost leaseTime
+
+Conectar puertos 80 y 443 con equipo
+upnpc : miniupnpc library test client, version 2.2.1.
+ (c) 2005-2020 Thomas Bernard.
+Go to http://miniupnp.free.fr/ or https://miniupnp.tuxfamily.org/
+for more information.
+List of UPNP devices found on the network :
+ desc: http://192.168.0.1:49152/rootDesc.xml
+ st: urn:schemas-upnp-org:device:InternetGatewayDevice:1
+
+Found valid IGD : http://192.168.0.1:49152/ctl/IPConn
+Local LAN ip address : 192.168.0.157
+ExternalIPAddress = XXX.XXX.XXX.XXX
+InternalIP:Port = 192.168.0.157:80
+external XXX.XXX.XXX.XXX:80 TCP is redirected to internal 192.168.0.157:80 (duration=3600)
+upnpc : miniupnpc library test client, version 2.2.1.
+ (c) 2005-2020 Thomas Bernard.
+Go to http://miniupnp.free.fr/ or https://miniupnp.tuxfamily.org/
+for more information.
+List of UPNP devices found on the network :
+ desc: http://192.168.0.1:49152/rootDesc.xml
+ st: urn:schemas-upnp-org:device:InternetGatewayDevice:1
+
+Found valid IGD : http://192.168.0.1:49152/ctl/IPConn
+Local LAN ip address : 192.168.0.157
+ExternalIPAddress = XXX.XXX.XXX.XXX
+InternalIP:Port = 192.168.0.157:443
+external XXX.XXX.XXX.XXX:443 TCP is redirected to internal 192.168.0.157:443 (duration=3600)
+
+Listamos la tabla actual del router
+upnpc : miniupnpc library test client, version 2.2.1.
+ (c) 2005-2020 Thomas Bernard.
+Go to http://miniupnp.free.fr/ or https://miniupnp.tuxfamily.org/
+for more information.
+List of UPNP devices found on the network :
+ desc: http://192.168.0.1:49152/rootDesc.xml
+ st: urn:schemas-upnp-org:device:InternetGatewayDevice:1
+
+Found valid IGD : http://192.168.0.1:49152/ctl/IPConn
+Local LAN ip address : 192.168.0.157
+ i protocol exPort->inAddr:inPort description remoteHost leaseTime
+ 0 TCP   443->192.168.0.157:443   'libminiupnpc' '' 3598
+ 1 TCP    80->192.168.0.157:80    'libminiupnpc' '' 3596
+-----------------------------------
+Desde este momento tienes los puertos 80 y 443 abiertos al mundo en la IP XXX.XXX.XXX.XXX
+-----------------------------------
