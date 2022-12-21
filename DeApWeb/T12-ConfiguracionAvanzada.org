@@ -1,0 +1,40 @@
+---
+ DeApWeb - Despliegue de Aplicaciones Web
+---
+
+* T12 Configuración avanzada
+
+
+** Configuración archivos grandes
+*** Apache2
++ [Ubicacion archivo config](https://www.tecmint.com/limit-user-file-upload-size-in-apache/)
++ [Config \> 2GB](https://stackoverflow.com/questions/13574542/4gb-http-file-uploads-using-jquery-file-upload-apache-and-php)
+
+*** PHP
++ [PHP](https://devanswers.co/php-apache-set-max-file-upload-post-size/)
+
+** Configuración de `mime-types`
++ [mod_mime](https://httpd.apache.org/docs/2.4/mod/mod_mime.html)
++[mod_mime_magic](https://httpd.apache.org/docs/current/mod/mod_mime_magic.html)
+
++ [mime_types](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)
+
+** Nginx como balanceador
+https://picodotdev.github.io/blog-bitix/2016/07/configurar-nginx-como-balanceador-de-carga/
+
+
+** COMMENT Práctica
+En esta práctica necesitamos:
+1. Crear nuestra zona delegada.
+2. Levantar servicio de actualización de ip.
+3. Levantar proxy que escuche las etiquetas del sistema.
+4. Levantar nginx con las etiquetas apropiadas.
+
+La fecha de entrega es el **5 de diciembre**. \\
+Forma de entrega: Subir la documentación como README.md a repositorio privado en una carpeta T9-Proyx.md  y añadir los `docker-compose.yml` de cada servicio y los ficheros de configuración necesarios.
+
+*** Nota:
+Para aquellos que no dispongáis de acceso de entrada directo desde internet deberéis auto delegaros la zona modificando el archivo ~/etc/hosts~ o mediante vuestro propio ~dns~.
+
+
+** Referencias webgráficas
