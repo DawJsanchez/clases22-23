@@ -3,14 +3,22 @@
 ** Calendario
 | *Tema*                     | *Pract* | *Exam* | *Comentario*            |
 |----------------------------+---------+--------+-------------------------|
-| *EVALUACIÓN*               | 18 oct  | 18 oct | Más del 80% de las      |
-|                            |         |        | prácticas deben estar   |
-|                            |         |        | realizadas y entregadas |
-|                            |         |        | para aprobar            |
+| *2ª EVALUACIÓN*            |         |        | Más del 80% de las      |
+|                            |         |        | prácticas del trimestre |
+|                            |         |        | deben estar realizadas  |
+|                            |         |        | correctamente para      |
+|                            |         |        | aprobar                 |
 |----------------------------+---------+--------+-------------------------|
 | *TODO:*                    |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
-| T3 Diseño físico           | 18 nov  | 18 nov |                         |
+| T4 DML-Consultas           | 10 ene  | 13 ene |                         |
+| T5 DML-Edición             | 3 feb   | 3 feb  |                         |
+| T6 Programacion de BBDD    | 24 marz | 24marz |                         |
+| T7 BBDD Objeto-relacional  | 14 abr  | 14 abr | PostgreSQL              |
+| T8 NoSQL P1 Documentales   |         |        | MongoDB                 |
+| T8 NoSQL P2 Clave-valor    |         |        | Redis                   |
+| T8 NoSQL P3 On-line        |         |        | Firebase                |
+| T9 Igualdad                |   var   |  ---   | según sorteo            |
 |----------------------------+---------+--------+-------------------------|
 | *DONE:*                    |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
@@ -18,6 +26,11 @@
 | T2 DISEÑO LÓGICO (ER)      | 13 oct  | 14 oct |                         |
 | T2 D. LÓGICO (RELACIONAL)  | 18 oct  | 14 oct |                         |
 | T2 Normalizacion           | 21 oct  | 26 oct |                         |
+| T3 Diseño físico           | 18 nov  | 18 nov |                         |
+| *1ª EVALUACIÓN*            | 18 oct  | 18 oct | Más del 80% de las      |
+|                            |         |        | prácticas deben estar   |
+|                            |         |        | realizadas y entregadas |
+|                            |         |        | para aprobar            |
 |----------------------------+---------+--------+-------------------------|
 
 **Calificaciones**
