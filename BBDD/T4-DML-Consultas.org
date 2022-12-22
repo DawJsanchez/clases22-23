@@ -339,8 +339,11 @@ Debes indicar las expresiones regulares para verificar que un usuario ha enviado
 	 [[./bbdd/img/with-rollup.png]]
 *** Funciones condicionales
 *IF* 	Returns a value if a condition is TRUE, or another value if a condition is FALSE. P.e. Return "YES" if the condition is TRUE, or "NO" if the condition is FALSE: ~SELECT IF(500<1000, "YES", "NO");~ => ~YES~
+
 *IFNULL* 	Return a specified value if the expression is NULL, otherwise return the expression. P.e. ~SELECT IFNULL(NULL, "Es null");~ => ~Es null~
+
 *ISNULL* 	Returns 1 or 0 depending on whether an expression is NULL. P.e. ~SELECT ISNULL(NULL);~ => ~1~ (TRUE)
+
 *NULLIF* 	Compares two expressions and returns NULL if they are equal. Otherwise, the first expression is returned. P.e. ~SELECT NULLIF(25, 25);~ => ~NULL~
 
 *** Referencias webgraficas:
