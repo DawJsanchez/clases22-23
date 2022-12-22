@@ -14,11 +14,24 @@
 | T4 DML-Consultas           | 10 ene  | 13 ene |                         |
 | T5 DML-Edición             | 3 feb   | 3 feb  |                         |
 | T6 Programacion de BBDD    | 24 marz | 24marz |                         |
+|----------------------------+---------+--------+-------------------------|
+|                            |         |        |                         |
+|----------------------------+---------+--------+-------------------------|
+| *3ª EVALUACIÓN*            |         |        | Más del 80% de las      |
+|                            |         |        | prácticas del trimestre |
+|                            |         |        | deben estar realizadas  |
+|                            |         |        | correctamente para      |
+|                            |         |        | aprobar                 |
+|----------------------------+---------+--------+-------------------------|
+| *TODO:*                    |         |        |                         |
+|----------------------------+---------+--------+-------------------------|
 | T7 BBDD Objeto-relacional  | 14 abr  | 14 abr | PostgreSQL              |
 | T8 NoSQL P1 Documentales   |         |        | MongoDB                 |
 | T8 NoSQL P2 Clave-valor    |         |        | Redis                   |
 | T8 NoSQL P3 On-line        |         |        | Firebase                |
 | T9 Igualdad                |   var   |  ---   | según sorteo            |
+|----------------------------+---------+--------+-------------------------|
+|                            |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
 | *DONE:*                    |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
@@ -33,7 +46,7 @@
 |                            |         |        | para aprobar            |
 |----------------------------+---------+--------+-------------------------|
 
-**Calificaciones**
+*Calificaciones*
 El alumnado deberá entregar las actividades en tiempo y forma que le indique el profesorado. Si esto no es así, se tendrá en cuenta en la calificación final, pudiéndose decidir no calificar las actividades y trabajos entregados fuera de plazo. Si se trata de actividades prácticas en el aula, aparte de la calificación durante su realización, se puede solicitar la entrega de memorias de prácticas cuya entrega será obligatoria.
 
 El alumnado que no entregue el 80% de las actividades obligatorias indicadas por el profesorado tendrá la evaluación suspensa.
