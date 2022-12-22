@@ -5,16 +5,24 @@
 |-------------------------+---------+--------+--------------|
 | *TODO:*                 |         |        |              |
 |-------------------------+---------+--------+--------------|
-| T5 Intro ~Docker~       | 25 oct  | 8 oct  |              |
-| T6 ~docker-compose~     | 7 oct   | 8 oct  |              |
+| T11 Despliegue real     | 30 ene  |  ???   |              |
+| T12 Configuración avan  |  7 feb  |  ---   |              |
+| T13 Monitorización      | 14 feb  |  ---   |              |
+| T14 Igualdad            | 28 feb  |  ---   |              |
 |                         |         |        |              |
 |-------------------------+---------+--------+--------------|
 | *DONE:*                 |         |        |              |
 |-------------------------+---------+--------+--------------|
-| T1 Bases del despliegue | 4 oct   | X      |              |
-| T2 Introducción a Git   | 11 oct  | ??     |              |
+| T1 Bases del despliegue | 4 oct   |  ---   |              |
+| T2 Introducción a Git   | 11 oct  |  ---   |              |
 | T3 Virt asistida        | 18 oct  | 25 oct |              |
-| T4 SSH                  | 24 oct  | X      |              |
+| T4 SSH                  | 24 oct  |  ---   |              |
+| T5 Intro ~Docker~       | 25 oct  | 8 oct  |              |
+| T6 ~docker-compose~     | 7 oct   | 8 oct  |              |
+| T7 DNS (sólo P1)        | 14 nov  |  ---   |              |
+| T8 Servidor Web         | 5 dic   |  ---   |              |
+| T9 Proxy inverso        | 5 dic   |  ---   |              |
+| T10 Serv aplicaciones   | 12 dic  |  ---   |              |
 |-------------------------+---------+--------+--------------|
 
 ** Resumen de temas
