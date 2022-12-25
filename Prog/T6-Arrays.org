@@ -142,6 +142,19 @@ Crear una aplicación que nos evalue los resultados obtenidos en la primera eval
 5. Determinar la media global (filas y columnas)
 
 Restricciones: debe mostrar la tabla completa con los nombres de las materias, de los alumnos y resaltar las medias en colores. Los datos de entrada estarán ~harcodeados~.
+*Entrega*: 9 enero
+
+*** Para la corrección:
+Modificaremos la clase anterior para poder pasar test unitarios. Para ello deberemos asegurarnos que:
+1. La clase se denomina ~evaluacionResultados~
+2. Creamos los métodos:
+   - ~listarNotaAlumno(String alumno): float []~ -> devuelve las notas del alumno con 2 decimales
+   - ~listarNotasModulos(String modulo): float []~ -> devuelve la nota del modulo con 2 decimales
+   - ~mediaAlumno(String alumno): float~ -> devuelve la media del alumno con 2 decimales
+   - ~mediaModulo(String modulo): float~ -> devuelve la media del módulo con 2 decimales
+3. La clase carga los datos de un archivo CSV donde la primera fila serán los nombre de los módulos y la primera columna el nombre de los alumnos
+4. Crearemos los test unitarios que nos permitan verificar los métodos anteriores.
+   *Entrega*: 12 enero
 
 ** Posicionamiento de brazos robóticos.
 Dado [[https://youtu.be/9zSRNXRuX0g][cinemática de robot (2D)]], se pide generar una matriz de transformación precalculada de forma que podamos  solicitarle a la apliación la ubicación de la punta en unas coordenadas cartesianas (x e y) y nos devuelva los ángulos de posicionamiento de los brazos robóticos. \\
@@ -149,4 +162,10 @@ Se solicita que nos facilitéis la respuesta de ángulos para todos los valores 
 
 Restricciones: implementar el método ~float[] cinematicaInversa2D(int x, int y)~ de la clase ~MatricesDeTransformacion~ que podamos utilizar sin instanciar objetos, donde ~float[]~ será un vector con los valores de los 2 ángulos.
 
-** Entrega: 13 diciembre
+*Entrega*: 9 enero
+
+*** Para la corrección:
+Modificaremos la clase anterior para poder pasar test unitarios. Para ello deberemos asegurarnos que:
+1. La clase se denomina ~MatricesDeTransformacion~
+2. Implementaremos una batería de test unitarios para el método ~cinematicaInversa2D(int x, int y): float[]~ (testear 0,0; 0,10; 10,0; 10,10; 5,7;)
+   *Entrega*: 12 enero
