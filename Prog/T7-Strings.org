@@ -131,6 +131,15 @@ Tienes disponible en ~Github~ la interfaz de ~TrabajarArchivo~, la implementaci�
 
 /Nota: el carácter ~$~ se debe sustituir por su varlor literal ~\u0024~ y debe ir escapado ~\\~ /
 
+*Entrega*: 9 enero
+
+** Para la corrección:
+Deberéis subir todos los archivos fuente (.java ) y objeto ( .class)
+
+Las cartas serán corregidas vía ~diff~ de manera sistemática automatizado que introducirá un ~destinatarios.csv~ y ~carta.txt~ *diferente* al proporcionado al alumno por lo que no se adminitrá errores en nombres de archivo o redactado de las cartas combinadas.
+
+
+
 * Expresiones regulares -REGEX-
 ** Teoría sobre expresiones regulares
      + [[https://www.youtube.com/watch?v=M72lwALYRJU][Vídeo introducción]]
