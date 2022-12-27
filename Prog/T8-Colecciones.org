@@ -21,7 +21,7 @@ Podemos ver la magnitud del /framework/  en la siguiente imágen:
 
 * ~Collection~
 Veamos el ~interface~ de la clase:
-#+BEGIN_SRC jav
+#+BEGIN_SRC java
 profe@servidor ~ :/$ javap java.util.Collection
 Compiled from "Collection.java"
 public interface java.util.Collection<E> extends java.lang.Iterable<E> {
@@ -71,8 +71,11 @@ Pero empecemos por el principio...
 | Object[] toArray()                   | Convierte la colección en un array de objetos.                                                                                                           |
 | Iterator iterator()                  | Obtiene el objeto iterador de la colección                                                                                                               |
 
-** Iterator
-Similar a lo que ya hacíamos con la clase Scanner...
+* Iterable
+Es el mismo ~Iterator~ que implementa la clase ~Scanner~ por lo que su uso ya lo tenemos interiorizado.
+
+Recordemos que tiene los métodos ~hasNext(), next(), remove()~ y ~forEachRemaining()~
+
 #+BEGIN_SRC java
 Iterator it=colecciónString.iterator();
 while(it.hasNext()){
@@ -80,21 +83,81 @@ while(it.hasNext()){
 		System.out.println(s);
 }
 
-// También mediante el for mejorado
+//También podremos recorrer la colección con el ~for each~ (for mejorado)
 for( String valor : it ){
 		System.out.println(valor);
 }
 #+END_SRC
 
-+ [[https://www.arquitecturajava.com/java-iterator-vs-foreach/?pdf=6034][Diferencias entre `Iterator` y forEach]] 
++ [[https://www.arquitecturajava.com/java-iterator-vs-foreach/?pdf=6034][Diferencias entre `Iterator` y forEach]]
+
+** Nuevas sintaxis para iterar
+Además del ~for( Tipo v : elementoAIterar)~ tenemos dos nuevas forma de representarlo:
++ Operador ~Lambda~: ~elementoAIterar.foreach( (s) -> System.out.println(s) )~
++ Operador ~::~ (referencia a método): ~elementoAIterar.foreach( System.out::println )~
+
++ [[https://javadesdecero.es/avanzado/expresiones-lambda-java/][Expresiones Lambda y ::]]
+
 
 * ~List~ (listas)
+** Interface ~List~
 Esta inferface la implementan los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
 
-** ArrayList
+Podemos construir una lista a partir de un array con ~List<String>  lista = (List<String>) Arrays.asList(unArray);~ o incluso ~List<String>  lista = (List<String>) Arrays.asList("Larry", "Moe", "Curly");~
+**** ~List.of~ (Java 9):
+Con él aparece una nueva forma de construir ~List.of~, p.e. ~List<String> lista=List.of("Esto","es","una","lista");~, pero creará una lista *ESTÁTICA* que sólo podremos utilizar para crear otros elementos más dinámicos.
+
+#+BEGIN_SRC java
+profe@servidor ~ :/$ javap java.util.List
+Compiled from "List.java"
+public interface java.util.List<E> extends java.util.Collection<E> {
+  public abstract int size();
+  public abstract boolean isEmpty();
+  public abstract boolean contains(java.lang.Object);
+  public abstract java.util.Iterator<E> iterator();
+  public abstract java.lang.Object[] toArray();
+  public abstract <T> T[] toArray(T[]);
+  public abstract boolean add(E);
+  public abstract boolean remove(java.lang.Object);
+  public abstract boolean containsAll(java.util.Collection<?>);
+  public abstract boolean addAll(java.util.Collection<? extends E>);
+  public abstract boolean addAll(int, java.util.Collection<? extends E>);
+  public abstract boolean removeAll(java.util.Collection<?>);
+  public abstract boolean retainAll(java.util.Collection<?>);
+  public default void replaceAll(java.util.function.UnaryOperator<E>);
+  public default void sort(java.util.Comparator<? super E>);
+  public abstract void clear();
+  public abstract boolean equals(java.lang.Object);
+  public abstract int hashCode();
+  public abstract E get(int);
+  public abstract E set(int, E);
+  public abstract void add(int, E);
+  public abstract E remove(int);
+  public abstract int indexOf(java.lang.Object);
+  public abstract int lastIndexOf(java.lang.Object);
+  public abstract java.util.ListIterator<E> listIterator();
+  public abstract java.util.ListIterator<E> listIterator(int);
+  public abstract java.util.List<E> subList(int, int);
+  public default java.util.Spliterator<E> spliterator();
+  public static <E> java.util.List<E> of();
+  public static <E> java.util.List<E> of(E);
+  public static <E> java.util.List<E> of(E, E);
+  public static <E> java.util.List<E> of(E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E, E, E, E, E);
+  public static <E> java.util.List<E> of(E, E, E, E, E, E, E, E, E, E);
+  public static <E> java.util.List<E> of(E...);
+  public static <E> java.util.List<E> copyOf(java.util.Collection<? extends E>);
+}
+#+END_SRC
+
+** ~ArrayList~ implementa ~List~
 The ArrayList class implements the List interface. It uses a dynamic array to store the duplicate element of different data types. The ArrayList class maintains the insertion order and is non-synchronized. The elements stored in the ArrayList class can be randomly accessed.
 
-*Esto es: *
 Lista dinámica de elementos de que mantienen el orden de inserción y cuyos elementos *NO* pueden estar duplicados.
 
 Pese a que tienen orden, los elementos pueden ser accedidor de forma aleatoria mediante ~miLista.get(indice)~
@@ -103,10 +166,28 @@ Para su construcción lo invocaremos mediante la estructura ~List<Tipo> referenc
 
 Se debe decir un para de cosas sobre estra construcción:
 + Los ArrayList son una clase derivada de List por lo que podemos crear las referencias del tipo List o ArrayList indistintamente.
-+ Los Tipos son obligatoriamente OBJETOS por lo que no podremos crear ArrayList de tipo ~int~, pero  si de tipo ~Integer~.
++ Los Tipos son obligatoriamente *OBJETOS* por lo que no podremos crear ArrayList de tipo ~int~, pero  si de tipo ~Integer~.
 + Hemos usado el constructor general, pero tendremos 2 constructores más:
   + Con capacidad inicial ~List<Tipo> referencia = new ArrayList<Tipo>(4)~
-  + A partir de un objeto ~Collection~
+  + A partir de un objeto ~Collection~ o ~List~
+
+
+*** Métodos:
+    boolean add(E) -> Añade un objeto al final.
+    void add(N, E) -> Añade E en la posición N.
+    int size() -> Retorna el tamaño.
+    in indexOf(E) -> Retorna el indice del elemento E o -1.
+    boolean contains(E) -> Retorna true si existe el elemento E.
+    oldE set(i, E) -> Modifica el elemento que esta en la posición i, por el nuevo elemento E.
+    E remove(N) -> Saca el elemento N del ArrayList X.
+    boolean remove(E) -> Elimina la primera ocurrencia del elemento E de la lista si lo hubiera.
+    E get(i) -> Obtiene el elemento en la posición i.
+
+*** Referencias:
++ [[https://docs.oracle.com/en/java/javase/17/docs/api/index.html][JavaDoc OFICIAL]]
+
+
+
 
 *** Ejercicio:
 Crea una clase que:
@@ -116,20 +197,47 @@ Crea una clase que:
 + recorra la lista sumando todos sus elementos.
 + obtenga la media usando el método para obtener el tamaño de la lista.
 + modifica los valores pares de la lista a por su posición, esto es, el segundo valor pase a valer 2 (recuerda que el primer valor es la pos 0).
-** LinkedList
+
+** ~LinkedList~ implementa ~List~
 Son similares al anterior pero su implementación interna los hace mejores en manipulación de sus datos.
 
 Por contra, los ArrayList son mejores para almacenar y consultar los datos.
 
+[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/LinkedList.html][Documentación OFICIAL LinkedList]]
+
 * ~Set~ (conjuntos)
-Esta interface la implementan los ~HandSet~, los ~LinkedHandSet~ y los ~TreeSet~.
+Esta interface la implementan los ~HashSet~, los ~LinkedHashSet~ y los ~TreeSet~.
 
 Crea conjuntos de datos *SIN* duplicados.
 
-** HandSet
+Al igual que ~List~ dispone del método ~Set.of~ para la creación rápida de conjuntos *INMUTABLES*.
 
 
-** TreeSet
+** ~HashSet~ implementa ~Set~
+Es usado para crear una colección que implementa el interface Set. Es por tanto un conjunto desordenado(*) de elementos (objetos o datos primitivos) y por ende no dispone de índice, pero al heredar de ~Iterator~ podremos recorrerlo con él.
+
+/(*) Se ordena no por entrada si no por tamaño/
+
+*** Contructor
+Tenemos 4 opciones:
+| ~HashSet()~                                  | Constructor por defecto.               |
+| ~HashSet(int capacidad)~                     | Con un capacidad definida              |
+| ~HashSet(int capacity, float factorDeCarga)~ | Con una capacidad y un factor de carga |
+| ~HashSet(Collection<? extends E> c)~         | Inicializado desde una colección       |
+
+*** Métodos
+[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html][Documentación OFICIAL de HashSet]]
+
+*** Iteraradores:
+Dado un ~HashSet~ denominado ~set~, podemos recorrerlo:
++ ~set.forEach(System.out::println);~
++ ~set.forEach( (s) -> System.out.println(s+" ");~
+...
+
+*** Ejercicio
+Crea un conjunto de tipo ~HashSet~ con elementos repetidos e impríme el resultado mediante expresiones ~Lambda~ o operador referencia.
+
+** ~TreeSet~
 Esta clase implementa la interface ~SortSet~ que a su vez deriva de ~Set~.
 
 Se trata de un conjunto ORDENADO de elememntos ÚNICOS.
@@ -145,9 +253,18 @@ Además de los implementados de la interface ~List~ tenemos los implementados de
 | SortedSet subSet(Object menor, Object mayor) | Obtiene un SortedSet que contendrá todos los elementos del árbol cuyos valores ordenados estén entre el menor y mayor objeto indicado |
 | Comparator comparator()                      | Obtiene el objeto comparador de la lista                                                                                              |
 
+*** Ejercicio
+Crea un conjunto de tipo ~TreeSet~ con 10 números aleatorios  e impríme el resultado mediante expresiones ~Lambda~ o operador referencia.
+
 
 * ~Map~ (mapas)
+
+* -----------------------
+* VOY POR AQUÍ
+* -----------------------
+
 * ~Queue~ (colas)
+
 * ~Stack~ (pilas)
 
 * Práctica
