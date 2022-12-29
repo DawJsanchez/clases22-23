@@ -19,7 +19,8 @@ Podemos ver la magnitud del /framework/  en la siguiente imágen:
 + ~Map~: conjunto de pares clave/valor, sin repetición de claves
 + ~SortedMap~: map cuyos elementos se mantienen ordenados según el criterio establecido
 
-* ~Collection~
+* Interface ~Collection~ extends ~Itarable~
+** Parte pública (interfaz)
 Veamos el ~interface~ de la clase:
 #+BEGIN_SRC java
 profe@servidor ~ :/$ javap java.util.Collection
@@ -54,6 +55,8 @@ Tenemos métodos que hablan por si solos, pero también tenemos otros algo espec
 		+ borrar un elemento ~remove()~.
 + los ~toArray()~ que nos convertirán la colección dinámica en un array estático.
 
++ [[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html][public interface Collection<E> extends Iterable<E>]]
+
 Pero empecemos por el principio...
 ** Métodos:
 | método                               | uso                                                                                                                                                      |
@@ -71,13 +74,15 @@ Pero empecemos por el principio...
 | Object[] toArray()                   | Convierte la colección en un array de objetos.                                                                                                           |
 | Iterator iterator()                  | Obtiene el objeto iterador de la colección                                                                                                               |
 
-* Iterable
-Es el mismo ~Iterator~ que implementa la clase ~Scanner~ por lo que su uso ya lo tenemos interiorizado.
+Pero como decíamos en el título, este ~interface~ extiende el ~interface Iterable~, y por tanto, heredará de él todos sus métodos.
+* Interface ~Iterable~
+** Uso básico
+Es el mismo ~Iterator~ que implementa la clase ~Scanner~ por lo que su uso ya lo tenemos interiorizado o al menos lo conocemos.
 
 Recordemos que tiene los métodos ~hasNext(), next(), remove()~ y ~forEachRemaining()~
 
 #+BEGIN_SRC java
-Iterator it=colecciónString.iterator();
+Iterator it=coleccionString.iterator();
 while(it.hasNext()){
 		String s=(String)it.next();
 		System.out.println(s);
@@ -96,11 +101,17 @@ Además del ~for( Tipo v : elementoAIterar)~ tenemos dos nuevas forma de represe
 + Operador ~Lambda~: ~elementoAIterar.foreach( (s) -> System.out.println(s) )~
 + Operador ~::~ (referencia a método): ~elementoAIterar.foreach( System.out::println )~
 
+Aquí de momento no vamos a ir más allá. Cuando veamos el tema de ~POO II~ entraremos en estas construcciones.
+
 + [[https://javadesdecero.es/avanzado/expresiones-lambda-java/][Expresiones Lambda y ::]]
 
+* Clase ~Collections~
+Sí, si no fuera poco el interface, además tenemos una clase que *NO* implementa la interface, si no que es una clase con métodos estáticos al estilo de ~Arrays~, esto es, que nos ayuda a manipular las colecciones, pero no a crearlas.
+
+ + [[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html][Class Collections extends Object]]
 
 * ~List~ (listas)
-** Interface ~List~
+** ~public interface List<E> extends Collection<E>~
 Esta inferface la implementan los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
 
 Podemos construir una lista a partir de un array con ~List<String>  lista = (List<String>) Arrays.asList(unArray);~ o incluso ~List<String>  lista = (List<String>) Arrays.asList("Larry", "Moe", "Curly");~
@@ -155,6 +166,13 @@ public interface java.util.List<E> extends java.util.Collection<E> {
 }
 #+END_SRC
 
+** Ejercicio:
+1. Crea un programa que cree una ~List~ que esté /hardcoded/ y luego recorrelo con el iterador mostrándo su contenido completo.
+2. Repite el programa recorriendo la lista con el bucle for
+3. Repite el programa recorriendo la lista con el operador Lambda ~->~
+4. Repite el programa recorriendo la lista con el operador método-referencia~ ~::~
+
+
 ** ~ArrayList~ implementa ~List~
 The ArrayList class implements the List interface. It uses a dynamic array to store the duplicate element of different data types. The ArrayList class maintains the insertion order and is non-synchronized. The elements stored in the ArrayList class can be randomly accessed.
 
@@ -197,6 +215,7 @@ Crea una clase que:
 + recorra la lista sumando todos sus elementos.
 + obtenga la media usando el método para obtener el tamaño de la lista.
 + modifica los valores pares de la lista a por su posición, esto es, el segundo valor pase a valer 2 (recuerda que el primer valor es la pos 0).
++ imprime la lista.
 
 ** ~LinkedList~ implementa ~List~
 Son similares al anterior pero su implementación interna los hace mejores en manipulación de sus datos.
@@ -216,7 +235,7 @@ Al igual que ~List~ dispone del método ~Set.of~ para la creación rápida de co
 ** ~HashSet~ implementa ~Set~
 Es usado para crear una colección que implementa el interface Set. Es por tanto un conjunto desordenado(*) de elementos (objetos o datos primitivos) y por ende no dispone de índice, pero al heredar de ~Iterator~ podremos recorrerlo con él.
 
-/(*) Se ordena no por entrada si no por tamaño/
+/(*) Aunque a priori podría parecer ordenado, no está asegurado dicho comportamiento./
 
 *** Contructor
 Tenemos 4 opciones:
@@ -226,7 +245,7 @@ Tenemos 4 opciones:
 | ~HashSet(Collection<? extends E> c)~         | Inicializado desde una colección       |
 
 *** Métodos
-[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html][Documentación OFICIAL de HashSet]]
+	[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashSet.html][Documentación OFICIAL de HashSet]]
 
 *** Iteraradores:
 Dado un ~HashSet~ denominado ~set~, podemos recorrerlo:
@@ -258,13 +277,94 @@ Crea un conjunto de tipo ~TreeSet~ con 10 números aleatorios  e impríme el res
 
 
 * ~Map~ (mapas)
+Es una interface que genera objetos con pares ~clave-valor~.
+P.e.: el mapa ciudad-temperatura:
+ - Badajoz: 36
+ - Cáceres: 34
+ - Sevilla: 36
+ - Madrid: 32
+ - Barcelona: 26
 
-* -----------------------
-* VOY POR AQUÍ
-* -----------------------
+Pero ~Map~ es sólo la interface, nosotros utilizaremos ~HashMap~ que nos dice la DOC OFICIAL que ~public class HashMap<K,V> extends AbstractMap<K,V> implements Map<K,V>, Cloneable, Serializable~
++ [[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/HashMap.html][DOC OFICIAL de HashMap]]
+** Ejercicio:
+1. Crea el mapa del ejemplo e imprímelo
+2. Intenta duplicar alguna ciudad (imprime).
+3. Elimina todas las ciudades con 36 grados (imprime).
+4. Elimina Barcelona (imprime).
+5. Modifica la temperatura de Cáceres a 37 (imprime).
 
 * ~Queue~ (colas)
+/Normalmente/ primero en entrar - primero en salir (FIFO por su siglas inglesas).
+[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Queue.html][DOC OFICIAL ~public interface Queue<E> extends Collection<E>~]]
 
 * ~Stack~ (pilas)
+Primero en entrar - último en salir (LIFO por sus siglas inglesas).
+[[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Stack.html][DOC OFICIAL ~public class Stack<E> extends Vector<E>~]]
 
 * Práctica
+** Calculadora de pila (RPN)
+En esta práctica vamos a crear una pequeña calculadora de pila que sólo suma, multiplica y totaliza.
+
+Las calculadoras de pila operan algo diferente de las calculadoras normales.
+1. Metemos todos los operandos y los operadores en la pila
+2. Realizamos las operaciones
+
+Por ejemplo: si queremos obtener (2+3)*5 le introduciremos los datos de la siguente forma: 2 3 + 5 *	=> (da  25)
+1. La calculadora tomará el primer  valor/operador de la pila (lo saca de la pila). Al ser éste el operador ~*~ llama al método ~float multiplicar(Pila mem)~
+2. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un número lo toma como ~float multiplicando~
+3. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un operador ~+~  llama al método ~float suma(Pila mem)~
+4. El método suma funciona de forma similar.
+5. Cuando no queden datos en la pila hemos acabado de operar y debemos mostrar el mensaje "El total es: "+ ~total~
+
+Deberéis realizar test unitarios con al menos los siguiente casos de prueba:
+1. 3 2 * 2 + 4 *
+2. 3 2 * 2 + 4 * 3 * 2 + 4 * 3 + 2 * 2 + 4 *
+
+*Entrega:* 9 febrero.
+
+Debe entregarse tanto la clase ~CalculadoraRPN~ como ~TestCalculadoraRPN~ y por supuesto la implementación de la clase ~Pila~.
+
+** Transmisor de datos
+En esta ocasión vamos a implementar una aplicación que envíe archivos a través de tramas ethernet.
+
+/Puesto que nosotros no vamos a trasmitir realmente por la interfaz de red lo que haremos será los bytes leídos de un archivo los imprimiremos en pantalla a ritmo constante y por supuesto teniendo algunas cosideraciones para dar veracidad a la transmisión./
+
+Como en todas las transmisiones deberemos tomar las siguientes consideraciones:
++ Antes de comenzar determinaremos la tasa de transmisión. /En la vida real se realizaría según la velocidad de nuestra tarjeta y conexión, pero nosotros la leeremos por teclado en formato ~0.2~ (en segundos)/
++ Además leeremos el nombre del archivo a cargar en memoria
++ Si el archivo lo trocearemos en trozos de 60 (caracteres)
++ Cada trozo lo deberemos empaquetar en una trama ethernet 802.3 (https://es.wikipedia.org/wiki/IEEE_802.3):
+  1. Preámbilo: 7 veces el carácter '\u00AA' (ª)
+  2. SFD (comienzo de trama) '\u00AB' («)
+  3. Dirección destino (broadcast) "\u00FF:\u00FF:\u00FF:\u00FF:\u00FF:\u00FF"
+  4. Dirección origen (el de vuestra mac /ipconfig /all/)
+  5. Longitud: 60 caracteres o los que queden en el último envío (con 3 dígitos).
+  6. Datos
+  7. Nº de trama (número de 3 dígitos correlativo comenzando por un número aleatorio)
++ Entre trama y trama introduciremos un final de línea.
++ Vamos a dejar bonita la pantalla. Vamos a encapsular las tramas de forma que tras leer el nombre del archivo borraremos y comenzaremos imprimiento la cabezera de la tabla de envíos y debajo cada uno de los paquetes separando sus campos con \|, de forma que nos quede algo tal que así:
+#+BEGIN_QUOTE
+┏━━━┳━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━┓
+┃  Pre    ┃SFD┃D. DES                                   ┃ D. ORG                            ┃ Long  ┃                                                                                                        DATOS                                               ┃ Nº  ┃
+┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+┃ªªªªªªª┃   «   ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF   ┃  100   ┃  Querido amigo: \n Nos ponemos en contacto con usted para hacerle llegar    ┃ 345┃
+┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+
+┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+┃ªªªªªªª┃   «   ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF   ┃  018   ┃ Hasta luego amigo.                                                                                                                            ┃ 354┃
+┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+
+Los bordes de la tabla aquí -> https://en.wikipedia.org/wiki/Box_Drawing
+
+Nota:
+Nos hemos tomado algunas licencias artísticas, pero el envío puede ser similar a esto.
+#+END_QUOTE
+
+*Entrega:* 9 febrero.
+
+Debe entregarse tanto la clase ~TransmisionDeArchivos~ como la salida por pantalla que llamaremos ~transmision.log~
+
+Para capturar la salida por pantalla deberemos invocar el programa desde PowerShell con el comando Tee-Object de la siguiente forma: ~java TransmisionDeArchivos | Tee-Object -FilePath "transmision.log"~
+
+/Esta práctica será corregida de forma automática con el comando ~diff~ por lo que sugiero la personalización en la salida imprimiendo tu nombre completo y que ajustemos la salida a las especificaciones del sistema./
