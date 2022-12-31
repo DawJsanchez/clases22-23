@@ -345,15 +345,15 @@ Como en todas las transmisiones deberemos tomar las siguientes consideraciones:
 + Entre trama y trama introduciremos un final de línea.
 + Vamos a dejar bonita la pantalla. Vamos a encapsular las tramas de forma que tras leer el nombre del archivo borraremos y comenzaremos imprimiento la cabezera de la tabla de envíos y debajo cada uno de los paquetes separando sus campos con \|, de forma que nos quede algo tal que así:
 #+BEGIN_QUOTE
-┏━━━┳━━┳━━━━━━━━━━━┳━━━━━━━━━━┳━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━┓
-┃  Pre    ┃SFD┃D. DES                                   ┃ D. ORG                            ┃ Long  ┃                                                                                                        DATOS                                               ┃ Nº  ┃
-┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
-┃ªªªªªªª┃   «   ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF   ┃  100   ┃  Querido amigo: \n Nos ponemos en contacto con usted para hacerle llegar    ┃ 345┃
-┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+┏━━━━━━━┳━━━┳━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━┓
+┃  Pre  ┃SFD┃       D. DES          ┃      D. ORG     ┃Long┃                                DATOS                                      ┃ Nº ┃
+┣━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━┫
+┃ªªªªªªª┃ « ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF┃ 100┃ Querido amigo: \n Nos ponemos en contacto con usted para hacerle llegar   ┃ 345┃
+┣━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━┫
 
-┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
-┃ªªªªªªª┃   «   ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF   ┃  018   ┃ Hasta luego amigo.                                                                                                                            ┃ 354┃
-┣━━━╋━━╋━━━━━━━━━━━╋━━━━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━┫
+┣━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━┫
+┃ªªªªªªª┃ « ┃FF:FF:FF:FF:FF:FF:FF:FF┃AA:BB:CC:DD:EE:FF┃ 018┃ Hasta luego amigo.                                                        ┃ 354┃
+┣━━━━━━━╋━━━╋━━━━━━━━━━━━━━━━━━━━━━━╋━━━━━━━━━━━━━━━━━╋━━━━╋━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╋━━━━┫
 
 Los bordes de la tabla aquí -> https://en.wikipedia.org/wiki/Box_Drawing
 
