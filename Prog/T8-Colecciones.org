@@ -303,28 +303,16 @@ Primero en entrar - último en salir (LIFO por sus siglas inglesas).
 [[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Stack.html][DOC OFICIAL ~public class Stack<E> extends Vector<E>~]]
 
 * Práctica
-** Calculadora de pila (RPN)
-En esta práctica vamos a crear una pequeña calculadora de pila que sólo suma, multiplica y totaliza.
+** Evaluación de resultados
+Repite la práctica de evaluación de resultados de los alumnos en los módulos con un mapa donde los índices serán el nombre de los módulos.
 
-Las calculadoras de pila operan algo diferente de las calculadoras normales.
-1. Metemos todos los operandos y los operadores en la pila
-2. Realizamos las operaciones
+Para ello el programa nos solicitará al comienzo los módulos, para posteriormente solicitarnos uno a uno las notas de cada uno (nos debe indicar cuál nos está solicitando).
 
-Por ejemplo: si queremos obtener (2+3)*5 le introduciremos los datos de la siguente forma: 2 3 + 5 *	=> (da  25)
-1. La calculadora tomará el primer  valor/operador de la pila (lo saca de la pila). Al ser éste el operador ~*~ llama al método ~float multiplicar(Pila mem)~
-2. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un número lo toma como ~float multiplicando~
-3. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un operador ~+~  llama al método ~float suma(Pila mem)~
-4. El método suma funciona de forma similar.
-5. Cuando no queden datos en la pila hemos acabado de operar y debemos mostrar el mensaje "El total es: "+ ~total~
+En esta ocasión, si recibe un "-1" NO debe almacenar nada ahorrando espacio y tiempo.
 
-Deberéis realizar test unitarios con al menos los siguiente casos de prueba:
-1. 3 2 * 2 + 4 *
-2. 3 2 * 2 + 4 * 3 * 2 + 4 * 3 + 2 * 2 + 4 *
+Asegúrate de que utilizas los nombre adecuados de forma que tu nueva implementación debe pasar los test de tu implementación anterior (práctica 6).
 
 *Entrega:* 9 febrero.
-
-Debe entregarse tanto la clase ~CalculadoraRPN~ como ~TestCalculadoraRPN~ y por supuesto la implementación de la clase ~Pila~.
-
 ** Transmisor de datos
 En esta ocasión vamos a implementar una aplicación que envíe archivos a través de tramas ethernet.
 
@@ -360,3 +348,25 @@ Debe entregarse tanto la clase ~TransmisionDeArchivos~ como la salida por pantal
 Para capturar la salida por pantalla deberemos invocar el programa desde PowerShell con el comando Tee-Object de la siguiente forma: ~java TransmisionDeArchivos | Tee-Object -FilePath "transmision.log"~
 
 /Esta práctica será corregida de forma automática con el comando ~diff~ por lo que sugiero la personalización en la salida imprimiendo tu nombre completo y que ajustemos la salida a las especificaciones del sistema./
+
+** Calculadora de pila (RPN)
+En esta práctica vamos a crear una pequeña calculadora de pila que sólo suma, multiplica y totaliza.
+
+Las calculadoras de pila operan algo diferente de las calculadoras normales.
+1. Metemos todos los operandos y los operadores en la pila
+2. Realizamos las operaciones
+
+Por ejemplo: si queremos obtener (2+3)*5 le introduciremos los datos de la siguente forma: 2 3 + 5 *	=> (da  25)
+1. La calculadora tomará el primer  valor/operador de la pila (lo saca de la pila). Al ser éste el operador ~*~ llama al método ~float multiplicar(Pila mem)~
+2. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un número lo toma como ~float multiplicando~
+3. El método multiplicar toma el primer valor/operador de la pila (lo saca). Al ser un operador ~+~  llama al método ~float suma(Pila mem)~
+4. El método suma funciona de forma similar.
+5. Cuando no queden datos en la pila hemos acabado de operar y debemos mostrar el mensaje "El total es: "+ ~total~
+
+Deberéis realizar test unitarios con al menos los siguiente casos de prueba:
+1. 3 2 * 2 + 4 *
+2. 3 2 * 2 + 4 * 3 * 2 + 4 * 3 + 2 * 2 + 4 *
+
+*Entrega:* 9 febrero.
+
+Debe entregarse tanto la clase ~CalculadoraRPN~ como ~TestCalculadoraRPN~ y por supuesto la implementación de la clase ~Pila~.
