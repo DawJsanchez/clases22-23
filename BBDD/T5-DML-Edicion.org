@@ -1,0 +1,32 @@
+#+Title: DML II - EDICIÓN DE DATOS
+
+
+** Introducción
+En este tema trataremos de crear, modificar y eliminar registros.
+
+Recordad que el objetivo es tener un CRUD completo, esto es:
+ - Create
+ - Read (tema anterior)
+ - Update
+ - Delete
+
+Con un CRUD completo podremos gestionar cualquier conjunto de datos que requiera la empresa o servicio.
+
+En este tema os tendréis que auto-documentar con las herramientas, referencias y enlaces que el profesor os ha ido facilitando a lo largo del curso.
+
+** Utilidades
+Como ya adelantamos, será de gran utilidad la creación de tablas temporales.
+
+~CREATE TEMPORARY TABLE~ crea una tabla válida sólo para el usuario que la creó y en la sesión actual.
+
+** Ejercicio:
+1. Investiga como realizar un ~create~ de forma que:
+   + Añade 1 empresa. Deberás tener en cuenta las restricciones impuestas (F.K.).
+   + Añade 1 trabajadores a las tablas del tema 3. Deberás tener en cuenta las restricciones impuestas (F.K.).
+   + Añade 2 contratos a dicho trabajador, uno de ellos sin fecha de finalización.
+   + Añade o reemplaza si ya existe el trabajador con DNI ~87654321Z~.
+   + Modifica el contrato sin fecha de finalización con fecha de 31 de julio de 2023.
+   + Introduce un nuevo contrato y elimínalo.
+
+** Práctica:
+Este tema no tiene práctica obligatoria, por lo que la evaluación será sólo vía exámen.
