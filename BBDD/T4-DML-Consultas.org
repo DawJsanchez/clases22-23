@@ -332,11 +332,11 @@ Debes indicar las expresiones regulares para verificar que un usuario ha enviado
  #+END_SRC
  #+CAPTION: Ejemplo claúsula ~GROUP BY~
  #+ATTR_ORG: :width 400
- [[./bbdd/img/group-by.png]]
+ [[./T4-DML-Consultas/group-by.png]]
      + Con totales:  ~...GROUP BY anho WITH ROLLUP~
 	 #+CAPTION: Ejemplo claúsula ~GROUP BY ... WITH ROLLUP~
 	 #+ATTR_ORG: :width 400
-	 [[./bbdd/img/with-rollup.png]]
+	 [[./T4-DML-Consultas/with-rollup.png]]
 *** Funciones condicionales
 *IF* 	Returns a value if a condition is TRUE, or another value if a condition is FALSE. P.e. Return "YES" if the condition is TRUE, or "NO" if the condition is FALSE: ~SELECT IF(500<1000, "YES", "NO");~ => ~YES~
 
