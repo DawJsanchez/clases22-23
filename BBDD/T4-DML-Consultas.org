@@ -127,35 +127,35 @@ En ocasiones las consultas toman una complejidad excesiva por lo que puede ser m
 *** Ejercicio:
 + De la bbdd de ejercicio: Muestra el nombre e email de los empleados que ganan entre 5.000 y 10.000 € /mes  y cuyo jefe es Steven King y los del departamento de IT.
 
-* Práctica:
-+ De la bbdd 00_db_tiendaBicis:
-  + Muestra todos los compradores que tengan más de una compra.
-  + Lista aquellos productos sin stock.
-  + Lista aquellos productos con un stock menor de 3 unidades en orden ascendente.
-  + Lista los 4 productos con más stock:
-	+ En la empresa.
-	+ Por cada tienda.
-	+ Determina el dinero bloqueado en ese stock por empresa y en cada tienda.
-	+ Y en todo el stock de la empresa por empresa y en cada tienda.
-  + Ordena los compradores del más gastoso al menos.
-	+ Lista sólo los 10 más gastosos.
-  + Ordena los compradores del que más productos ha comprado al que menos.
-	+ Lista sólo los 5 que más productos han comprado.
-  + Ordena las tiendas por productos vendidos y por cantidad facturada.
+** Práctica:
+ + De la bbdd 00_db_tiendaBicis:
+   + Muestra todos los compradores que tengan más de una compra.
+   + Lista aquellos productos sin stock.
+   + Lista aquellos productos con un stock menor de 3 unidades en orden ascendente.
+   + Lista los 4 productos con más stock:
+	 + En la empresa.
+	 + Por cada tienda.
+	 + Determina el dinero bloqueado en ese stock por empresa y en cada tienda.
+	 + Y en todo el stock de la empresa por empresa y en cada tienda.
+   + Ordena los compradores del más gastoso al menos.
+	 + Lista sólo los 10 más gastosos.
+   + Ordena los compradores del que más productos ha comprado al que menos.
+	 + Lista sólo los 5 que más productos han comprado.
+   + Ordena las tiendas por productos vendidos y por cantidad facturada.
 
-Todos los listados deben tener sentido para un humano... esto es, `customer_id` no es un nombre válido para conocer los compradores, mejor por su nombre y apellido.
-Evidentemente, eso es válido para los stocks de bicis y nombres de tiendas.
+ Todos los listados deben tener sentido para un humano... esto es, `customer_id` no es un nombre válido para conocer los compradores, mejor por su nombre y apellido.
+ Evidentemente, eso es válido para los stocks de bicis y nombres de tiendas.
 
-Recuerda: para listar la salida queda más bonita numerando los registros:
-	#+BEGIN_SRC mysql
-	SET @i:=0;
-	SELECT (@i:=@i+1 ) as 'n', ... FROM ... ;
-	#+END_SRC
+ Recuerda: para listar la salida queda más bonita numerando los registros:
+	 #+BEGIN_SRC mysql
+	 SET @i:=0;
+	 SELECT (@i:=@i+1 ) as 'n', ... FROM ... ;
+	 #+END_SRC
 
 
 ** EXISTS
-The EXISTS operator is a Boolean operator that returns either true or false. The EXISTS operator is often used to test for the existence of rows returned by the subquery.
-~SELECT column_name(s) FROM table_name WHERE EXISTS (SELECT column_name FROM table_name WHERE condition);~
+ The EXISTS operator is a Boolean operator that returns either true or false. The EXISTS operator is often used to test for the existence of rows returned by the subquery.
+ ~SELECT column_name(s) FROM table_name WHERE EXISTS (SELECT column_name FROM table_name WHERE condition);~
 
 ** FUNCIONES PROPIAS DEL LENGUAJE SQL
 *** Funciones de cadena:
@@ -438,11 +438,21 @@ Debes indicar las expresiones regulares para verificar que un usuario ha enviado
    :PROPERTIES:
    :CUSTOM_ID: vistas
    :END:
+1. [[https://www.neoguias.com/vistas-mysql/][Vistas]]
+2. [[https://guru99.es/views/][Otra fuente]]
+3. [[https://dev.mysql.com/doc/refman/8.0/en/create-view.html][Doc OFICIAL]]
+
 
 ** ÍNDICES
    :PROPERTIES:
    :CUSTOM_ID: índices
    :END:
+1. [[https://www.anerbarrena.com/mysql-create-index-5281/][Índices]]
+2. [[https://dev.mysql.com/doc/refman/8.0/en/mysql-indexes.html][Doc OFICIAL]]
+
+[[https://www.neoguias.com/indices-mejorar-rendimiento-mysql/][Porqué usar índices]]
+
+[[https://www.adictosaltrabajo.com/2015/09/11/introduccion-a-indices-en-mysql/][Porqué no usarlo en TODAS las columnas]] /(-> [[https://es.wikipedia.org/wiki/%C3%81rbol_binario_de_b%C3%BAsqueda][Árboles binarios de búsqueda]])/
 
 ** Bibliografía
 + [[https://www.sql-easy.com/es/][Lo más simple]]
