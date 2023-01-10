@@ -1,0 +1,531 @@
+#+Title: Programación de BBDD
+
+* T6 Programación de BBDD: Rutinas y triggers
+** Funciones de control de flujo:
+   #+BEGIN_SRC sql
+	 CASE valor WHEN comparación THEN resultado [WHEN ...][ELSE res] END;
+							  -- Case operador
+	 IF(expr1, expr2, expr3); -- IF expr1 DEVUELVE expr2 ELSE expr3
+	 IFNULL(expr1, expr2);    -- IF expr1 no es Null DEVUELVE expr2
+	 NULLIF(expr1, expr2);    -- IF expr1 = expr2 DEVUELVE NULL ELSE DEVUELVE expr1
+   #+END_SRC
+
+** Lenguajes de programación y BBDD
+   Los gesotres de BBDD con el tiempo han ido incorporando características propias de un lenguaje de programación y permiten la integración, el control de flujo y el desarrollo de subrutinas. \\
+   Son dependientes del servidor en el que trabajemos, así en SQL-Server (de MS) se denomina Transact-SQL o T-SQL, en Oracle PL/SQL, y MySQL/MariaDB tienen el suyo propio, aunque sin nombre específico. Todos implementan soluciones similares, pero el código no es ~portable~ directamente.
+*** Funciones:
+**** CREAR (y borrar):
+      #+BEGIN_SRC sql
+		DELIMITER //
+		DROP FUNCTION IF EXISTS tuNombreDeFuncion;
+		CREATE FUNCTION tuNombreDeFuncion (Parametero1, Par2, ..., Par_N)
+			   -- todos los Par son tipo IN
+			   RETURNS tipo [DETERMINISTIC]	# INT, CHAR, ...
+			   BEGIN
+				  -- Declarar aquí variables internas a utilizar;
+
+		          DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
+		          -- maneja excepciones y estados
+
+				  -- AQUÍ las sentencias sql a ejecutar
+
+				  RETURN variable;	-- del tipo determinado en la línea ~RETURNS~
+			   END //
+		DELIMITER ;
+      #+END_SRC
+**** Llamar o invocar:
+      #+BEGIN_SRC sql
+			SELECT tuNombreDeFuncion( par1 );
+      #+END_SRC
+**** Mostar:
+      #+BEGIN_SRC sql
+			SHOW CREATE FUNCTION tuNombreDeFuncion;
+      #+END_SRC
+*** Procedimientos:
+**** CREAR (y borrar):
+      #+BEGIN_SRC sql
+		DELIMITER //
+		DROP PROCEDURE IF EXISTS nombreDelProcedimiento;
+		CREATE PROCEDURE nombreDelProcedimiento(IN par1 INT, INOUT par2 VARCHAR(50), ..., OUT parN INT)
+		BEGIN
+		   DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
+		   -- maneja excepciones y estados
+
+		   -- AQUÍ las sentencias sql a ejecutar
+		END //
+		DELIMITER ;
+      #+END_SRC
+**** Llamar o invorcar:
+      #+BEGIN_SRC sql
+			CALL nombreDelProcedimiento( Par1, Par2, ... ParN );
+      #+END_SRC
+**** Mostrar:
+      #+BEGIN_SRC sql
+			SHOW CREATE PROCEDURE tuNombreDeProcedimiento;
+      #+END_SRC
+*** Triggers (disparadores):
+	Un disparador es un objeto de una base de datos que se asocia con una tabla, y se activa cuando ocurre un evento en particular para esa tabla.
+**** Crear:
+	#+BEGIN_SRC sql
+	  CREATE TRIGGER nombre_disparador
+			 {BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON nombre_tabla
+	            -- momento y evento en tabla
+			 FOR EACH ROW sentencia_disp
+	#+END_SRC
+	#+BEGIN_QUOTE
+	  Sentencia puede ser una sola o un grupo de sentencias entre ~BEGIN~ y ~END~
+	#+END_QUOTE
+**** Mostrar:
+	 #+BEGIN_SRC sql
+	   SHOW TRIGGERS [LIKE 'patron' | WHERE 'condicion'];
+	 #+END_SRC
+*** Variables:
+	#+BEGIN_SRC sql
+	  SET @nombre_de_variable = expr [, @var2 = expr2...]
+	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... -- asigna columnas a variables
+	#+END_SRC
+*** ~CURSOR~ y ~FETCH~:
+	Investigar uso ([[https://dev.mysql.com/doc/refman/8.0/en/cursors.html][CAP 19.2.11, pág 1032, manual de referencia MySQL 5.0]]).
+
+
+** EXCEPCIONES y MANEJO DE ERRORES
+	#+BEGIN_SRC sql
+	-- En primer lugar renombramos excepciones:
+	   DECLARE la_has_liado_parda CONDITION FOR 1217;
+	   -- Intenta borrar datos en tabla padre con restricciones e hijos presentes.
+
+	-- Depués controlamos las excepciones:
+	   DECLARE EXIT HANDLER FOR la_has_liado_parda
+	   BEGIN
+		  ROLLBACK;
+		  SELECT 'La has ido liando ... ¡manazas!';
+	   END
+
+	-- También directamente:
+	   DECLARE EXIT HANDLER FOR 1217
+	   BEGIN
+		  ROLLBACK;
+		  SELECT 'La has ido liando ... ¡manazas!';
+	   END
+	#+END_SRC
+
+** Consultas de interés:
+#+BEGIN_SRC sql
+	  SHOW DATABASES;		# muestra todas la bases de datos de nuestro servidor SQL.
+	  USE nombre_db; 		# utiliza la bbdd ~nombre_db~
+	  SHOW TABLES;		  	# muestra todas las tablas de la bbdd
+	  DESC nombre_tabla;	# muestra la descripción de la tabla
+	  SHOW COLUMNS FROM nombre_tabla;
+							# igual que ~DESC nombre_tabla;~
+	  SHOW CREATE TABLE nombre_tabla;
+							# muestra el ~CREATE TABLE nombre_tabla...~ correspondiente
+
+	  SELECT * FROM information_schema.referential_constraints WHERE constraint_schema = 'database';
+							# muestra las claves foráneas y sus restricciones
+
+	  SELECT user, host FROM mysql.user;
+			# muestra los usuarios del servidor y la máquina desde la que pueden conectar
+			#     ->  Si host es ~%~ equivale a cualquiera
+			#     ->  Si host es ~localhost~ sólo podrá loguearse desde la máquina donde se ejecuta el servidor SQL
+			#     ->  Si host es una ip o algo como ~10.12.%~ sólo podrá conectarse desde la ip o ips que coincidan con el patrón.
+			# ~mysql.user~ -> El prefijo ~mysql~ nos permite acceder a la bbdd aunque no esté en ~uso~. Si la tenemos seleccionada sería innecesario añadirle el prefijo (~...FROM user~).
+
+		SHOW PROCEDURE STATUS WHERE db = 'classicmodels';
+		SHOW FUNCTION STATUS WHERE db = 'classicmodels';
+			-- muestra los procedimientos y funciones de la BBDD
+
+		SET GLOBAL general_log=OFF;
+		SET GLOBAL log_output = 'TABLE';
+		SET GLOBAL general_log=ON;
+		  -- los de un alumno concreto
+		SELECT event_time, user_host, command_type, CONVERT(argument USING utf8)
+		  FROM mysql.general_log
+		  WHERE user_host LIKE '%Alfonso%'
+		  ORDER BY event_time DESC ;
+
+		  -- logs completos
+		SELECT event_time, user_host, command_type, CONVERT(argument USING utf8)
+		  FROM mysql.general_log
+		  ORDER BY event_time DESC ;
+
+
+		SET GLOBAL log_bin_trust_function_creators = 1;
+			-- habilita la subida de FUNCIONES sin privilegios
+#+END_SRC
+
+* PRÁCTICA:                                                        :practica:
+
+** GESTIÓN TIENDA
+*** Tablas:
+	Ir pensando cuáles vamos a necesitar. Algunos ejemplos:
+      + Trabajadores
+      + Proveedores
+      + Clientes
+      + Almacenes / stocks
+      + Catálogo de productos
+      + Pedidos
+      + Productos (de pedidos)
+      + Compras
+      + Expediciones
+      + Ventas
+      + Facturación
+      + Abonos
+*** Interface GUI-SQL:
+	Nuestra aplicación de gestión será realizado por 2 equipos de trabajo (profesor - alumno), encargándose el primer equipo de la interfaz gráfica de usuario -GUI- y el segundo del motor SQL (tablas, funciones, procedimientos, triggers, vistas, ...).
+	La comunicación de ambas partes se realizará mediante el modelo cliente-servidor (GUI-SQL) y se optará por el paso de mensajes a través de algunas tablas especiales. Estas tablas son:
+      + Tabla ~config~: tabla tipo ~"parametro":valor~ que almacenará todas las variables necesarias para el frontend (GUI) y para el backend (SQL). Parámetros mínimos:
+		- "salt":"valor" -> "salt" es un parámetro utilizado para agregar un extra de seguridad a la gestión de contraseñas.
+		- "crearUsuario":1 -> para crear nuevo usuario
+		- "empresa":"nombre de la empresa" -> nombre de la empresa
+		- "logo":"nombre_logo.extension" -> logotipo de la empresa
+		  #+BEGIN_SRC sql
+		   CREATE TABLE	 config ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, parametro varchar(50) NOT NULL, valor varchar(50) NOT NULL);
+		   INSERT INTO config (parametro, valor) VALUES ('salt','yo'), ('crearUsuario',1), ('empresa','I.E.S. Arroyo Harnina'),('logo', 'nuevo-logo-harnina.png');
+		  #+END_SRC
+      + Tabla "usuarios": tabla tipo "usr":"pass", y probablemente queráis relacionarlo con la tabla trabajadores o clientes.
+		Esta tabla no debe guardar el password en texto plano. *DEBE* hacerse el hash del password, y ya que lo tenemos, también debe usarse el ~salt~ para evitar tablas Rainbow (arcoíris).
+      + Tabla "menu" (-v1): esta tabla contendrá las estructura de toda la base de datos, de forma que recoriéndola podamos construir la interfaz de acceso a datos.
+		- id_padre: identifica la dependencia de otra entrada. Si vale 0 será cargada en el menú inicial del programa.
+		- entrada: nombre a mostrar.
+		- tabla: tabla a la que apunta.
+		- tipo: a priori tendremos las opciones formulario sencillo, formualario múltiple e informe, para los insert/update/delete en los ~formularios~ y select en los ~informes~.
+      + Mejoras tabla "menu" (-v2) (de momento no): para optimizar las consultas realizadas, guardaremos los datos en formato nombre:valor (JSON con estructura).
+
+*** Gestión de nóminas:
+      #+CAPTION: Ejemplo de nómina
+	  #+attr_org: :width 400
+	  [[./bbdd/img/nomina_v3b.jpg]]
+**** Tablas:
+	 Se recuerda que el alumno debe estar familiarizado con el lenguaje SQL y no sólo con los clientes de acceso a servidores SQL, por lo que deben realizar toda la práctica y será recogida por el profesor en formato SQL y sólo en dicho formato. \\
+	 Se crearán las siguientes tablas:
+	 #+CAPTION: Modelo E-R
+	 [[./bbdd/img/nomina-tablas.png]]
+***** Tabla "trab_datos"
+***** Tabla "trab_contratos":
+       #+BEGIN_SRC sql
+			 CREATE TABLE trab_contratos (
+					id INT NOT NULL AUTO_INCREMENT,
+					trab_datos_id INT NOT NULL,
+					fecha_alta DATE NOT NULL,
+					fecha_baja DATE,
+					PRIMARY KEY (id)
+			 );
+       #+END_SRC
+***** Tabla "trab_conceptos_nomina"
+***** Relaciones entre tablas:
+       #+BEGIN_SRC sql
+		 ALTER TABLE trab_contratos
+			   ADD FOREIGN KEY ( trab_datos_id )
+			   REFERENCES trab_datos ( id )
+
+			   ON DELETE RESTRICT
+			   ON UPDATE CASCADE;
+       #+END_SRC
+       También desde la definición del create, pero es más engorroso:
+       #+BEGIN_SRC sql
+		 CREATE TABLE trab_contratos (
+				id INT NOT NULL AUTO_INCREMENT,
+				trab_datos_id INT NOT NULL ,
+				fecha_alta DATE NOT NULL,
+				fecha_baja DATE,
+				PRIMARY KEY (id),
+				FOREIGN KEY (trab_datos_id)
+						REFERENCES trab_datos (id)
+						ON DELETE RESTRICT
+						ON UPDATE CASCADE
+		 );
+       #+END_SRC
+***** Más sobre relaciones entre tablas (FOREIGN KEY)
+	  + Relaciones 1:1: \\
+		La clave primaria de la tabla padre y la columna de la tabla hija que apunta a ella (clave foránea) son valores únicos.
+		#+BEGIN_SRC sql
+			  CREATE TABLE tabla_hija (
+				 id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+				 ...
+				 campo INT UNIQUE FOREIGN KEY REFERENCES tabla_padre (id),
+			  );
+		#+END_SRC
+      + Relaciones 1:N: \\
+		La clave primaria de la tabla padre es única, pero no así la clave foránea de la tabla hija.
+	  + Relaciones N:M: \\
+		Para la implementación se requiere una tercera tabla que hará de unión. P.e:
+		#+BEGIN_SRC sql
+			  CREATE TABLE proveedores_productos (
+				   id_producto   INT UNSIGNED  NOT NULL FOREIGN KEY REFERENCES tabla_productos (id),
+				   id_proveedor  INT UNSIGNED  NOT NULL FOREIGN KEY REFERENCES tabla_proveedores (id),
+
+				   PRIMARY KEY (id_producto, id_proveedor) -- clave primaria y única
+			  ); /* esta tabla almacenará todas las relaciones posibles entre productos
+					   y proveedores... relación N:M */
+		#+END_SRC
+		#+BEGIN_QUOTE
+          En este caso, sería habitual aprovechar esta tabla para guardar características específicas de dicha relación, p.e. en número de unidades por paquete, tamaño, peso, ...
+		#+END_QUOTE
+**** Servidor MySQL
+	 Cambio de password.\\
+	 Ya podéis acceder al mysql server ubicado en 10.144.1.178 (desde ZeroTier) con vuestro usuario y el password ~pass~.
+		 [[./bbdd/img/mysql-error-1820.png]]\\
+		Como podéis observar, no os dejará hacer nada hasta que modifiquéis el password asignado. Sólo vosotros sois responsables del mismo a partir de ahora, y no restableceré passwords olviddos. Como en la vida real, cuando olvidas el password de un servidor con datos encriptados sólo podréis recuparar los datos desde copia de seguridad... por lo que os recomiendo que las realicéis (exportar vuestra BBDD).\\
+		#+BEGIN_QUOTE
+		En este punto, y para que no dudéis de la *importancia* de realizar *copias de seguridad*, en algún momento entre hoy y la fecha de entrega de la práctica final, el servidor será formateado a causa de un ataque externo. Sólo podréis recuperar aquello que tengáis guardado en medios externos al mismo.
+		#+END_QUOTE
+**** =================== <<practica>>
+**** Funciones y procedimientos:
+***** =Procedure trabACobrar(mes, año)=
+	  El procedimiento, una vez llamado con p.e. "CALL trabACobrar (3, 2021);" debe buscar en la tabla contratos y ver que contratos están activos en ese mes y año, y por lo tanto que trabajadores cobrarán nómina, o nominas, ese mes.
+	  Desde él llamaremos al resto de funciones para determinar los distintos apratados de la nómina.\\
+	  Tenemos 2 enfoques principales:
+	  - Consultar que contratos están en vigor y crear una tabla temporal con los "id"s. Posteriormente recorreremos dicha tabla con las distintas funciones.
+	  - Uso de cursores [[http://burnignorance.com/mysql-tips/how-to-loop-through-a-result-set-in-mysql-strored-procedure/][(ver ejemplo)]]: Es el más sencillo, pero no lo hemos dado por lo que os lo dejo a vuestra investigación.
+	 #+INCLUDE: "./bbdd/practicas/nomina/trabACobrar.sql" src sql
+ [[./bbdd/img/mysql-shell-modo-consulta-en-linea.png]]
+***** TABLAS TEMPORALES:
+	  Almacenar la salida de las funciones siguientes en tablas temporales de forma que no tengamos que llamar varias veces a la misma función con los mismos parámetros. P.e.: Para calcular la retención de IRPF y la cotización por contingencias comunes se llama a la función descuentosNomina y se le pasa un porcentaje distinto, pero el mismo valor para el totalDevengado. Si lo hemos almacenado en una tabla temporal, sólo tendremos que llamar a la función totalDevengado una sóla vez por cada contrato en vigor.
+***** ~Funtion diasTrabajados(mes, año, trab_contratos.id)~
+	  Por cada contrato, deberemos comprobar el número de días trabajados:
+	  + Si fecha fin = NULL o > último día mes => Último día mes - fecha inicio + 1:
+		- Si < 0 => 0 días;
+		- Si > 30 => 30 días;
+		- Resto = número de días;
+	  + Si fecha fin < primer día mes/año => 0 días;
+	  + Si fecha fin < último día mes/año:
+		- Si fecha inicio =< primer dia mes => fecha fin contrato - primer dia mes + 1;
+		- Si fecha inicio > primer dia => fecha fin contrato - fecha inicio contrato + 1;
+
+	  Regalo... pero quiero que me la analicéis y _mejoréis_:
+	#+BEGIN_SRC sql
+	  SET @mes = 2, @anho = 2020;
+		  -- mes y año seleccionado para genera nómina
+	  SET @fecha = CONCAT(@anho, '-', @mes, '-', '15');
+		  -- cogemos el 15 por estar en la mitad, pero da igual el día
+	  SELECT
+		 @fecha fecha_seleccionada,
+		 ADDDATE( LAST_DAY( SUBDATE( @fecha, INTERVAL 1 MONTH ) ), 1) primer_dia_mes,
+		 LAST_DAY( @fecha ) ultimo_dia_mes,
+		 ADDDATE( LAST_DAY( SUBDATE( DATE_SUB( @fecha, INTERVAL 1 MONTH ), INTERVAL 1 MONTH )), 1)
+ primer_dia_mes_pasado,
+         LAST_DAY( DATE_SUB( @fecha, INTERVAL 1 MONTH ) ) ultimo_dia_mes_pasado;
+	#+END_SRC
+
+	Sintaxis de funciones:
+	#+BEGIN_SRC sql
+	  USE 00_db_Ferreira_Luis;
+
+	  DELIMITER //
+	  DROP FUNCTION IF EXISTS diasTrabajados;
+	  CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
+	  BEGIN
+		  -- declaring variables;
+		  -- asignamos valores;
+		  -- toma de decisión IF / CASE / ...
+		  -- salida
+		  RETURN (dias);
+	  END //
+	  DELIMITER ;
+      #+END_SRC
+***** ~Function totalDevengado(diasTrabajados, trab_contratos.id)~
+	  Debe sumar todos los conceptos que aparezcen en la tabla trab_conceptos_nomina para el contrato indicado.\\
+	  Después deberemos calcular el salario diario y multiplicarlo por los días.
+***** ~Function descuentosNomina(porcentaje, totalDevengado)~
+	  Deberá calcular el porcentaje del totalDevengado. La llamaremos para cada uno de los descuentos a realizar en la nómina.
+***** TABLAS de pagos a SS, SEXPE, SEPE y Agencia Tributaria:
+	  Deberemos crear tablas que guardaremos el líquido a pagarles a cada una de los entidades cuando proceda (Hacienda trimestral y el resto mensual).
+***** TABLA de balance (saldo de la empresa)
+	  En ella se almacena todos los ingresos y extractos realizados por la empresa.\\
+	  Como ya se indicó, esto es una aproximación ya que en contabilidad se realiza el balance con doble columna y se realiza el balance por cada "cuenta".
+***** ~Function totalLiquido( totalDevengado, ss, sexpe, sepe, hacienda)~
+	  Deberemos deducir los conceptos del totalDevengado por el trabajador para calcular lo que va a cobrar en líquido.
+***** TABLA final de nóminas
+	  En ella se almacenarán TODOS los datos que contiene cada nómina, de forma que pueda consultarse posteriormente la nómina de un trabajador dato en un mes dado.
+**** COMMENT Otros:
+ 1. Tabla "datos-trabajador": contiene los datos fijos de cada trabajador.
+	+ Dar de alta 2 trabajadores.
+      1. Tabla "relacion-contractual": La utilizaremos para determinar el número de días trabajados en un mes. Contiene la fecha de alta y de baja de cada trabajador, así como la referencia a la tabla "datos-trabajador". Tiene con ésta una relación 1:N. Dar de alta 3 contratos:
+	+ trabajador 1: 1/ene/2020 - 10/marz/2021.
+	+ trabajador 2: 1/ene/2021 - sin fecha de cese.
+	+ trabajador 1: 11/marz/2021 - sin fecha de cese. -> Distinto salario base.
+      1. Tabla "conceptos-nomina": apareceran en ella el salario base, las prorratas de pagas extraordinarias y otros pluses, y la referencia a la tabla "relacion-contractual", permitiéndonos con ello generar distintas nóminas para un mismo trabajador cada mes, con variaciones de sueldo. Tiene una relación 1:1 con "relacion-contractual".
+      2. Con la introducción de la tabla "relacion-contractual" ya no necesitamos realizar la tabla "num-dias-trabajados-mes", aunque podremos querer genera una vista con los datos días totales trabajador por mes y trabajador/contrato.
+      3. Necesitamos una función que determine el número de días trabajados en función de las fechas de alta y baja del trabajador. *F(id_relacion-contractual, mes, anho)*
+      4. Función total devengado = suma de todos los conceptos (días x coste/día). *F(id_relacion-contractual, conceptos-nomina, dias trabajados)*
+      5. Funcion (%, total devengado):
+	+ Cotizacion Contingencias Comunes (cuenta Seguridad Social) - 4'7% del devengado.
+	+ Cotización Formación (cuenta SEXPE) - 0'1% del devengado.
+	+ Cotización Desempleo (cuenta SEPE) - 1'6% del devengado (*1)
+	+ Cotización I.R.P.F. (cuenta Agencia Tributaria) - 15% del devengado (*2)
+      1. Total deducciones de cada relacion-contractual (suma de todas las deducciones de cada relacion-contractual).
+      2. Líquido a percibir de cada relacion-contractual = total devengado - total deduciones
+      3. Crear una vista con todos los datos
+      4. Cotización de Seg.Social (TCs)  por parte de la empresa (hacer tabla).
+
+
+ *Mejoras:*
+ (*1) -> función del tipo de contrato - http://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/10721/10957/583
+ (*2) -> % de deducción en función de la estimación de devengado/año.
+**** Solución:
+***** Tablas:
+	 #+BEGIN_SRC sql
+	 -- Creamos la tabla con los datos generales del trabajador y la empresa
+	 -- La tabla no está normalizada ya que evidentemente deberemos sacar los
+	 --	datos de la empresa a una tabla aparte -> FN3
+	 --	insertamos 2 trabajadores
+	 CREATE TABLE `trab_datos` (
+		 `id` int NOT NULL AUTO_INCREMENT,
+		 `empresa` varchar(50) NOT NULL,
+		 `domicilio` varchar(50) NOT NULL,
+		 `n_ss_empresa` varchar(10) NOT NULL,
+		 `nombre` varchar(50) NOT NULL,
+		 `apellidos` varchar(100) NOT NULL,
+		 `dni` varchar(9) NOT NULL,
+		 `n_ss` varchar(10) NOT NULL,
+		 PRIMARY KEY (`id`)
+	 );
+     INSERT INTO trab_datos (empresa,domicilio,n_ss_empresa,nombre,apellidos,dni,n_ss)
+		 VALUES ('Bodegas Harnina','C/ Coria s/n - Almendralejo','0634567890','Antonio','Banderas','50000000R','0612345678'),
+         ('Bodegas Harnina','C/ Coria s/n - Almendralejo','0634567890','Manolo','Banderas','50000001R','0612345679');
+
+	 -- Creamos la tabla contratos del trabajador y la vinculamos con el id de trabajador
+     CREATE TABLE `trab_contratos` (
+         `id` int NOT NULL AUTO_INCREMENT,
+         `trab_datos_id` int NOT NULL,
+         `fecha_alta` date NOT NULL,
+         `fecha_baja` date DEFAULT NULL,
+         PRIMARY KEY (`id`)
+     );
+     ALTER TABLE trab_contratos ADD FOREIGN KEY (`trab_datos_id`)
+         REFERENCES `trab_datos` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+     INSERT INTO trab_contratos (trab_datos_id,fecha alta) VALUE (1, '2021-01-01');
+	 INSERT INTO trab_contratos (trab_datos_id,fecha_alta,fecha_baja) VALUE (2, '2020-01-01', '2021-03-10');
+	 INSERT INTO trab_contratos (trab_datos_id,fecha_alta) VALUE (2, '2020-03-15');
+
+     -- Creamos la tabla conceptos de la nómina, y la relacinamos con el contrato
+     CREATE TABLE `trab_conceptos_nomina` (
+         `id` int NOT NULL AUTO_INCREMENT,
+         `trab_contratos_id` int NOT NULL,
+         `concepto` varchar(80) NOT NULL,
+         `valor` int NOT NULL,
+         PRIMARY KEY (`id`)
+     );
+     ALTER TABLE trab_conceptos_nomina ADD FOREIGN KEY (`trab_contratos_id`)
+         REFERENCES `trab_contratos` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+	 INSERT INTO trab_conceptos_nomina (trab_contratos_id, concepto, valor)
+		 VALUE	(1, 'Salario base', 1000),
+				 (2, 'Salario base', 1100),
+				 (3, 'Salario base', 1000),
+				 (3, 'Plus transporte', 120),
+				 (3, 'Incentivos', 200),
+				 (3, 'Antiguedad', 50);
+
+     -- Procedure trabACobrar(mes, año)
+	 #+END_SRC
+***** Funciones:
+****** Procedimiento general:
+	   Calcula quien tiene contrato en vigor y llamará a las funciones necesarias para que calcule su nómina. Además debe almacenar los resultados en tablas correspondientes.
+	   #+INCLUDE: "./bbdd/practicas/nomina/trabACobrar.sql" src sql
+		 Ejemplo de salida:
+		 [[./bbdd/img/ejemplo_de_presentacion.png]]
+****** Tablas:
+	   Debemos crear las siguientes tablas:
+	   + nominas: para el encabezado de cada nomina final
+	   + nominas_conceptos: para cada uno de los conceptos a cobrar o descontar de cada nómina.
+							Los ~abonos en especie~ deberán aparecer 2 veces, ya que no debe afectar al líquido a percibir, pero sí al total devengado. Aparecerá como positivo en la columna devengado y también como descuento en especie.
+	   + hucha_ss: almacenará las cantidades a aportar a la seguridad social. Las mismas se pagan mensualmente por el total de los trabajadores, por lo que se deberán sumar lo aportado por cada trabajador. Mi propuesta: realizar una tabla temporal por cada trabajador y al finalizar, realizar la suma de todos y pasarlo a hucha_ss. Deberá por tanto tener una casilla de "liquidado a la S.S." para saber si ya se ha pagado o no.
+	   + hucha_sexpe: almacena la portación de FP de cada trabajador y se paga anualmente. Mi propuesta: hacer una tabla temporal por cada trabajador y al finalizar pasar a la tabla hucha_sexpe el total. Deberá por tanto tener una casilla de "liquidado al sexpe" para saber si ya se ha pagado o no.
+	   + hucha_sepe: debe almacenar la aportación de cada trabajador ya que su derecho a desempleo y jubilación depende de ello. Por este motivo, esta tabla debe almacenar las cantidades aportadas por cada trabajador, y como en las anteriores, la casilla de  liquidación o no de dichas cantidades al sepe.
+	   + hucha_hacienda: similar a la anterior.
+	   #+INCLUDE: "./bbdd/practicas/nomina/tablas.sql" src sql
+
+****** FUNCIÓN CALCULAR número de días trabajados:
+	   Por cada id de contrato, calcula los días que trabajó.
+	   + Diagrama de flujo:\\
+		 [[./bbdd/img/diasTrabajados-diagrama.png]]
+	   + Parcial:
+	   #+BEGIN_SRC sql
+ CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
+ BEGIN
+     -- declaring variables;
+	 -- ...
+
+	 -- Calculamos las fechas de ini y fin del mes de la nómina deseada.
+	 -- Capturamos las fechas de alta y de baja de contrato.
+
+	 -- Empieza la "FIESTA":
+	 IF ( (IFNULL( fecha_baja_contrato, '2099-12-31' ) >= fecha_fin ) ) THEN
+	 /*  Si fecha baja de contrato = NULL o >= último día mes =>
+		 Calculamos D y luego lo corregimos.
+		 D = Último día mes - fecha alta contrato + 1:
+		     Si D < 0	=> D = 0 días; -> No habría salido, pero cuesta poco asegurarse.
+			 Si D > 30	=> D = 30 días;
+			 Resto casos => D = D; */
+	 ELSE
+	 /* Si no es (f_baja no es mayor f_fin):
+			 Si fecha baja < primer día mes/año => D = 0 días;
+			 Si fecha baja <= último día mes/año:
+				Si fecha alta contrato <= primer dia mes
+				 => D = fecha baja contrato - primer dia mes + 1;
+				Si fecha alta contrato > primer dia
+				 => D = fecha baja contrato - fecha alta contrato + 1;*/
+	 END IF;
+
+	 RETURN (dias);
+
+ END //
+ DELIMITER ;
+	   #+END_SRC
+******* Más info:
+	   #+BEGIN_SRC sql
+ CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
+ BEGIN
+     -- declaring variables;
+	 -- ...
+
+	 -- Calculamos las fechas de ini y fin del mes de la nómina deseada.
+	 -- Capturamos las fechas de alta y de baja de contrato.
+
+	 -- Empieza la "FIESTA":
+	 IF ( (IFNULL( fecha_baja_contrato, '2099-12-31' ) >= fecha_fin ) ) THEN
+	 /*    Si fecha baja de contrato = NULL o >= último día mes =>
+		 D = Último día mes - fecha alta contrato + 1:
+		     Si D < 0	=> D = 0 días; -> No habría salido, pero cuesta poco asegurarse.
+			 Si D > 30	=> D = 30 días;
+			 Resto casos => D = D; */
+		SET dias = DATEDIFF(fecha_fin, fecha_alta_contrato) + 1 ;
+		SET dias = CASE
+		   WHEN dias < 0 THEN 0
+		   WHEN dias > 30 THEN 30
+		   ELSE dias
+		END; -- del CASE
+	 ELSE
+		 /* Si fecha baja < primer día mes/año => D = 0 días;
+			Si fecha baja <= último día mes/año:
+				Si fecha alta contrato <= primer dia mes
+				 => D = fecha fin contrato - primer dia mes + 1;
+				Si fecha alta contrato > primer dia
+				 => D = fecha fin contrato - fecha inicio contrato + 1;*/
+		 SET dias = CASE
+			 WHEN fecha_baja_contrato < fecha_ini THEN 0
+			 WHEN (fecha_baja_contrato <= fecha_fin AND fecha_alta_contrato <= fecha_ini)
+				  THEN ( DATEDIFF(fecha_baja_contrato, fecha_ini) + 1 )
+			 WHEN (fecha_baja_contrato <= fecha_fin AND fecha_alta_contrato > fecha_ini)
+				  THEN ( DATEDIFF(fecha_baja_contrato, fecha_alta_contrato) + 1)
+		 END; -- del CASE
+	 END IF;
+
+	 RETURN (dias);
+
+ END //
+ DELIMITER ;
+	   #+END_SRC
+	   Completo:
+	   #+INCLUDE: "./bbdd/practicas/nomina/diasTrabajados.sql" src sql
+****** Función calcular el total devengado de cada trabajador:
+	   Por cada concepto de contrato y trabajador, calcular el total a pagar por la empresa y almacenarlo en la temporal a tal efecto.
+	   #+INCLUDE: "./bbdd/practicas/nomina/totalDevengado.sql" src sql
+****** Función descuentosNomina:
+	   lo más sencillo del mundo... retorna el porcentaje del devengado.
+	   #+INCLUDE: "./bbdd/practicas/nomina/descuentosNomina.sql" src sql
+***** Mejoras:
+	  + Prorrateo de las pagas extra.
+** Gestión de almacén: ...
+*** Gestión de compras: ...
+*** Gestión de ventas: ...
