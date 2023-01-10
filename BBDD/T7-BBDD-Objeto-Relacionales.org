@@ -1,0 +1,60 @@
+#+Title: T7 Bases de datos objeto-relacionales
+
+* Porqué o cuando usar MariaDB/MySQL:
+** BBDD no cliente-servidor (SQLite y Access):
+*** SQLite
+ [[./bbdd/img/MySQL-vs-SQLite-info.jpg][Infografia MySQL vs SQLite]]
+
+   + Es una librería (en C de unos 260kbs) que proporciona una BBDD relacional.\\
+   + No está basado por tanto en modelo cliente-servidor.\\
+   + Dispone de transacciones, triggers, claves foráneas y consultas complejas, pero no funciones ni procedimientos.
+   + Mono usuario y mono conexión.
+
+**** Lo más básico de SQLite
+	 En bash o cmd lo invocamos con ~sqlite3 db_name.sqlite~
+	 .help -> ayuda
+	 .tables -> "show tables"
+	 "select * from nombre_tabla" -> consulta SQL
+	 .excel + consulta SQL -> genera una hoja de "excel" (archivo CSV) y lo abre
+	 .import archivo.csv nombre_tabla -> carga CSV a una tabla
+	  ~sqlite3 -csv db.sqlite 'SELECT * FROM projects;'~ -> salida en modo csv desde bash o cmd
+	  ~sqlite3 -cmd '.mode insert'  db.sqlite 'SELECT * FROM projects;'~ -> salida en modo insert
+
+*** MS Access
+	  - Sólo disponible para Windows
+	  - Mono usuario y mono conexión
+	  - Coste: $140
+
+
+** BBDD cliente-servidor RELACIONALES
+	+ MaríaDB: es un clon de MySQL hasta la versión 7.
+	  - En la versión 8 MySQL incorpora un diccionario de datos transaccional y MariaDB no.
+	  - MariaDB soporta muchos más motores de bbdd que mejoran las características de los que ya tiene MySQL.
+	  - Software Libre.
+
+
+** BBDD cliente-servidor OBJETO-RELACIONALES
+*** Oracle:
+	  - Lenguaje PL/SQL
+	  - Coste:
+		+ Express Edition -> Gratis.
+		+ $950 por usuario (mínimo 25) + $209 por soporte y actualizaciones.
+		+ $47,500 por procesador + $10,450 por soporte y actualizaciones.
+*** MS SQL:
+	  - Sólo disponible para Windows y linux (no MAC y no FreeBSD).
+	  - Características similares a MySQL
+	  - Lenguaje Transact-SQL (proc y funciones).
+	  - Coste:
+		+ Express y Developer -> Gratis.
+		+ SQL 2016 por usuario y dispositivo -> $209
+		+ SQL 2016 WEB -> $40/mes
+		+ SQL 2016 Standard Server -> $931
+		+ SQL 2016 Standard Core pack de 2 -> $3,717
+		+ SQL 2016 Enterprise Core pack de 2 -> $14,256
+*** PostgreSQL:
+	  - Lenguaje PL/PgSQL (_similar a PL/SQL_)
+	  - Soporta funciones que _retornan "filas"_ (arrays) y pueden tratarse como tal.
+	  - Soporte /parcial/ de *OBJETOS*.
+	  - _Software Libre_.
+
+** ~PostgreSQL~
