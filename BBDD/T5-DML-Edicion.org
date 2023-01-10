@@ -5,10 +5,10 @@
 En este tema trataremos de crear, modificar y eliminar registros.
 
 Recordad que el objetivo es tener un CRUD completo, esto es:
- - Create
- - Read (tema anterior)
- - Update
- - Delete
+ - Create (~insert~ y/o ~replace~)
+ - Read (~select~)
+ - ~Update~
+ - ~Delete~
 
 Con un CRUD completo podremos gestionar cualquier conjunto de datos que requiera la empresa o servicio.
 
