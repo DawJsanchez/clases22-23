@@ -28,5 +28,22 @@ Como ya adelantamos, será de gran utilidad la creación de tablas temporales.
    + Modifica el contrato sin fecha de finalización con fecha de 31 de julio de 2023.
    + Introduce un nuevo contrato y elimínalo.
 
+
+** TRANSACTION - COMMIT y ROLLBACK
+
+   Las transaciones es la técnica por lo que podemos realizar un conjunto de operaciones de forma atómica.
+
+Para implementarla deberemos rodear las operaciones que deseemos "ATOMIZAR" entre un ~{ START TRANSACTION | BEGIN | BEGIN WORK }~ y un ~{ COMMIT | ROLLBACK }~.
+
+Si todo sale correcto se consolidan las operaciones con un ~COMMIT~, y si algo no va bien (p.e. no tenemos saldo suficiente para comprar) se desacen todas las consultas con ~ROLLBACK~.
+
+/Nota: ~START TRANSACTION~, ~BEGIN~ y ~BEGIN WORK~ son sinónimos que podremos utilizar indistintamente/.
+
+   Deberemos haber indicado al sistema que vamos a utilizar transaciones mediante el ~SET autocommit = 0;~ o ~SET autocommit = OFF;~, ya que de otra forma MySQL toma por defecto el valor ~autocommit = 1~, y estar utilizando tablas que lo soporten, por ejemplo ~InnoDB~.
+
+Para averiguar que tipo de tablas estamos utilizando, podemos utilizar: ~SHOW TABLE status from 00_db_Luis like 'P3_T%'\G;~, para tablas concretas, y  ~SELECT @@default_storage_engine;~, de forma global.
+
+
+
 ** Práctica:
 Este tema no tiene práctica obligatoria, por lo que la evaluación será sólo vía exámen.
