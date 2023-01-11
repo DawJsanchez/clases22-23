@@ -114,7 +114,7 @@ Sí, si no fuera poco el interface, además tenemos una clase que *NO* implement
 ** ~public interface List<E> extends Collection<E>~
 Esta inferface la implementan los ~ArrayList~, los ~LinkedList~, los ~Vector~ y derivado de éste último las ~Stack~ (pilas).
 
-Podemos construir una lista a partir de un array con ~List<String>  lista = (List<String>) Arrays.asList(unArray);~ o incluso ~List<String>  lista = (List<String>) Arrays.asList("Larry", "Moe", "Curly");~
+Podemos construir una lista a partir de un array con ~List<String>  lista = Arrays.asList(unArray);~ o incluso ~List<String>  lista = Arrays.asList("Larry", "Moe", "Curly");~
 **** ~List.of~ (Java 9):
 Con él aparece una nueva forma de construir ~List.of~, p.e. ~List<String> lista=List.of("Esto","es","una","lista");~, pero creará una lista *ESTÁTICA* que sólo podremos utilizar para crear otros elementos más dinámicos.
 
