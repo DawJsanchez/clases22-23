@@ -22,6 +22,23 @@ public class TrabajarArchivo {
      * */
     static Parametros leerParametros(File CSV, int i){ ... }
 
+    /**
+     * El método estático leerModulos nos parsea un archivo CSV y nos lo devuelve un array con el nombre de los módulos (primer campo vacío)
+     *
+     * @param CSV archivo CSV con un campo vacío (o con "nombre") y un número indefinido de columnas con el nombre de cada módulo <String>
+     * @return String[].
+     */
+    static String[] leerModulos(File CSV){ ... }
+
+    /**
+     * El método estático leerAlumno nos parsea un archivo CSV y nos lo devuelve un objeto de la clase Alumno
+     *
+     * @param CSV archivo CSV con los campos String nombre y un número indefinido de columnas con las notas de cada módulo <float>
+     * @param i   lee la fila i del archvivo
+     * @return Alumno. Objeto con 2 atributos nombre <String> y array notas <float>
+     */
+    static Alumno leerAlumno(File CSV, int i){ ...  }
+
     /** Método estático leerArchivo devuelve un String con el archivo completo
      *
      * @param file - File a leer
