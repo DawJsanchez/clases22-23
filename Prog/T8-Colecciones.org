@@ -48,6 +48,8 @@ public interface java.util.Collection<E> extends java.lang.Iterable<E> {
   public default java.util.stream.Stream<E> parallelStream();
 #+END_SRC
 
+*Nota:* aquí aparece la semántica de los /genéricos/. Si quieres saber más sobre ellos, [[https://picodotdev.github.io/blog-bitix/2016/04/tutorial-sobre-los-tipos-genericos-de-java/][aquí]] tienes una referencia.
+
 Tenemos métodos que hablan por si solos, pero también tenemos otros algo especiales:
 + los ~iterator()~ que nos devolverá un elemento ~Iterator~ que podremos:
 		+ obtener un elemento con ~next()~,
@@ -106,9 +108,10 @@ Aquí de momento no vamos a ir más allá. Cuando veamos el tema de ~POO II~ ent
 + [[https://javadesdecero.es/avanzado/expresiones-lambda-java/][Expresiones Lambda y ::]]
 
 * Clase ~Collections~
-Sí, si no fuera poco el interface, además tenemos una clase que *NO* implementa la interface, si no que es una clase con métodos estáticos al estilo de ~Arrays~, esto es, que nos ayuda a manipular las colecciones, pero no a crearlas.
+  Sí, si no fuera poco el interface, además tenemos una clase que *NO* implementa la interface, si no que es una clase con métodos estáticos al estilo de ~Arrays~, esto es, que nos ayuda a manipular las colecciones, pero no a crearlas.
 
  + [[https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html][Class Collections extends Object]]
+
 
 * ~List~ (listas)
 ** ~public interface List<E> extends Collection<E>~
