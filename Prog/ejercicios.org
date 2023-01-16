@@ -1,0 +1,13 @@
+#+Title: Colección de ejercicios
+
+* T4 POO
+Los ejercicios son incrementales e independientes, esto es, que el ejercicio siguiente partirá de lo que hayamos hecho en éste, pero los deberéis hacer en archivos diferentes y serán clases diferentes.
+
+1. Vamos a crear una ~Calculadora~ que nos permita realizar las operaciones de suma y resta. \\
+		Debes implementar la clase ~Calculadora~ y los métodos que permitan operar sin instanciar ~suma(int a, int b): int~ y ~resta(int m, int s): int~. Eso y sólo eso.
+2. Vamos crear una ~Calculadora~ y la dotaremos de ~color~ y ~memoria~. También querremos ver su ~color~ y el contenido de ~memoria~.
+3. Vamos a dotar a la ~Calculadora~ de capacidad para operar contra la ~memoria~, esto es, ~suma(int a): int~, ~decrementarMemoria(int s): int~ y  ~menosMemoria(int m): int~. Eso y sólo eso.
+4. Prueba la ~Calculadora~.
+5. https://www.discoduroderoer.es/ejercicios-propuestos-y-resueltos-programacion-orientado-a-objetos-java/
+6. https://www.clubensayos.com/Tecnolog%C3%ADa/Ejercicios-de-programaci%C3%B3n-orientada-a-objetos/2850783.html
+7. https://docs.hektorprofe.net/python/programacion-orientada-a-objetos/ejercicios/
