@@ -4,10 +4,10 @@
 ** Funciones de control de flujo:
    #+BEGIN_SRC sql
 	 CASE valor WHEN comparación THEN resultado [WHEN ...][ELSE res] END;
-							  -- Case operador
-	 IF(expr1, expr2, expr3); -- IF expr1 DEVUELVE expr2 ELSE expr3
-	 IFNULL(expr1, expr2);    -- IF expr1 no es Null DEVUELVE expr2
-	 NULLIF(expr1, expr2);    -- IF expr1 = expr2 DEVUELVE NULL ELSE DEVUELVE expr1
+							  # Case operador
+	 IF(expr1, expr2, expr3); # IF expr1 DEVUELVE expr2 ELSE expr3
+	 IFNULL(expr1, expr2);    # IF expr1 no es Null DEVUELVE expr2
+	 NULLIF(expr1, expr2);    # IF expr1 = expr2 DEVUELVE NULL ELSE DEVUELVE expr1
    #+END_SRC
 
 ** Lenguajes de programación y BBDD
@@ -19,17 +19,17 @@
 		DELIMITER //
 		DROP FUNCTION IF EXISTS tuNombreDeFuncion;
 		CREATE FUNCTION tuNombreDeFuncion (Parametero1, Par2, ..., Par_N)
-			   -- todos los Par son tipo IN
+			   # todos los Par son tipo IN
 			   RETURNS tipo [DETERMINISTIC]	# INT, CHAR, ...
 			   BEGIN
-				  -- Declarar aquí variables internas a utilizar;
+				  # Declarar aquí variables internas a utilizar;
 
 		          DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
-		          -- maneja excepciones y estados
+		          # maneja excepciones y estados
 
-				  -- AQUÍ las sentencias sql a ejecutar
+				  # AQUÍ las sentencias sql a ejecutar
 
-				  RETURN variable;	-- del tipo determinado en la línea ~RETURNS~
+				  RETURN variable;	# del tipo determinado en la línea ~RETURNS~
 			   END //
 		DELIMITER ;
       #+END_SRC
@@ -49,9 +49,9 @@
 		CREATE PROCEDURE nombreDelProcedimiento(IN par1 INT, INOUT par2 VARCHAR(50), ..., OUT parN INT)
 		BEGIN
 		   DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
-		   -- maneja excepciones y estados
+		   # maneja excepciones y estados
 
-		   -- AQUÍ las sentencias sql a ejecutar
+		   # AQUÍ las sentencias sql a ejecutar
 		END //
 		DELIMITER ;
       #+END_SRC
@@ -69,7 +69,7 @@
 	#+BEGIN_SRC sql
 	  CREATE TRIGGER nombre_disparador
 			 {BEFORE | AFTER} {INSERT | UPDATE | DELETE} ON nombre_tabla
-	            -- momento y evento en tabla
+	            # momento y evento en tabla
 			 FOR EACH ROW sentencia_disp
 	#+END_SRC
 	#+BEGIN_QUOTE
@@ -82,7 +82,7 @@
 *** Variables:
 	#+BEGIN_SRC sql
 	  SET @nombre_de_variable = expr [, @var2 = expr2...]
-	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... -- asigna columnas a variables
+	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... # asigna columnas a variables
 	#+END_SRC
 *** ~CURSOR~ y ~FETCH~:
 	Investigar uso ([[https://dev.mysql.com/doc/refman/8.0/en/cursors.html][CAP 19.2.11, pág 1032, manual de referencia MySQL 5.0]]).
@@ -90,18 +90,18 @@
 
 ** EXCEPCIONES y MANEJO DE ERRORES
 	#+BEGIN_SRC sql
-	-- En primer lugar renombramos excepciones:
+	# En primer lugar renombramos excepciones:
 	   DECLARE la_has_liado_parda CONDITION FOR 1217;
-	   -- Intenta borrar datos en tabla padre con restricciones e hijos presentes.
+	   # Intenta borrar datos en tabla padre con restricciones e hijos presentes.
 
-	-- Depués controlamos las excepciones:
+	# Depués controlamos las excepciones:
 	   DECLARE EXIT HANDLER FOR la_has_liado_parda
 	   BEGIN
 		  ROLLBACK;
 		  SELECT 'La has ido liando ... ¡manazas!';
 	   END
 
-	-- También directamente:
+	# También directamente:
 	   DECLARE EXIT HANDLER FOR 1217
 	   BEGIN
 		  ROLLBACK;
@@ -132,69 +132,33 @@
 
 		SHOW PROCEDURE STATUS WHERE db = 'classicmodels';
 		SHOW FUNCTION STATUS WHERE db = 'classicmodels';
-			-- muestra los procedimientos y funciones de la BBDD
+			# muestra los procedimientos y funciones de la BBDD
 
 		SET GLOBAL general_log=OFF;
 		SET GLOBAL log_output = 'TABLE';
 		SET GLOBAL general_log=ON;
-		  -- los de un alumno concreto
+		  # los de un alumno concreto
 		SELECT event_time, user_host, command_type, CONVERT(argument USING utf8)
 		  FROM mysql.general_log
 		  WHERE user_host LIKE '%Alfonso%'
 		  ORDER BY event_time DESC ;
 
-		  -- logs completos
+		  # logs completos
 		SELECT event_time, user_host, command_type, CONVERT(argument USING utf8)
 		  FROM mysql.general_log
 		  ORDER BY event_time DESC ;
 
 
 		SET GLOBAL log_bin_trust_function_creators = 1;
-			-- habilita la subida de FUNCIONES sin privilegios
+			# habilita la subida de FUNCIONES sin privilegios
 #+END_SRC
 
 * PRÁCTICA:                                                        :practica:
 
-** GESTIÓN TIENDA
-*** Tablas:
-	Ir pensando cuáles vamos a necesitar. Algunos ejemplos:
-      + Trabajadores
-      + Proveedores
-      + Clientes
-      + Almacenes / stocks
-      + Catálogo de productos
-      + Pedidos
-      + Productos (de pedidos)
-      + Compras
-      + Expediciones
-      + Ventas
-      + Facturación
-      + Abonos
-*** Interface GUI-SQL:
-	Nuestra aplicación de gestión será realizado por 2 equipos de trabajo (profesor - alumno), encargándose el primer equipo de la interfaz gráfica de usuario -GUI- y el segundo del motor SQL (tablas, funciones, procedimientos, triggers, vistas, ...).
-	La comunicación de ambas partes se realizará mediante el modelo cliente-servidor (GUI-SQL) y se optará por el paso de mensajes a través de algunas tablas especiales. Estas tablas son:
-      + Tabla ~config~: tabla tipo ~"parametro":valor~ que almacenará todas las variables necesarias para el frontend (GUI) y para el backend (SQL). Parámetros mínimos:
-		- "salt":"valor" -> "salt" es un parámetro utilizado para agregar un extra de seguridad a la gestión de contraseñas.
-		- "crearUsuario":1 -> para crear nuevo usuario
-		- "empresa":"nombre de la empresa" -> nombre de la empresa
-		- "logo":"nombre_logo.extension" -> logotipo de la empresa
-		  #+BEGIN_SRC sql
-		   CREATE TABLE	 config ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, parametro varchar(50) NOT NULL, valor varchar(50) NOT NULL);
-		   INSERT INTO config (parametro, valor) VALUES ('salt','yo'), ('crearUsuario',1), ('empresa','I.E.S. Arroyo Harnina'),('logo', 'nuevo-logo-harnina.png');
-		  #+END_SRC
-      + Tabla "usuarios": tabla tipo "usr":"pass", y probablemente queráis relacionarlo con la tabla trabajadores o clientes.
-		Esta tabla no debe guardar el password en texto plano. *DEBE* hacerse el hash del password, y ya que lo tenemos, también debe usarse el ~salt~ para evitar tablas Rainbow (arcoíris).
-      + Tabla "menu" (-v1): esta tabla contendrá las estructura de toda la base de datos, de forma que recoriéndola podamos construir la interfaz de acceso a datos.
-		- id_padre: identifica la dependencia de otra entrada. Si vale 0 será cargada en el menú inicial del programa.
-		- entrada: nombre a mostrar.
-		- tabla: tabla a la que apunta.
-		- tipo: a priori tendremos las opciones formulario sencillo, formualario múltiple e informe, para los insert/update/delete en los ~formularios~ y select en los ~informes~.
-      + Mejoras tabla "menu" (-v2) (de momento no): para optimizar las consultas realizadas, guardaremos los datos en formato nombre:valor (JSON con estructura).
-
-*** Gestión de nóminas:
-      #+CAPTION: Ejemplo de nómina
-	  #+attr_org: :width 400
-	  [[./bbdd/img/nomina_v3b.jpg]]
+** Gestión de nóminas:
+     #+CAPTION: Ejemplo de nómina
+	 #+attr_org: :width 400
+	 [[./bbdd/img/nomina_v3b.jpg]]
 **** Tablas:
 	 Se recuerda que el alumno debe estar familiarizado con el lenguaje SQL y no sólo con los clientes de acceso a servidores SQL, por lo que deben realizar toda la práctica y será recogida por el profesor en formato SQL y sólo en dicho formato. \\
 	 Se crearán las siguientes tablas:
@@ -254,7 +218,7 @@
 				   id_producto   INT UNSIGNED  NOT NULL FOREIGN KEY REFERENCES tabla_productos (id),
 				   id_proveedor  INT UNSIGNED  NOT NULL FOREIGN KEY REFERENCES tabla_proveedores (id),
 
-				   PRIMARY KEY (id_producto, id_proveedor) -- clave primaria y única
+				   PRIMARY KEY (id_producto, id_proveedor) # clave primaria y única
 			  ); /* esta tabla almacenará todas las relaciones posibles entre productos
 					   y proveedores... relación N:M */
 		#+END_SRC
@@ -295,9 +259,9 @@
 	  Regalo... pero quiero que me la analicéis y _mejoréis_:
 	#+BEGIN_SRC sql
 	  SET @mes = 2, @anho = 2020;
-		  -- mes y año seleccionado para genera nómina
+		  # mes y año seleccionado para genera nómina
 	  SET @fecha = CONCAT(@anho, '-', @mes, '-', '15');
-		  -- cogemos el 15 por estar en la mitad, pero da igual el día
+		  # cogemos el 15 por estar en la mitad, pero da igual el día
 	  SELECT
 		 @fecha fecha_seleccionada,
 		 ADDDATE( LAST_DAY( SUBDATE( @fecha, INTERVAL 1 MONTH ) ), 1) primer_dia_mes,
@@ -315,10 +279,10 @@
 	  DROP FUNCTION IF EXISTS diasTrabajados;
 	  CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
 	  BEGIN
-		  -- declaring variables;
-		  -- asignamos valores;
-		  -- toma de decisión IF / CASE / ...
-		  -- salida
+		  # declaring variables;
+		  # asignamos valores;
+		  # toma de decisión IF / CASE / ...
+		  # salida
 		  RETURN (dias);
 	  END //
 	  DELIMITER ;
@@ -365,10 +329,10 @@
 **** Solución:
 ***** Tablas:
 	 #+BEGIN_SRC sql
-	 -- Creamos la tabla con los datos generales del trabajador y la empresa
-	 -- La tabla no está normalizada ya que evidentemente deberemos sacar los
-	 --	datos de la empresa a una tabla aparte -> FN3
-	 --	insertamos 2 trabajadores
+	 # Creamos la tabla con los datos generales del trabajador y la empresa
+	 # La tabla no está normalizada ya que evidentemente deberemos sacar los
+	 #	datos de la empresa a una tabla aparte -> FN3
+	 #	insertamos 2 trabajadores
 	 CREATE TABLE `trab_datos` (
 		 `id` int NOT NULL AUTO_INCREMENT,
 		 `empresa` varchar(50) NOT NULL,
@@ -384,7 +348,7 @@
 		 VALUES ('Bodegas Harnina','C/ Coria s/n - Almendralejo','0634567890','Antonio','Banderas','50000000R','0612345678'),
          ('Bodegas Harnina','C/ Coria s/n - Almendralejo','0634567890','Manolo','Banderas','50000001R','0612345679');
 
-	 -- Creamos la tabla contratos del trabajador y la vinculamos con el id de trabajador
+	 # Creamos la tabla contratos del trabajador y la vinculamos con el id de trabajador
      CREATE TABLE `trab_contratos` (
          `id` int NOT NULL AUTO_INCREMENT,
          `trab_datos_id` int NOT NULL,
@@ -398,7 +362,7 @@
 	 INSERT INTO trab_contratos (trab_datos_id,fecha_alta,fecha_baja) VALUE (2, '2020-01-01', '2021-03-10');
 	 INSERT INTO trab_contratos (trab_datos_id,fecha_alta) VALUE (2, '2020-03-15');
 
-     -- Creamos la tabla conceptos de la nómina, y la relacinamos con el contrato
+     # Creamos la tabla conceptos de la nómina, y la relacinamos con el contrato
      CREATE TABLE `trab_conceptos_nomina` (
          `id` int NOT NULL AUTO_INCREMENT,
          `trab_contratos_id` int NOT NULL,
@@ -416,7 +380,7 @@
 				 (3, 'Incentivos', 200),
 				 (3, 'Antiguedad', 50);
 
-     -- Procedure trabACobrar(mes, año)
+     # Procedure trabACobrar(mes, año)
 	 #+END_SRC
 ***** Funciones:
 ****** Procedimiento general:
@@ -443,13 +407,13 @@
 	   #+BEGIN_SRC sql
  CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
  BEGIN
-     -- declaring variables;
-	 -- ...
+     # declaring variables;
+	 # ...
 
-	 -- Calculamos las fechas de ini y fin del mes de la nómina deseada.
-	 -- Capturamos las fechas de alta y de baja de contrato.
+	 # Calculamos las fechas de ini y fin del mes de la nómina deseada.
+	 # Capturamos las fechas de alta y de baja de contrato.
 
-	 -- Empieza la "FIESTA":
+	 # Empieza la "FIESTA":
 	 IF ( (IFNULL( fecha_baja_contrato, '2099-12-31' ) >= fecha_fin ) ) THEN
 	 /*  Si fecha baja de contrato = NULL o >= último día mes =>
 		 Calculamos D y luego lo corregimos.
@@ -476,13 +440,13 @@
 	   #+BEGIN_SRC sql
  CREATE FUNCTION diasTrabajados(mes INT, anho INT, id_contrato INT) RETURNS INT DETERMINISTIC
  BEGIN
-     -- declaring variables;
-	 -- ...
+     # declaring variables;
+	 # ...
 
-	 -- Calculamos las fechas de ini y fin del mes de la nómina deseada.
-	 -- Capturamos las fechas de alta y de baja de contrato.
+	 # Calculamos las fechas de ini y fin del mes de la nómina deseada.
+	 # Capturamos las fechas de alta y de baja de contrato.
 
-	 -- Empieza la "FIESTA":
+	 # Empieza la "FIESTA":
 	 IF ( (IFNULL( fecha_baja_contrato, '2099-12-31' ) >= fecha_fin ) ) THEN
 	 /*    Si fecha baja de contrato = NULL o >= último día mes =>
 		 D = Último día mes - fecha alta contrato + 1:
@@ -494,7 +458,7 @@
 		   WHEN dias < 0 THEN 0
 		   WHEN dias > 30 THEN 30
 		   ELSE dias
-		END; -- del CASE
+		END; # del CASE
 	 ELSE
 		 /* Si fecha baja < primer día mes/año => D = 0 días;
 			Si fecha baja <= último día mes/año:
@@ -508,7 +472,7 @@
 				  THEN ( DATEDIFF(fecha_baja_contrato, fecha_ini) + 1 )
 			 WHEN (fecha_baja_contrato <= fecha_fin AND fecha_alta_contrato > fecha_ini)
 				  THEN ( DATEDIFF(fecha_baja_contrato, fecha_alta_contrato) + 1)
-		 END; -- del CASE
+		 END; # del CASE
 	 END IF;
 
 	 RETURN (dias);
@@ -526,6 +490,42 @@
 	   #+INCLUDE: "./bbdd/practicas/nomina/descuentosNomina.sql" src sql
 ***** Mejoras:
 	  + Prorrateo de las pagas extra.
+** GESTIÓN TIENDA
+*** Tablas:
+	Ir pensando cuáles vamos a necesitar. Algunos ejemplos:
+      + Trabajadores
+      + Proveedores
+      + Clientes
+      + Almacenes / stocks
+      + Catálogo de productos
+      + Pedidos
+      + Productos (de pedidos)
+      + Compras
+      + Expediciones
+      + Ventas
+      + Facturación
+      + Abonos
+*** Interface GUI-SQL:
+	Nuestra aplicación de gestión será realizado por 2 equipos de trabajo (profesor - alumno), encargándose el primer equipo de la interfaz gráfica de usuario -GUI- y el segundo del motor SQL (tablas, funciones, procedimientos, triggers, vistas, ...).
+	La comunicación de ambas partes se realizará mediante el modelo cliente-servidor (GUI-SQL) y se optará por el paso de mensajes a través de algunas tablas especiales. Estas tablas son:
+      + Tabla ~config~: tabla tipo ~"parametro":valor~ que almacenará todas las variables necesarias para el frontend (GUI) y para el backend (SQL). Parámetros mínimos:
+		- "salt":"valor" -> "salt" es un parámetro utilizado para agregar un extra de seguridad a la gestión de contraseñas.
+		- "crearUsuario":1 -> para crear nuevo usuario
+		- "empresa":"nombre de la empresa" -> nombre de la empresa
+		- "logo":"nombre_logo.extension" -> logotipo de la empresa
+		  #+BEGIN_SRC sql
+		   CREATE TABLE	 config ( id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, parametro varchar(50) NOT NULL, valor varchar(50) NOT NULL);
+		   INSERT INTO config (parametro, valor) VALUES ('salt','yo'), ('crearUsuario',1), ('empresa','I.E.S. Arroyo Harnina'),('logo', 'nuevo-logo-harnina.png');
+		  #+END_SRC
+      + Tabla "usuarios": tabla tipo "usr":"pass", y probablemente queráis relacionarlo con la tabla trabajadores o clientes.
+		Esta tabla no debe guardar el password en texto plano. *DEBE* hacerse el hash del password, y ya que lo tenemos, también debe usarse el ~salt~ para evitar tablas Rainbow (arcoíris).
+      + Tabla "menu" (-v1): esta tabla contendrá las estructura de toda la base de datos, de forma que recoriéndola podamos construir la interfaz de acceso a datos.
+		- id_padre: identifica la dependencia de otra entrada. Si vale 0 será cargada en el menú inicial del programa.
+		- entrada: nombre a mostrar.
+		- tabla: tabla a la que apunta.
+		- tipo: a priori tendremos las opciones formulario sencillo, formualario múltiple e informe, para los insert/update/delete en los ~formularios~ y select en los ~informes~.
+      + Mejoras tabla "menu" (-v2) (de momento no): para optimizar las consultas realizadas, guardaremos los datos en formato nombre:valor (JSON con estructura).
+
 ** Gestión de almacén: ...
 *** Gestión de compras: ...
 *** Gestión de ventas: ...
