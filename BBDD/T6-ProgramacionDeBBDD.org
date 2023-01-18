@@ -529,3 +529,49 @@
 ** Gestión de almacén: ...
 *** Gestión de compras: ...
 *** Gestión de ventas: ...
+* Resumen del RUTINAS
+  :PROPERTIES:
+  :CUSTOM_ID: programacion-de-bbdd
+  :END:
+
+** Creacion de la bbdd
+   :PROPERTIES:
+   :CUSTOM_ID: creacion-de-la-bbdd
+   :END:
+
+1. En primer lugar deberéis crear la bbdd y asigarsela a algún usuario.
+   \ /Nota:/ Ya lo he hecho por vosotros porque no disponeis de los
+   permisos. /Nota 2:/ Para el Proyecto Final Ciclo deberéis realizarlo.
+2. Cargar tablas: \
+   =mysql -hdb.luiscastelar.duckdns.org -P45682 -uLuis00 -p$(cat ~/Documentos/secretos/oracle_mysql_Luis00.pass) < nominas21_01_tablas_iniciales.sql 2>&1 | tee nominas21_01_tablas_iniciales.sql.log=
+   /Nota:/ Debes sustituir el usuario y el password por los tuyos.
+
+** Carga de funciones
+   :PROPERTIES:
+   :CUSTOM_ID: carga-de-funciones
+   :END:
+
+1. =mysql -hdb.luiscastelar.duckdns.org -P45682 -uLuis00 -p$(cat ~/Documentos/secretos/oracle_mysql_Luis00.pass) < nominas21_02_fun_descuentosNomina.sql 2>&1 | tee nominas21_02_fun_descuentosNomina.sql.log=
+
+2. Ver funciones almacenadas =SHOW FUNCTION STATUS;=
+
+3. Ver la definición de la función
+   =SHOW CREATE FUNCTION descuentosNomina;"=
+
+** Uso de funciones
+   :PROPERTIES:
+   :CUSTOM_ID: uso-de-funciones
+   :END:
+
+Prueba/uso de funcionamiento =SELECT descuentosNomina(4.7, 1000);=,
+siendo el primer parámetro el porcentaje de deducción del salario bruto
+que es el segundo parámetro de la función.
+
+** Carga de procedimientos
+   :PROPERTIES:
+   :CUSTOM_ID: carga-de-procedimientos
+   :END:
+
+1. La carga es igual que la de las funciones.
+2. Ver procedimientos almacenados =SHOW PROCEDURE STATUS;=
+3. Ver la definición =SHOW CREATE PROCEDURE ...=;
