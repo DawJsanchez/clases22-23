@@ -1,0 +1,36 @@
+#+Title: JAKARTA EE
+#+Subtitle: Antigua Java EE
+
+*  Introducción
+La Fundación Eclipse asumió en 2017 el proceso de desarrollo y estandarización de Java EE. A partir de ese momento y por motivos de derechos de nombres, Java EE pasa a denominarse Jakarta EE.
+
+Jakarta EE se asienta sobre Java SE y lo desarrolla hacia la web, el ámbito empresarial y el acceso a datos (bases de datos).
+
+** Referencias:
+ + [[https://eclipse-ee4j.github.io/jakartaee-tutorial/][Jakarta EE Tutorial OFICIAL]]
+ + [[https://docs.google.com/presentation/d/1LBjjJg64j0HjmFu6m3EApN--mkavemyPFMUobIbGZds/edit#slide=id.g14a74e03a56_1_512][Jakarta EE 10 - Presentación OFICIAL]]
+
+* Overview (sumario)
+  + Tecnologías que incluye: \\
+#+attr_org: :width 800px
+[[./img/t12-overview.png]]
+
+  + Modelo 2 capas: cliente - datos
+  + Modelo 3 capas: cliente - servidor - datos
+  + Modelo 4 capas: cliente - contenedor web - lógica de negocio - datos.\\
+[[./img/t12-modelo-4-capas.svg]]
+
+Nosotros vamos a aprender:
+ + Capa cliente: ya vista con Java  SE o Web Browser
+ + Capa contenedor web:
+   - ~JSP~ para la /capa vista/ y accesos básicos[fn:1].
+   - ~Servlet~ para la /capa controlador/.
+ + Capa de lógica de negocio:
+   - Utilizaremos las Entreprise Bean ~EJB~ para la /capa de modelo/, esto es el acceso a los datos.
+
+** Referencias
+ + [[https://docs.oracle.com/javaee/5/tutorial/doc/bnaay.html][Java EE 5 - Tutorial OFICIAL]]
+
+* Footnotes
+
+[fn:1] La tecnología JSP está marcada como obsoleta y se desaconseja su uso para nuevas aplicaciones frente a ~JSF~. Pese a ésto, el número de aplicaciones en funcionamiento y su simplicidad se hace ideal para introducirnos en el mundo de Jakarta EE.
