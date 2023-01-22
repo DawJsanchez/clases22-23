@@ -223,17 +223,14 @@ Concretamente partiremos de:
 + CONCTIPO (conTipo, nombre, tipo) => ~tipos_de_conceptos (*tipo_de_concepto_id*, nombre, tipo)~
 + CONCSALARIO (ID, numContrato, conTipo, cantidad) => ~conceptos_de_salario (*concepto_id*, /contrato_id/, /tipo_de_concepto_id/, cantidad)~
 + PERCEPCION <= CONCSALARIO => no utilizada
-+ BASESCOT (ID, numContrato, cantidad)
-+ BASESTIPOS (ID, nombre, porcentaje)
-+ DEDUCCION (ID, ...)
----
-/Otras tablas/: - (*) Un mismo trabajador puede realizar n aportaciones en un mes.
-	+ IRPF (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
-	+ DEDCC (ID, anho, mes, NIF, numContrato, cantidad) => SES
-	+ DEDDES (ID, anho, mes, NIF, numContrato, cantidad) => SEPE
-	+ DEDFP (ID, anho, mes, NIF, numContrato, cantidad) => SEXPE
-	+ DEDHEXTRA (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
-	+ DEDHEXTRAFM (ID, anho, mes, NIF, numContrato, cantidad) => Hacienda
-... Entonces parace que mejor todas en una sola tabla con el código del tipo de deducción:
-+ DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad)
-+ TIPODEDUC (tipoDeduccion, nombre, receptor)
++ BASESCOT (ID, numContrato, cantidad) => ~bases_de_cotizacion (*base_cot_id*, /contrato_id/, cantidad)~
++ BASESTIPOS (ID, nombre, porcentaje) => ~tipos_aplicables (*tipo_base_id*, nombre, porcentaje)~
++ TIPODEDUC (tipoDeduccion, nombre, receptor) => ~tipos_deducciones (*tipo_deduccion_id*, nombre, recpetor)~\\
+		Donde el recpetor es:
+  + Hacienda para el IRPF, DEDHEXTRA y DEDHEXTRAFM
+  + SES para DEDCC
+  + SEPE para DEDDES
+  + SEXPE para DEDFP
++ DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad) => ~deducciones (*deduccion_id*, /tipo_deduccion_id/, anho, mes, /trabajador_id/,/contrato_id/, cantidad)~
+
+Ahora, deberemos crear un sistema que implemente:
