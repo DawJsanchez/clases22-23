@@ -77,5 +77,82 @@ Y, también:
 
 ** Práctica:
 Este tema no tiene práctica obligatoria, por lo que la evaluación será sólo vía exámen.
+** Usuarios y privilegios
+
+#+BEGIN_SRC sql
+# Crear usuarios
+		mysql> CREATE USER [IF NOT EXISTS]  username@hostname IDENTIFIED BY 'password';
+		# hostname tipicamente ~localhost~ para conexiones locales
+# Ver usuarios
+		mysql> SELECT USER FROM mysql.user;
+
+#  ¿Porqué tenemos dos root?
+
+# Asignar privilegios a usuarios
+		mysql> GRANT all privileges ON bobdb.* TO bob@localhost;
+
+# Consultar privilegios
+		mysql> SHOW GRANTS FOR super@localhost;
+#+END_SRC
+
+Los privilegios posibles son ~SELECT~, ~INSERT~, ~UPDATE~ y ~DELETE~. Podemos asignarlos todos con ~ALL PRIVILEGES~.\\
+Los privilegios pueden aplicarse de forma muy granular, esto es, pueden aplicarse en:
++ todas las bbdd: ~*.*~
++ una bbdd: ~dbTienda.*~
++ una tabla: ~dbTienda.clientes~
++ por columnas:
+  #+Begin_SRC sql
+	GRANT
+	SELECT (employeeNumner,lastName, firstName,email),
+	UPDATE(lastName)
+	ON employees
+	TO bob@localhost;
+  #+END_SRC
++ sobre rutinas: ~GRANT EXECUTE ON PROCEDURE nominas TO bob@localhost;~
++ copiar privilegios: ~GRANT PROXY ON root TO alumno@localhost;~
+
+**** Referencias:
++ [[https://www.mysqltutorial.org/mysql-grant.aspx][Permisos]]
+
+*** Ejercicios
+Para realizar estos ejercicios vamos a montar un entorno de desarrollo basdo en ~Docker~.\\
+
+Aunque ~Docker~ sobre ~Windows~ nunca es una buena idea a la larga, para el propósico específico que vamos a tratar en el que *NO NECESITAMOS* controlar los puertos de capa 4 ~TCP/IP~ podremos emplear ~Docker Desktop~ sobre ~Windows~.
+**** Contenedor MYSQL
+Una vez instalado ~Docker Desktop~ sólo deberemos ejecutar los siguientes 3 comandos en la terminal.
+#+BEGIN_SRC bash
+# 1. Crear red
+			docker network create redMySQL
+#1b. Verificar red
+			docker network list
+# 2. Crear contenedor mariadb
+			docker run -d --name mariadb -e TZ='Europe/Madrid' -e MARIADB_RANDOM_ROOT_PASSWORD=true -v datos:/var/lib/mysql -p 3306:3306 --net redMySQL mariadb:latest
+# 2b. Verificar funcionamiento
+		  docker ps
+# 3. [Opcional] Crear PHPMyAdmin
+		  docker run -d --name phpmyadmin -e PMA_HOST=mariadb --net redMySQL -P phpmyadmin
+# 3b. Verificar donde está
+		  docker ps
+
+# 99. Eliminar todo
+		docker rm mariadb phpmyadmin
+		docker network rm redMySQL
+#+END_SRC
+**** Crear usuarios
+1. Crea el usuario ~DrJimenez~ y asignarle permisos de:
+   + lectura a la tabla ~datos_de_paciente~ de la bbdd ~hospital~.
+   + escritura a la tabla ~historial_clinico~ de la misma bbdd.
+2. Crea el rol ~sanitario~ y repite los permisos anteriores.
+3. Crea los usarios ~DraJimenez~ y ~DraGonzalez~ y asígnales el rol ~sanitario~.
+4. Crea el rol  ~adminstrativo~ y asignarle permiso de:
+   + creación, escritura y borrado a la tabla ~datos_de_paciente~ de la bbdd.
+5. Creal los usuarios ~adm_pedro~ y ~adm_manuela~ y asígnales el rol ~administrativo~.
+6. Crea el rol ~informatica~ y asignale permiso global a toda la bbdd.
+7. Crea el usuario ~inf_antonio~ y asígnale el rol ~informatica~.
+8. Elimina los privilegios de borrado de la tabla ~datos_de _paciente~ al rol ~administrativo~.
+
+
+/Nota:/ Evidentemente debéis investigar la forma de crear roles y eliminación de permisos. *Ésto cae en el EXÁMEN*.
+
 ** Exámen:
 Este tema tendrá exámen el próximo viernes 27 de enero.
