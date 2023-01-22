@@ -139,20 +139,25 @@ Una vez instalado ~Docker Desktop~ sólo deberemos ejecutar los siguientes 3 com
 		docker network rm redMySQL
 #+END_SRC
 **** Crear usuarios
-1. Crea el usuario ~DrJimenez~ y asignarle permisos de:
-   + lectura a la tabla ~datos_de_paciente~ de la bbdd ~hospital~.
+1. Crea la db ~hospital~.
+2. Crea el rol ~informatica~ y asignale permiso global a toda la bbdd.
+3. Crea el usuario ~inf_antonio~ y asígnale el rol ~informatica~.
+4. Entra con el usuario ~inf_antonio~.
+5. Crea la tabla ~historial_clinico (*paciente_id*, nombre, sintomas, diagnostico, farmacologia,  fecha_ingreso, fecha_alta)~
+6. Crea el usuario ~DrJimenez~ y asignarle permisos de:
+   + lectura a la tabla ~datos_de_pacientes~ de la bbdd ~hospital~.
    + escritura a la tabla ~historial_clinico~ de la misma bbdd.
-2. Crea el rol ~sanitario~ y repite los permisos anteriores.
-3. Crea los usarios ~DraJimenez~ y ~DraGonzalez~ y asígnales el rol ~sanitario~.
-4. Crea el rol  ~adminstrativo~ y asignarle permiso de:
-   + creación, escritura y borrado a la tabla ~datos_de_paciente~ de la bbdd.
-5. Creal los usuarios ~adm_pedro~ y ~adm_manuela~ y asígnales el rol ~administrativo~.
-6. Crea el rol ~informatica~ y asignale permiso global a toda la bbdd.
-7. Crea el usuario ~inf_antonio~ y asígnale el rol ~informatica~.
-8. Elimina los privilegios de borrado de la tabla ~datos_de _paciente~ al rol ~administrativo~.
-
+7. Crea el rol ~sanitario~ y repite los permisos anteriores.
+8. Crea los usarios ~DraJimenez~ y ~DraGonzalez~ y asígnales el rol ~sanitario~.
+9. Crea el rol  ~adminstrativo~ y asignarle permiso de:
+   + creación, escritura y borrado a la tabla ~datos_de_pacientes~ de la bbdd.
+10. Creal los usuarios ~adm_pedro~ y ~adm_manuela~ y asígnales el rol ~administrativo~.
+11. Elimina los privilegios de borrado de la tabla ~datos_de _paciente~ al rol ~administrativo~.
+12. Crea una vista llamada ~estado_de_pacientes~ con las columnas ~paciente_id~, ~fecha_ingreso~ y ~fecha_alta~. Asigna permisos de lectura para el perfil ~administrativo~ para dicha vista.
+13. Entre con el usuario ~adm_pedro~ y verifica a que tienes acceso.
 
 /Nota:/ Evidentemente debéis investigar la forma de crear roles y eliminación de permisos. *Ésto cae en el EXÁMEN*.
+
 
 ** Exámen:
 Este tema tendrá exámen el próximo viernes 27 de enero.
