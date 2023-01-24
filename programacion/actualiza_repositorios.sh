@@ -57,13 +57,11 @@ _actualiza_repo(){
 			if [[ ('Ya está actualizado.' == "$salida") || ('Already up to date.' == "$salida") ]]; then
 				echo -e "${FgGreen}\t $F sin cambios.${Reset}"
 			else
-				LOG="$RAIZ/mios/privado/logs/.${1}-${F}.log"
-				if [[ ! -f "$LOG" ]]; then touch "$LOG"; fi
+				#LOG="$RAIZ/mios/privado/logs/.${1}-${F}.log"
+				#if [[ ! -f "$LOG" ]]; then touch "$LOG"; fi
 				echo -e "${FgWhite}${BgRed}Actualizando ${F} ${Reset}"
 				echo -e "${FgRed}${salida}${Reset}"
-				#echo "$(date) - cambios:" >> "$LOG"
-				#echo -e "\t $(grep -E 'changed|deletion|insertion' ~/salida.txt)" >> "$LOG"
-				echo -e "$(date), $(grep -E 'changed|deletion|insertion' ~/salida.txt)" >> "$LOG"
+				#echo -e "$(date), $(grep -E 'changed|deletion|insertion' ~/salida.txt)" >> "$LOG"
 			fi
 
 			# git pull
