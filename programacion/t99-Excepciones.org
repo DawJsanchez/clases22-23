@@ -1,0 +1,9 @@
+* EXCEPCIONES y ERRORES
+
+Mapa de situación:\\
+[[mapa][https://i0.wp.com/somoshackersdelaprogramacion.es/wp-content/uploads/2022/05/java-exceptions-hierarchy-example.png?w=977&ssl=1]]
+
+
+** Referencias:
++ [[Uso de excepciones en Java][./t99/B2-excepciones.pdf]]
++ [[Somos hacker de la programación][https://somoshackersdelaprogramacion.es/excepciones-en-java]]
