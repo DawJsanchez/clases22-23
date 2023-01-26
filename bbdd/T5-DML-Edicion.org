@@ -93,6 +93,20 @@ Este tema no tiene práctica obligatoria, por lo que la evaluación será sólo 
 
 # Consultar privilegios
 		mysql> SHOW GRANTS FOR super@localhost;
+
+###################################################
+### 		ROLES				###
+###################################################
+DROP ROLE inf;
+CREATE ROLE inf;
+DROP USER prueba@'%'; 
+CREATE USER prueba@'%' IDENTIFIED BY '1234';
+grant all privileges on *.* to inf with grant option;
+GRANT inf TO prueba@'%';
+SHOW GRANTS FOR inf;
+show grants for prueba@'%';
+SET DEFAULT ROLE inf for prueba@'%';
+
 #+END_SRC
 
 Los privilegios posibles son ~SELECT~, ~INSERT~, ~UPDATE~ y ~DELETE~. Podemos asignarlos todos con ~ALL PRIVILEGES~.\\
