@@ -26,8 +26,6 @@
 |----------------------------+---------+--------+-------------------------|
 | *TODO:*                    |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
-| T4 DML-Consultas           | 10 ene  | 13 ene |                         |
-| T5 DML-Edición             |  ---   | 27 ene   |                         |
 | T6 Programacion de BBDD    | 10 marz | 15 y 17 marz |                         |
 |----------------------------+---------+--------+-------------------------|
 |                            |         |        |                         |
@@ -50,6 +48,7 @@
 |----------------------------+---------+--------+-------------------------|
 | *DONE:*                    |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
+| ---> 1ª EVALUACIÓN |            |             |                                      |
 | T1 Sis almacenamiento info | 11 oct  | X      |                         |
 | T2 DISEÑO LÓGICO (ER)      | 13 oct  | 14 oct |                         |
 | T2 D. LÓGICO (RELACIONAL)  | 18 oct  | 14 oct |                         |
@@ -60,6 +59,11 @@
 |                            |         |        | realizadas y entregadas |
 |                            |         |        | para aprobar            |
 |----------------------------+---------+--------+-------------------------|
+| ---> 2ª EVALUACIÓN |            |             |                                      |
+| T4 DML-Consultas           | 10 ene  | 13 ene |                         |
+| T5 DML-Edición             |  ---   | 27 ene   |                         |
+|----------------------------+---------+--------+-------------------------|
+
 
 *Calificaciones*
 El alumnado deberá entregar las actividades en tiempo y forma que le indique el profesorado. Si esto no es así, se tendrá en cuenta en la calificación final, pudiéndose decidir no calificar las actividades y trabajos entregados fuera de plazo. Si se trata de actividades prácticas en el aula, aparte de la calificación durante su realización, se puede solicitar la entrega de memorias de prácticas cuya entrega será obligatoria.
