@@ -1,6 +1,21 @@
-* Bases de Datos (DAW1)
+#+title: BASES DE DATOS (DAW1)
 
-** Calendario
+* Planificación
++ Semana 30e-3f -> Funciones -> día 3 control
++ Semana 6-10f -> Procedimientos -> día 10 control
++ Semana 13-17f -> variables/condicionales ->día 17 control
++ Semana 22-24f -> condicionales -> día 24 control
++ Semana 27f-3m ->bucles -> día 3 control
++ Semana 6-10m -> triggers y eventos -> día 10 control
++ Semana 13-17m -> repaso para evaluación T4, T5 y T6 -> día 15 y 17 exámenes.\\
+		/Nota: Dada la amplitud de la materia se requerirán 2 días para la ejecución del examen completo./
+
+** Pesos:
++ T4 -> 4 semanas -> 35%
++ T5 -> 2 semanas -> 15%
++ T6 -> 6 semanas -> 60%
+
+* Calendario
 | *Tema*                     | *Pract* | *Exam* | *Comentario*            |
 |----------------------------+---------+--------+-------------------------|
 | *2ª EVALUACIÓN*            |         |        | Más del 80% de las      |
@@ -13,7 +28,7 @@
 |----------------------------+---------+--------+-------------------------|
 | T4 DML-Consultas           | 10 ene  | 13 ene |                         |
 | T5 DML-Edición             |  ---   | 27 ene   |                         |
-| T6 Programacion de BBDD    | 24 marz | 24marz |                         |
+| T6 Programacion de BBDD    | 10 marz | 15 y 17 marz |                         |
 |----------------------------+---------+--------+-------------------------|
 |                            |         |        |                         |
 |----------------------------+---------+--------+-------------------------|
@@ -56,7 +71,7 @@ El alumnado que no entregue el 80% de las actividades obligatorias indicadas por
 Se considera aprobado en una evaluación al alumnado que saque una nota media ponderada de 5 en los apartados antes indicados. Será condición necesaria para poder hacer media obtener una calificación mínima de 4 puntos en cada uno de los apartados y haber realizado al menos el 80% de las actividades obligatorias. Si no se cumplieran estas condiciones no se obtendrá calificación positiva en la evaluación, sin realizarse la media ponderada de las tres partes.
 
 
-** Resumen de temas
+* Resumen de temas
   + Total: 192 horas.
   + Resúmen de contenidos:
 	1. Sistemas de almacenamiento de información
