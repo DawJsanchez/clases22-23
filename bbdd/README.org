@@ -1,5 +1,7 @@
 #+title: BASES DE DATOS (DAW1)
 * Estructura del repositorio
+	Como alumno deberás estructurar tu repositorio *EXACTAMENTE* como la foto adjunta, ya que a partir de este momento todo será preevaluado de forma automática y solo entrará en los directorios indicados.
+
 [[./img/estructura.png]]
 
 * Planificación

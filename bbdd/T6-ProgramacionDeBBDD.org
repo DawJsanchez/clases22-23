@@ -1,69 +1,193 @@
 #+Title: Programación de BBDD
 
-* RUTINAS
-** Funciones de control de flujo:
+* INTRODUCCIÓN
+   Los gestores de BBDD con el tiempo han ido incorporando características propias de un lenguaje de programación y permiten la integración, el control de flujo y el desarrollo de subrutinas. \\
+   Son dependientes del servidor en el que trabajemos, así en ~SQL-Server~ (de MS) se denomina ~Transact-SQL~ o ~T-SQL~, en ~Oracle PL/SQL~, y ~MySQL/MariaDB~ tienen el suyo propio siguiendo el estándar ISO ~SQL/PSM~. Todos implementan soluciones similares, pero el código *NO* es /portable/ directamente.
+
+Lo anterior se traduce en que en ~MariaDB~, además de tablas, podemos almacenar los siguientes objetos:
++ Vistas (ver temas 4 y 5)
++ Rutinas:
+  * Funciones
+  * Procedimientos
++ Triggers y eventos
++ [[https://mariadb.com/kb/en/user-defined-functions/][User-defined functions (funciones externas)]]
+
+* Funciones:
+Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias SQL como cualquier otra función regula (p.e. ~ABS()~) y retorna un *único* valor.
+[[https://mariadb.com/kb/en/stored-function-overview/][Doc OFICIAL]]
+** CREAR (y borrar):
+    #+BEGIN_SRC sql
+	  DELIMITER //
+	  DROP FUNCTION IF EXISTS tuNombreDeFuncion;
+	  CREATE FUNCTION tuNombreDeFuncion (Parametero1 tipo, Par2 tipo, ..., Par_N tipo)
+			 #-- todos los Par son tipo IN
+			 RETURNS tipo [DETERMINISTIC]	# INT, CHAR, ...
+			 BEGIN
+				#-- Declarar aquí variables internas a utilizar;
+				DECLARE var1, var2 INT;
+
+
+				#-- maneja excepciones y estados
+				DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
+
+
+				#-- AQUÍ las sentencias sql a ejecutar
+				RETURN variable;	# del tipo determinado en la línea ~RETURNS~
+			 END //
+	  DELIMITER ;
+
+	#-- Simplificadamente
+	  USE bbdd;
+	  DROP FUNCTION IF EXISTS sumaEnteros;
+
+	  DELIMITER $$
+	  CREATE FUNCTION sumaEnteros(operador1 INT, operador2 INT)
+			 RETURNS INT DETERMINISTIC
+			 BEGIN
+				DECLARE resultado INT;
+
+				SET resultado := operador1 + operador2;
+				RETURN resultado;
+			 END $$
+	  DELIMITER ;
+    #+END_SRC
+
+	  Una función es determinista si siempre* que toma los mismos valores devuelve el mismo resultado. A efectos prácticos, si no interactuáis con tablas, ni elementos aleatorios (/RAND/ ), podréis decir que la función lo es (DETERMINIST).
+
+	  El manejo de excepciones no es necesario, pero si no las manejáis y obtenéis un error/excepción no controlada la ejecución se detiene, y con ello la corrección de la práctica o exámen.
+
+	  Referencia: [[https://mariadb.com/kb/en/create-function/][Doc OFICIAL]]
+
+*** Asignación de variables:
+	#+BEGIN_SRC sql
+	  SET @nombre_de_variable = expr [, @var2 = expr2...]
+	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... # asigna columnas a variables
+	#+END_SRC
+
+
+** Llamar o invocar:
+    #+BEGIN_SRC sql
+		  SELECT tuNombreDeFuncion( par1 );
+    #+END_SRC
+
+** Mostar:
+    #+BEGIN_SRC sql
+		  SHOW CREATE FUNCTION tuNombreDeFuncion;
+    #+END_SRC
+
+** Eliminar:
+    #+BEGIN_SRC sql
+		  DROP FUNCTION nombre;
+    #+END_SRC
+
+* Procedimientos:
+** CREAR (y borrar):
+    #+BEGIN_SRC sql
+	  DELIMITER //
+	  DROP PROCEDURE IF EXISTS nombreDelProcedimiento;
+	  CREATE PROCEDURE nombreDelProcedimiento(IN par1 INT, INOUT par2 VARCHAR(50), ..., OUT parN INT)
+	  BEGIN
+		 DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
+		 # maneja excepciones y estados
+
+		 # AQUÍ las sentencias sql a ejecutar
+	  END //
+	  DELIMITER ;
+    #+END_SRC
+** Llamar o invorcar:
+    #+BEGIN_SRC sql
+		  CALL nombreDelProcedimiento( Par1, Par2, ... ParN );
+    #+END_SRC
+** Mostrar:
+    #+BEGIN_SRC sql
+		  SHOW CREATE PROCEDURE tuNombreDeProcedimiento;
+    #+END_SRC
+** Eliminar:
+    #+BEGIN_SRC sql
+		  DROP PROCEDURE nombre
+    #+END_SRC
+
+* TODO EXCEPCIONES y MANEJO DE ERRORES
    #+BEGIN_SRC sql
-	 CASE valor WHEN comparación THEN resultado [WHEN ...][ELSE res] END;
-							  # Case operador
+   # En primer lugar renombramos excepciones:
+	  DECLARE la_has_liado_parda CONDITION FOR 1217;
+	  # Intenta borrar datos en tabla padre con restricciones e hijos presentes.
+
+   # Depués controlamos las excepciones:
+	  DECLARE EXIT HANDLER FOR la_has_liado_parda
+	  BEGIN
+		 ROLLBACK;
+		 SELECT 'La has ido liando ... ¡manazas!';
+	  END
+
+   # También directamente:
+	  DECLARE EXIT HANDLER FOR 1217
+	  BEGIN
+		 ROLLBACK;
+		 SELECT 'La has ido liando ... ¡manazas!';
+	  END
+   #+END_SRC
+
+
+* Variables
+** Declaración de variables
+		En ~MariaDB~ tenemos más variables de las que a priori podría parecer debido al ámbito ~scope~ de las mismas. \\
+		Como en todos los lenguajes de programación, la variables tienen un ámbito de visivilidad por lo que vamos a hacer un repaso:
+		+ Globales: van precedidas de la palabra ~GLOBAL~ y tienen ámbito en toda rutina y consulta y por todo usuario y sesión. Sólo los /administradores/ pueden actualizar su valor.
+		+ Variables de sessión: van precedidas de la ~@~ y son las que cualquiequier usuario puede crear, pero sólo son visibles en la sesión actual de ese usuario.
+		+ Variables de rutina:
+		  * Declaradas implícitamente en la entrada/salida de la rutina: el diseñador de la rutina las nombra como argumentos de entrada/salida.
+		  * Declaradas explícitamente: son declaradas todas JUNTAS al comienzo de la rutina, justo después del BEGIN y antes de cualquier otra sentencia. *NO* llevan la ~@~ NUNCA y sólo son de uso interno de la rutina.
+
+Referencia: [[https://mariadb.com/kb/en/declare-variable/][Doc OFICIAL]]
+
+/Recuerda:/ @var != var
+
+** Variables complejas /ROW/ (version > 10.3):
+Estas variables permiten funcionar como variables vectoriales, esto es, podemos definir la variable dimension en el que tengamos las propiedades X, Y y Z.
+
+Las variables ~ROW~ permiten ser el destino de un ~CURSOR~,  así como la salida de múltiples columnas de una consulta.
+
+Referencias: [[https://mariadb.com/kb/en/row/][Doc OFICIAL]]
+
+* Condicionales:
+Son instrucciones de control de flujo o de toma de decisión. Según el condición determinada elegirá un camido de ejecución u otro.
+
+   #+BEGIN_SRC sql
+# Operador Case
+	 CASE valor
+		WHEN comparación THEN resultado
+		[WHEN comp2 THEN res2]
+		...
+		[ELSE res] END;
+
+
+# Condicional IF
+		IF condicion THEN sentencias si verdadero
+		[ELSEIF condicion2 THEN sentencias de esta otra condición ]
+		...
+		[ ELSE sentencias en cualquier otro caso ]
+		END IF;
+   #+END_SRC
+
+Recuerda no confundir el control de flujo con el condicional IF con las funiones IF vistas en tema 4:
+  #+BEGIN_SRC sql
+	# Funciones IF
 	 IF(expr1, expr2, expr3); # IF expr1 DEVUELVE expr2 ELSE expr3
 	 IFNULL(expr1, expr2);    # IF expr1 no es Null DEVUELVE expr2
 	 NULLIF(expr1, expr2);    # IF expr1 = expr2 DEVUELVE NULL ELSE DEVUELVE expr1
    #+END_SRC
 
-** Lenguajes de programación y BBDD
-   Los gesotres de BBDD con el tiempo han ido incorporando características propias de un lenguaje de programación y permiten la integración, el control de flujo y el desarrollo de subrutinas. \\
-   Son dependientes del servidor en el que trabajemos, así en SQL-Server (de MS) se denomina Transact-SQL o T-SQL, en Oracle PL/SQL, y MySQL/MariaDB tienen el suyo propio, aunque sin nombre específico. Todos implementan soluciones similares, pero el código no es ~portable~ directamente.
-*** Funciones:
-**** CREAR (y borrar):
-      #+BEGIN_SRC sql
-		DELIMITER //
-		DROP FUNCTION IF EXISTS tuNombreDeFuncion;
-		CREATE FUNCTION tuNombreDeFuncion (Parametero1, Par2, ..., Par_N)
-			   # todos los Par son tipo IN
-			   RETURNS tipo [DETERMINISTIC]	# INT, CHAR, ...
-			   BEGIN
-				  # Declarar aquí variables internas a utilizar;
+* TODO Bucles:
+   + For: https://mariadb.com/kb/en/for/
+   +
+** Uso de ~CURSOR~ y ~FETCH~
+Referencias:
++ [[https://mariadb.com/kb/en/cursor-overview/][Doc OFICIAL]]
++ [[https://dev.mysql.com/doc/refman/8.0/en/cursors.html][CAP 19.2.11, pág 1032, manual de referencia MySQL 5.0]]
 
-		          DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
-		          # maneja excepciones y estados
 
-				  # AQUÍ las sentencias sql a ejecutar
-
-				  RETURN variable;	# del tipo determinado en la línea ~RETURNS~
-			   END //
-		DELIMITER ;
-      #+END_SRC
-**** Llamar o invocar:
-      #+BEGIN_SRC sql
-			SELECT tuNombreDeFuncion( par1 );
-      #+END_SRC
-**** Mostar:
-      #+BEGIN_SRC sql
-			SHOW CREATE FUNCTION tuNombreDeFuncion;
-      #+END_SRC
-*** Procedimientos:
-**** CREAR (y borrar):
-      #+BEGIN_SRC sql
-		DELIMITER //
-		DROP PROCEDURE IF EXISTS nombreDelProcedimiento;
-		CREATE PROCEDURE nombreDelProcedimiento(IN par1 INT, INOUT par2 VARCHAR(50), ..., OUT parN INT)
-		BEGIN
-		   DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
-		   # maneja excepciones y estados
-
-		   # AQUÍ las sentencias sql a ejecutar
-		END //
-		DELIMITER ;
-      #+END_SRC
-**** Llamar o invorcar:
-      #+BEGIN_SRC sql
-			CALL nombreDelProcedimiento( Par1, Par2, ... ParN );
-      #+END_SRC
-**** Mostrar:
-      #+BEGIN_SRC sql
-			SHOW CREATE PROCEDURE tuNombreDeProcedimiento;
-      #+END_SRC
-*** Triggers (disparadores):
+* Triggers (disparadores):
 	Un disparador es un objeto de una base de datos que se asocia con una tabla, y se activa cuando ocurre un evento en particular para esa tabla.
 **** Crear:
 	#+BEGIN_SRC sql
@@ -79,37 +203,13 @@
 	 #+BEGIN_SRC sql
 	   SHOW TRIGGERS [LIKE 'patron' | WHERE 'condicion'];
 	 #+END_SRC
-*** Variables:
-	#+BEGIN_SRC sql
-	  SET @nombre_de_variable = expr [, @var2 = expr2...]
-	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... # asigna columnas a variables
-	#+END_SRC
-*** ~CURSOR~ y ~FETCH~:
-	Investigar uso ([[https://dev.mysql.com/doc/refman/8.0/en/cursors.html][CAP 19.2.11, pág 1032, manual de referencia MySQL 5.0]]).
+**** Referencias:
+   + https://phoenixnap.com/kb/mysql-trigger
 
 
-** EXCEPCIONES y MANEJO DE ERRORES
-	#+BEGIN_SRC sql
-	# En primer lugar renombramos excepciones:
-	   DECLARE la_has_liado_parda CONDITION FOR 1217;
-	   # Intenta borrar datos en tabla padre con restricciones e hijos presentes.
+* RUTINAS
 
-	# Depués controlamos las excepciones:
-	   DECLARE EXIT HANDLER FOR la_has_liado_parda
-	   BEGIN
-		  ROLLBACK;
-		  SELECT 'La has ido liando ... ¡manazas!';
-	   END
-
-	# También directamente:
-	   DECLARE EXIT HANDLER FOR 1217
-	   BEGIN
-		  ROLLBACK;
-		  SELECT 'La has ido liando ... ¡manazas!';
-	   END
-	#+END_SRC
-
-** Consultas de interés:
+* Consultas de interés:
 #+BEGIN_SRC sql
 	  SHOW DATABASES;		# muestra todas la bases de datos de nuestro servidor SQL.
 	  USE nombre_db; 		# utiliza la bbdd ~nombre_db~
@@ -154,21 +254,21 @@
 #+END_SRC
 
 
-** Resumen del RUTINAS
-   :PROPERTIES:
-   :CUSTOM_ID: programacion-de-bbdd
-   :END:
+* Resumen del RUTINAS
+  :PROPERTIES:
+  :CUSTOM_ID: programacion-de-bbdd
+  :END:
 
 *** Creacion de la bbdd
 	:PROPERTIES:
 	:CUSTOM_ID: creacion-de-la-bbdd
 	:END:
 
- 1. En primer lugar deberéis crear la bbdd y asigarsela a algún usuario.
-	\ /Nota:/ Ya lo he hecho por vosotros porque no disponeis de los
-	permisos. /Nota 2:/ Para el Proyecto Final Ciclo deberéis realizarlo.
- 2. Cargar tablas: \
-	=mysql -hdb.luiscastelar.duckdns.org -P45682 -uLuis00 -p$(cat ~/Documentos/secretos/oracle_mysql_Luis00.pass) < nominas21_01_tablas_iniciales.sql 2>&1 | tee nominas21_01_tablas_iniciales.sql.log=
+ 1. En primer lugar deberéis crear la bbdd y asigarsela a algún usuario. \\
+	 /Nota:/ Ya lo he hecho por vosotros porque no disponeis de los permisos.\\
+   /Nota 2:/ Para el Proyecto Final Ciclo deberéis realizarlo.
+ 2. Cargar tablas: \\
+	=mysql -hdb.luiscastelar.duckdns.org -P45682 -uLuis00 -p$(cat ~/Documentos/secretos/oracle_mysql_Luis00.pass) < nominas21_01_tablas_iniciales.sql 2>&1 | tee nominas21_01_tablas_iniciales.sql.log= \\
 	/Nota:/ Debes sustituir el usuario y el password por los tuyos.
 
 *** Carga de funciones
@@ -200,11 +300,8 @@
  1. La carga es igual que la de las funciones.
  2. Ver procedimientos almacenados =SHOW PROCEDURE STATUS;=
  3. Ver la definición =SHOW CREATE PROCEDURE ...=;
-* TRIGGERS
-** Referencias:
- + https://phoenixnap.com/kb/mysql-trigger
 
-* PRÁCTICA
+* TODO PRÁCTICA
 Se desea informatizar el servicio de nóminas de una empresa. Para ello deberemos analizar una nómina extrayendo las distintas entidades y relaciones.
 
 Concretamente partiremos de:
@@ -234,3 +331,6 @@ Concretamente partiremos de:
 + DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad) => ~deducciones (*deduccion_id*, /tipo_deduccion_id/, anho, mes, /trabajador_id/,/contrato_id/, cantidad)~
 
 Ahora, deberemos crear un sistema que implemente:
+
+* ~MariaDB~ modo ~ORACLE~
+[[https://mariadb.com/kb/en/sql_modeoracle/][Doc OFICIAL]] sobre el conversión de sistaxis de la habitual ~SQL/PSM~ de ~MySQL~ o ~MariaDB~  al formato similar a  ~PL/SQL~ de ~ORACLE~. *NO* es un compatibilidad total, sólo un acercamiento.
