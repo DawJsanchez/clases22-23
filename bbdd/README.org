@@ -1,14 +1,59 @@
 #+title: BASES DE DATOS (DAW1)
 
 * Planificación
-+ Semana 30e-3f -> Funciones -> día 3 control
-+ Semana 6-10f -> Procedimientos -> día 10 control
-+ Semana 13-17f -> variables/condicionales ->día 17 control
-+ Semana 22-24f -> condicionales -> día 24 control
-+ Semana 27f-3m ->bucles -> día 3 control
-+ Semana 6-10m -> triggers y eventos -> día 10 control
-+ Semana 13-17m -> repaso para evaluación T4, T5 y T6 -> día 15 y 17 exámenes.\\
-		/Nota: Dada la amplitud de la materia se requerirán 2 días para la ejecución del examen completo./
+|  n | sem | t    | actividades                    | comentario |
+|----+-----+------+--------------------------------+------------|
+| 18 | 30e | t6   | funciones                      | ex6.1      |
+| 19 | 6f  | t6   | procedimientos                 | ex6.2      |
+| 20 | 13f | t6   | variables y condicionales (if) | ex6.3      |
+| 21 | 22f | t6   | condicionales  (-1h)           | ex6.4      |
+| 22 | 27f | t6   | bucles                         | ex6.5      |
+| 23 | 6m  | t6   | triggers y eventos             | ex6.6      |
+| 24 | 13m | -    | repaso 2ª eva                  | ex 2ª eva  |
+|----+-----+------+--------------------------------+------------|
+|    |     |      | 3ª EVALUACIÓN                  |            |
+|----+-----+------+--------------------------------+------------|
+| 25 | 20m | t7   | BBDD Objeto-Relacionales       |            |
+| 26 | 27m | t7   | PostgreSQL                     |            |
+| 27 | 10a | t8.1 | NoSQL - Documentales           | ex7        |
+|----+-----+------+--------------------------------+------------|
+| 28 | 17a | t8.1 | Doc. -> MongoDB                |            |
+| 29 | 24a | t8.1 | Doc. -> MongoDB                |            |
+| 30 | 1m  | t8.2 | NoSQL - Clave-valor            | ex 8.1     |
+| 31 | 8m  | t8.2 | K->V -> Redis                  |            |
+| 32 | 15m | t8.2 | K->V -> Redis                  | ex 8.2     |
+| 33 | 22m | t8.3 | NoSQL - On-line                |            |
+| 34 | 23m | t8.3 | Firebase                       | ex 8.3     |
+| 35 | 29m | -    | repaso 3ª eva                  | ex 3ª eva  |
+|----+-----+------+--------------------------------+------------|
+
+** COMMENT Ejecución
+|  n | sem | t  | actividades             | comentario |
+|----+-----+----+-------------------------+------------|
+|       |        |        |  1ª EVALUACIÓN          |                  |
+|----+-----+----+--------------------------------+------------|
+|  1 | 19s | t1 | teoria                  |            |
+|  2 | 26s | t1 | p1 / teoria             |            |
+|  3 | 3o  | t2 | modelo E-R              |            |
+|  4 | 10o |    |                         | -2h        |
+|  5 | 17o |    |                         |            |
+|  6 | 24o |    |                         |            |
+|  7 | 31o |    |                         | -1h        |
+|  8 | 7n  |    |                         |            |
+|  9 | 14n |    |                         | evaluación |
+|----+-----+----+-------------------------+------------|
+|       |        |        |  2ª EVALUACIÓN           |                  |
+|----+-----+----+--------------------------------+------------|
+| 10 | 21n |    |                         | -2h        |
+| 11 | 28n |    |                         |            |
+| 12 | 5d  |    | puente                  | -4h        |
+| 13 | 12d |    |                         |            |
+| 14 | 19d |    |                         | -2h vac    |
+|----+-----+----+-------------------------+------------|
+| 15 | 9e  |    |                         |            |
+| 16 | 16e | t5 | edición y vistas        |            |
+| 17 | 23e | t5 | permisos, roles y ex t5 |            |
+|----+-----+----+-------------------------+------------|
 
 ** Pesos:
 + T4 -> 4 semanas -> 35%
