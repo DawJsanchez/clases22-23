@@ -27,9 +27,9 @@
 + [Config](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
 *** Nginx como balanceador
-https://picodotdev.github.io/blog-bitix/2016/07/configurar-nginx-como-balanceador-de-carga/
++ [balancer](https://picodotdev.github.io/blog-bitix/2016/07/configurar-nginx-como-balanceador-de-carga/)
 
-* PRÁCTICA
+* PRÁCTICA 1:
 Configurar el htaccess para:
 1. Gestión de tiempos de cache < 30 segundos (**Fundamental empezar por éste**)
 2. Redirección de direcciones tipo nombreCorto.dominio.duckdns.org -> dominio.duckdns.org/ruta_real_por_muy_larga_que_sea
@@ -41,3 +41,6 @@ Configurar el htaccess para:
 8. prevenir hotlinking
 
 **Fundamental comenzar por el punto 1**. De que éste funcione podéis pasar a los demás puntos.
+
+* PRÁCTICA 2:
+Configurar un balanceador de carga con NginX.
