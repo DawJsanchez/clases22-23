@@ -44,3 +44,5 @@ Configurar el htaccess para:
 
 * PRÁCTICA 2:
 Configurar un balanceador de carga con NginX.
+
+/Nota:/ No intentar con proxy inverso activo.
