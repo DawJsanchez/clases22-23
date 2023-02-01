@@ -24,10 +24,27 @@
 + [PHP](https://devanswers.co/php-apache-set-max-file-upload-post-size/)
 
 ** Nginx
-+ [Config](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
+
+*** Archivos grandes
+ + [Config](https://www.tecmint.com/limit-file-upload-size-in-nginx/)
 
 *** Nginx como balanceador
 + [balancer](https://picodotdev.github.io/blog-bitix/2016/07/configurar-nginx-como-balanceador-de-carga/)
++ [Blog OFICIAL](https://www.nginx.com/products/nginx/load-balancing/)
+
+*** Caché en Nginx:
++ [Ubicación](https://www.howtogeek.com/devops/how-to-configure-cache-control-headers-in-nginx/)
++ [Tabla de balores](https://hub.packtpub.com/nginx-expires-directive-emitting-caching-headers/)
++ [Doc OFICIAL](https://nginx.org/en/docs/http/ngx_http_headers_module.html#expires).
+
+*** Varios:
+1. [[https://techexpert.tips/nginx/enable-https-nginx/][https con autocertificado]]
+2. [[https://techexpert.tips/nginx/nginx-installing-letsencrypt-certificate-https/][https con certificado de Let's Encrypt]]
+3. [[https://techexpert.tips/nginx/nginx-redirect-url/][redirecciones]]
+4. [[https://techexpert.tips/nginx/nginx-ldap-authentication-active-directory/][Autenticación con LDAP]]
+5. [[https://techexpert.tips/nginx/nginx-blocking-ip-address-list/][Bloqueo de IPs]]
+6. [[https://techexpert.tips/nginx/nginx-prevent-image-hotlinking/][Prevención de hotlinking]]
+7. [[https://techexpert.tips/zabbix/zabbix-monitor-nginx/][Monitorización con Zabbix]]
 
 * PRÁCTICA 1:
 Configurar el htaccess para:
