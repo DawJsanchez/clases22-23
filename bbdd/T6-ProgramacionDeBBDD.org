@@ -13,12 +13,13 @@ Lo anterior se traduce en que en ~MariaDB~, además de tablas, podemos almacenar
 + [[https://mariadb.com/kb/en/user-defined-functions/][User-defined functions (funciones externas)]]
 
 * Funciones:
-Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias SQL como cualquier otra función regula (p.e. ~ABS()~) y retorna un *único* valor.
+  Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias SQL como cualquier otra función regula (p.e. ~ABS()~) y retorna un *único* valor.
 [[https://mariadb.com/kb/en/stored-function-overview/][Doc OFICIAL]]
 ** CREAR (y borrar):
     #+BEGIN_SRC sql
-	  DELIMITER //
 	  DROP FUNCTION IF EXISTS tuNombreDeFuncion;
+
+	  DELIMITER //
 	  CREATE FUNCTION tuNombreDeFuncion (Parametero1 tipo, Par2 tipo, ..., Par_N tipo)
 			 #-- todos los Par son tipo IN
 			 RETURNS tipo [DETERMINISTIC]	# INT, CHAR, ...
@@ -64,6 +65,7 @@ Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias 
 	  SELECT col1 [, col2...] INTO @var1 [, @var2...] FROM... # asigna columnas a variables
 	#+END_SRC
 
+		Referencia: [[https://mariadb.com/kb/en/selectinto/][Doc OFICIAL]]
 
 ** Llamar o invocar:
     #+BEGIN_SRC sql
@@ -83,8 +85,9 @@ Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias 
 * Procedimientos:
 ** CREAR (y borrar):
     #+BEGIN_SRC sql
-	  DELIMITER //
 	  DROP PROCEDURE IF EXISTS nombreDelProcedimiento;
+
+	  DELIMITER //
 	  CREATE PROCEDURE nombreDelProcedimiento(IN par1 INT, INOUT par2 VARCHAR(50), ..., OUT parN INT)
 	  BEGIN
 		 DECLARE { CONTINUE | EXIT | UNDO } HANDLER FOR condition_value statement;
@@ -94,6 +97,9 @@ Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias 
 	  END //
 	  DELIMITER ;
     #+END_SRC
+
+Referencias [[https://mariadb.com/kb/en/create-procedure/][Doc OFICIAL]]
+
 ** Llamar o invorcar:
     #+BEGIN_SRC sql
 		  CALL nombreDelProcedimiento( Par1, Par2, ... ParN );
@@ -104,30 +110,43 @@ Una ~FUNCTION~ es una función definida por el usuario e invocada en sentencias 
     #+END_SRC
 ** Eliminar:
     #+BEGIN_SRC sql
-		  DROP PROCEDURE nombre
+		  DROP PROCEDURE nombre;
     #+END_SRC
 
-* TODO EXCEPCIONES y MANEJO DE ERRORES
-   #+BEGIN_SRC sql
-   # En primer lugar renombramos excepciones:
-	  DECLARE la_has_liado_parda CONDITION FOR 1217;
-	  # Intenta borrar datos en tabla padre con restricciones e hijos presentes.
+** Excepciones y manejo de ERRORES
+	#+BEGIN_SRC sql
+	#-- En primer lugar renombramos excepciones:
+	   DECLARE la_has_liado_parda CONDITION FOR 1217;
+	   #-- Intenta borrar datos en tabla padre con restricciones e hijos presentes.
 
-   # Depués controlamos las excepciones:
-	  DECLARE EXIT HANDLER FOR la_has_liado_parda
-	  BEGIN
-		 ROLLBACK;
-		 SELECT 'La has ido liando ... ¡manazas!';
-	  END
+	#-- Depués controlamos las excepciones:
+	   DECLARE EXIT HANDLER FOR la_has_liado_parda
+	   BEGIN
+		  ROLLBACK;
+		  SELECT 'La has ido liando ... ¡manazas!';
+	   END
 
-   # También directamente:
-	  DECLARE EXIT HANDLER FOR 1217
-	  BEGIN
-		 ROLLBACK;
-		 SELECT 'La has ido liando ... ¡manazas!';
-	  END
-   #+END_SRC
+	#-- También directamente:
+	   DECLARE EXIT HANDLER FOR 1217
+	   BEGIN
+		  ROLLBACK;
+		  SELECT 'La has ido liando ... ¡manazas!';
+	   END
 
+
+	#-- Ejemplo
+	DECLARE EXIT HANDLER FOR SQLEXCEPTION BEGIN
+		SELECT 'Excepción capturada' AS 'Errores';
+    END;
+	#+END_SRC
+
+	 Referencias:
+	 + https://joshuaotwell.com/19911-2/
+	 + https://programmerclick.com/article/2985442352/
+	 + https://www.mysqltutorial.org/mysql-error-handling-in-stored-procedures/
+	 + https://stackoverflow.com/questions/7712110/declare-continue-handler-for-not-found-is-not-working
+     + https://mariadb.com/kb/en/mariadb-error-codes/
+     + https://mariadb.com/kb/en/perror/
 
 * Variables
 ** Declaración de variables
@@ -178,9 +197,18 @@ Recuerda no confundir el control de flujo con el condicional IF con las funiones
 	 NULLIF(expr1, expr2);    # IF expr1 = expr2 DEVUELVE NULL ELSE DEVUELVE expr1
    #+END_SRC
 
-* TODO Bucles:
-   + For: https://mariadb.com/kb/en/for/
-   +
+* Bucles:
++ For: https://mariadb.com/kb/en/for/
++ While: https://mariadb.com/kb/en/while/
++ Repeat: https://mariadb.com/kb/en/repeat-loop/
++ /Break/ : https://mariadb.com/kb/en/leave/
+
+#+BEGIN_QUOTE
+    **No recomendables** (por ser programación no estructurada)
++ https://mariadb.com/kb/en/iterate/
++ https://mariadb.com/kb/en/loop/
+#+END_QUOTE
+
 ** Uso de ~CURSOR~ y ~FETCH~
 Referencias:
 + [[https://mariadb.com/kb/en/cursor-overview/][Doc OFICIAL]]
