@@ -8,8 +8,8 @@ En realidad, en Java ~Collection~ es un /framework/ que proporciona una arquitec
 La funcionalidad ~collection~ viene dada por el paquete ~java.util~ por lo que deberemos importar todo el paquete con ~import java.util.*;~
 
 Podemos ver la magnitud del /framework/  en la siguiente imágen:
-
- [[./T8-Collections/java-collection-hierarchy.png]]
+#+ATTR_ORG: :width 500px
+[[./T8-Collections/java-collection-hierarchy-y-maps.png]]
 
 *Interfaces de la Java Collection Framework*:
 + ~Collection~: define métodos para tratar una colección genérica de elementos
@@ -23,29 +23,29 @@ Podemos ver la magnitud del /framework/  en la siguiente imágen:
 ** Parte pública (interfaz)
 Veamos el ~interface~ de la clase:
 #+BEGIN_SRC java
-profe@servidor ~ :/$ javap java.util.Collection
-Compiled from "Collection.java"
-public interface java.util.Collection<E> extends java.lang.Iterable<E> {
-  public abstract int size();
-  public abstract boolean isEmpty();
-  public abstract boolean contains(java.lang.Object);
-  public abstract java.util.Iterator<E> iterator();
-  public abstract java.lang.Object[] toArray();
-  public abstract <T> T[] toArray(T[]);
-  public default <T> T[] toArray(java.util.function.IntFunction<T[]>);
-  public abstract boolean add(E);
-  public abstract boolean remove(java.lang.Object);
-  public abstract boolean containsAll(java.util.Collection<?>);
-  public abstract boolean addAll(java.util.Collection<? extends E>);
-  public abstract boolean removeAll(java.util.Collection<?>);
-  public default boolean removeIf(java.util.function.Predicate<? super E>);
-  public abstract boolean retainAll(java.util.Collection<?>);
-  public abstract void clear();
-  public abstract boolean equals(java.lang.Object);
-  public abstract int hashCode();
-  public default java.util.Spliterator<E> spliterator();
-  public default java.util.stream.Stream<E> stream();
-  public default java.util.stream.Stream<E> parallelStream();
+  profe@servidor ~ :/$ javap java.util.Collection
+  Compiled from "Collection.java"
+  public interface java.util.Collection<E> extends java.lang.Iterable<E> {
+	public abstract int size();
+	public abstract boolean isEmpty();
+	public abstract boolean contains(java.lang.Object);
+	public abstract java.util.Iterator<E> iterator();
+	  public abstract java.lang.Object[] toArray();
+	public abstract <T> T[] toArray(T[]);
+	public default <T> T[] toArray(java.util.function.IntFunction<T[]>);
+	public abstract boolean add(E);
+	public abstract boolean remove(java.lang.Object);
+	public abstract boolean containsAll(java.util.Collection<?>);
+	public abstract boolean addAll(java.util.Collection<? extends E>);
+	public abstract boolean removeAll(java.util.Collection<?>);
+	public default boolean removeIf(java.util.function.Predicate<? super E>);
+	public abstract boolean retainAll(java.util.Collection<?>);
+	public abstract void clear();
+	public abstract boolean equals(java.lang.Object);
+	public abstract int hashCode();
+	public default java.util.Spliterator<E> spliterator();
+	public default java.util.stream.Stream<E> stream();
+	public default java.util.stream.Stream<E> parallelStream();
 #+END_SRC
 
 *Nota:* aquí aparece la semántica de los /genéricos/. Si quieres saber más sobre ellos, [[https://picodotdev.github.io/blog-bitix/2016/04/tutorial-sobre-los-tipos-genericos-de-java/][aquí]] tienes una referencia.
