@@ -337,10 +337,12 @@ Concretamente partiremos de:
 [[./T3-DisenhoFisico/P3-Nominas.drawio.png]]
 
 ... \\
- En esta acasión en realidad llegamos a una empresa donde por motivos ajenos nos indican que debemos modificar ciertas tablas según se detalla:
+
+** Adecuación de una bbdd
+Llegamos a una empresa donde ya tienen una bbdd (la de la práctica 3), pero la misma no se adecúa a nuestras necesidades, por lo que vamos a proceder a relizar las siguientes modificaciones:
 + EMPRESA (CIF, nombre, dir, cp, prov, ccc, tlfID) => ~empresas (*empresa_id*, /cif/, nombre, dir, cp, prov, /ccc/)~, siendo *id* la clave primaria y, /cif/ y /ccc/ claves candidatas.
 + TRABAJADOR (NIF, nombre, ape1, ape2, tlfID, nss, catID, cotID) => ~trabajadores(*trabajador_id*, /nif/, nombre, ape1, ape2, /nss/, _cat_id_, _cot_id_)~, donde _categoria_id_ y _grupo_de_cotizacion_id_ son claves foráneas a las tablas ~categorias~ y ~grupos_de_cotizacion~ respectivamente.
-+ TLF (ID, pre, tlf) => no utilizada
++ TLF (ID, pre, tlf) => no utilizada => eliminar.
 + CAT (ID, nombreCat) => ~categorias (*categoria_id*, nombre_categoria)~
 + COT (ID, grupo) => ~cotizaciones (*cotizacion_id*, grupo_de_cotizacion)~
 + TCONTRATO (codContrato, nombre) => ~tipos_de_contrato (*tipo_de_contrato_id*, nombre)~
@@ -358,7 +360,53 @@ Concretamente partiremos de:
   + SEXPE para DEDFP
 + DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad) => ~deducciones (*deduccion_id*, /tipo_deduccion_id/, anho, mes, /trabajador_id/,/contrato_id/, cantidad)~
 
-Ahora, deberemos crear un sistema que implemente:
+#+ATTR_ORG: :width 800
+[[./t6-programacion/bbdd_nominas_fase1.png]]
+
+
+*APLICACIÓN DE NÓMINAS*
+Se deberá desarrollar un procedimiento que hará las veces de controlador y se encargará de llamar al resto de procedimientos y funciones para la generación de las nóminas.
+
+Este procedimiento se llamará =generar_nominas= y recibirá el mes y año en formato =INT=  de 1 o 2 dígitos, por lo que se entendrá que todas las nóminas son como poco de año 2000.
+** Fase I:
+*** 1 Datos del trabajador
+
+ Se deberá desarrollar un procedimiento que una vez llamado mostrará los datos como en el ejemplo de la nómina proporcionado (T3).
+
+ Deberá llamarse =datos_del_trabajador= y recibirá el =trabajador_id=  del trabajador
+
+*** 2 Datos de la empresa
+
+ Se deberá desarrollar un procedimiento que una vez llamado mostrará los datos como en el ejemplo de la nómina proporcionado (T3).
+
+ Deberá llamarse =datos_de_la_empresa= y recibirá el =empresa_id=  de la misma.
+
+*** 3 Días trabajados
+
+ Se deberán desarrollar una función que facilitado un =mes=, =anho= y =contrato_id=, y nos determine que el número de días totales trabajados *(\*)*. Esta función deberá llamarse =dias_trabajados= .
+
+ *(\*)* /Como ya sabéis, en España se considera que todos los meses trabajados completamente (desde el primer día al último) contablemente tienen 30 días, siendo ésta una aproximación razonable, y el número de días trabajados en cualquier otro caso./
+
+ Para seguir dándole forma a la nómina, deberemos crear un procedimiento que imprima
+
+ #+begin_src
+     Periodo de liquidación DD/MM/AAAA - DD/MM/AAAA     Nº de días D
+
+ #+end_src
+
+ Este procedimiento deberá denominarse =periodo_de_liquidacion= .
+
+** Fase II:
+ #+begin_src
+     Hasta aquí lo hacemos funcionar a mano. De que funcione, continuamos.
+
+ #+end_src
+
+*** 3b Días trabajados II
+
+ Llegados a este punto, te habrás dado cuenta que algo falla. Nosotros hasta ahora trabajábamos con =trabajador_id=(personas) y ahora se nos requiere un =contrato_id=(contrato), por lo que debemos crear un procedimiento que relaciones ambos conceptos en el espacio temporal proporcionado. Este procedimiento, denominado =trabajadores_con_contrato_en_vigor= recibirá el =trabajador_id=, el =mes=y el =anho=, y deberá localizar *TODOS*  los trabajadores que tengan, al menos, un contrato en vigor en ese periodo, y llamar a todos los procedimientos de creación de nómina (1), (2), (3),...(7) para cada uno de los contratos en vigor.
+
+ /Recuerda que un trabajador podrá tener más de un contrato en vigor en un mes/
 
 * ~MariaDB~ modo ~ORACLE~
 [[https://mariadb.com/kb/en/sql_modeoracle/][Doc OFICIAL]] sobre el conversión de sistaxis de la habitual ~SQL/PSM~ de ~MySQL~ o ~MariaDB~  al formato similar a  ~PL/SQL~ de ~ORACLE~. *NO* es un compatibilidad total, sólo un acercamiento.
