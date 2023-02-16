@@ -341,16 +341,16 @@ Concretamente partiremos de:
 ** Adecuación de una bbdd
 Llegamos a una empresa donde ya tienen una bbdd (la de la práctica 3), pero la misma no se adecúa a nuestras necesidades, por lo que vamos a proceder a relizar las siguientes modificaciones:
 + EMPRESA (CIF, nombre, dir, cp, prov, ccc, tlfID) => ~empresas (*empresa_id*, /cif/, nombre, dir, cp, prov, /ccc/)~, siendo *id* la clave primaria y, /cif/ y /ccc/ claves candidatas.
-+ TRABAJADOR (NIF, nombre, ape1, ape2, tlfID, nss, catID, cotID) => ~trabajadores(*trabajador_id*, /nif/, nombre, ape1, ape2, /nss/, _cat_id_, _cot_id_)~, donde _categoria_id_ y _grupo_de_cotizacion_id_ son claves foráneas a las tablas ~categorias~ y ~grupos_de_cotizacion~ respectivamente.
++ TRABAJADOR (NIF, nombre, ape1, ape2, tlfID, nss, catID, cotID) => ~trabajadores(*trabajador_id*, /nif/, nombre, ape1, ape2, /nss/)~, donde _categoria_id_ y _grupo_de_cotizacion_id_ son claves foráneas a las tablas ~categorias~ y ~grupos_de_cotizacion~ respectivamente.
 + TLF (ID, pre, tlf) => no utilizada => eliminar.
 + CAT (ID, nombreCat) => ~categorias (*categoria_id*, nombre_categoria)~
 + COT (ID, grupo) => ~cotizaciones (*cotizacion_id*, grupo_de_cotizacion)~
 + TCONTRATO (codContrato, nombre) => ~tipos_de_contrato (*tipo_de_contrato_id*, nombre)~
-+ CONTRATO (numContrato, fAlta, fBaja, codContrato, NIF, CIF) ) => ~contratos (*contrato_id*, fecha_alta, fecha_baja, /tipo_de_contrato_id/, /trabajador_id/, /empresa_id/)~
++ CONTRATO (numContrato, fAlta, fBaja, codContrato, NIF, CIF) ) => ~contratos (*contrato_id*, fecha_alta, fecha_baja, /tipo_de_contrato_id/, /trabajador_id/, /empresa_id/, _cat_id_, _cot_id_)~
 + CONCTIPO (conTipo, nombre, tipo) => ~tipos_de_conceptos (*tipo_de_concepto_id*, nombre, tipo)~
-+ CONCSALARIO (ID, numContrato, conTipo, cantidad) => ~conceptos_de_salario (*concepto_id*, /contrato_id/, /tipo_de_concepto_id/, cantidad)~
++ CONCSALARIO (ID, numContrato, conTipo, cantidad) => ~conceptos_de_salario (*concepto_id*, _contrato_id_, _tipo_de_concepto_id_, cantidad)~
 + PERCEPCION <= CONCSALARIO => no utilizada
-+ BASESCOT (ID, numContrato, cantidad) => ~bases_de_cotizacion (*base_cot_id*, /contrato_id/, cantidad)~
++ BASESCOT (ID, numContrato, cantidad) => ~bases_de_cotizacion (*base_cot_id*, _contrato_id_, cantidad)~
 + BASESTIPOS (ID, nombre, porcentaje) => ~tipos_aplicables (*tipo_base_id*, nombre, porcentaje)~
 + TIPODEDUC (tipoDeduccion, nombre, receptor) => ~tipos_deducciones (*tipo_deduccion_id*, nombre, recpetor)~\\
 		Donde el recpetor es:
@@ -358,7 +358,7 @@ Llegamos a una empresa donde ya tienen una bbdd (la de la práctica 3), pero la 
   + SES para DEDCC
   + SEPE para DEDDES
   + SEXPE para DEDFP
-+ DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad) => ~deducciones (*deduccion_id*, /tipo_deduccion_id/, anho, mes, /trabajador_id/,/contrato_id/, cantidad)~
++ DEDUCCION (ID, tipoDeduccion, anho, mes, NIF, numContrato, cantidad) => ~deducciones (*deduccion_id*, _tipo_deduccion_id_, anho, mes, _trabajador_id_, _contrato_id_, cantidad)~
 
 #+ATTR_ORG: :width 800
 [[./t6-programacion/bbdd_nominas_fase1.png]]
