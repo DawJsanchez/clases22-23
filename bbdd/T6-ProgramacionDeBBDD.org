@@ -404,7 +404,7 @@ Este procedimiento se llamará =generar_nominas= y recibirá el mes y año en fo
 
 *** 3b Días trabajados II
 
- Llegados a este punto, te habrás dado cuenta que algo falla. Nosotros hasta ahora trabajábamos con =trabajador_id=(personas) y ahora se nos requiere un =contrato_id=(contrato), por lo que debemos crear un procedimiento que relaciones ambos conceptos en el espacio temporal proporcionado. Este procedimiento, denominado =trabajadores_con_contrato_en_vigor= recibirá el =trabajador_id=, el =mes=y el =anho=, y deberá localizar *TODOS*  los trabajadores que tengan, al menos, un contrato en vigor en ese periodo, y llamar a todos los procedimientos de creación de nómina (1), (2), (3),...(7) para cada uno de los contratos en vigor.
+ Llegados a este punto, te habrás dado cuenta que algo falla. Nosotros hasta ahora trabajábamos con =trabajador_id= (personas) y ahora se nos requiere un =contrato_id= (contrato), por lo que debemos crear un procedimiento que relaciones ambos conceptos en el espacio temporal proporcionado. Este procedimiento, denominado =trabajadores_con_contrato_en_vigor= recibirá el =trabajador_id= , el =mes=y el =anho= , y deberá localizar *TODOS*  los trabajadores que tengan, al menos, un contrato en vigor en ese periodo, y llamar a todos los procedimientos de creación de nómina (1), (2), (3),...(7) para cada uno de los contratos en vigor.
 
  /Recuerda que un trabajador podrá tener más de un contrato en vigor en un mes/
 
