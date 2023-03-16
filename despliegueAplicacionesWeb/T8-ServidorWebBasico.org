@@ -18,7 +18,17 @@ Para el enfoque de este tema utilizaremos el servidor Nginx por su simplicidad, 
 ** Enfoque
 Si bien como siempre os comento la mayor simplicidad para nuestras pruebas la realizaremos mediante un VPS.
 
-Dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública y el servicio [[http://localhost.run/docs/][localhost.run]], [[https://github.com/azimjohn/jprq][jprq]] o [[https://ngrok.com/][ngrok]].
+Dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública y el servicio [[https://github.com/ekzhang/bore][Bore]], [[http://localhost.run/docs/][localhost.run]], [[https://github.com/azimjohn/jprq][jprq]] o [[https://ngrok.com/][ngrok]].
+
+Ejemplo:
+#+BEGIN_SRC bash
+docker run -it --init --rm --network host ekzhang/bore local 8000 --to bore.pub
+# donde 8000 es el puerto local a publicar en bore.pub
+#
+# Así mismo, nos permite tener un servidor de publicación de puertos (el servidor debe ser público)
+servidor$ docker run -it --init --rm --network host ekzhang/bore server --secret KEY_SECRETO
+cliente$ docker run -it --init --rm --network host ekzhang/bore local PUERTO_LOCAL --to IP_SERVIDOR
+#+END_SRC
 
 Para ello, lo primero que partiremos de un Vagrantfile que será común para todas las implementaciones, cambiando únicamente el ~docker-compose.yml~ y los ficheros de configuración que necesitemos.
 
