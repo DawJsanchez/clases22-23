@@ -9,7 +9,7 @@
 |----+-----+------+--------------------------------+------------|
 |    |     |      | 3ª EVALUACIÓN                  |            |
 |----+-----+------+--------------------------------+------------|
-| 24 | 13m | t6   | triggers y eventos             | ex T6 (22m)|
+| 24 | 13m | t6   | triggers y eventos             | ex T6 (24m)|
 | 25 | 20m | t7   | BBDD Objeto-Relacionales       |            |
 | 26 | 27m | t7   | PostgreSQL                     |            |
 | 27 | 10a | t8.1 | NoSQL - Documentales           | ex7        |
