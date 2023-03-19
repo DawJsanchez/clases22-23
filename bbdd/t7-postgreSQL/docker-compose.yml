@@ -1,0 +1,37 @@
+# ---------------------------------------------------------------
+#     Receta para levantar un servidor PostgreSQL con el gestor 
+#  ligero Adminer
+# ---------------------------------------------------------------
+version: '3.1'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+# Variable pasada en archivo .env
+      #POSTGRES_PASSWORD: ${PASS}
+# Pass a través de archivo
+      POSTGRES_PASSWORD_FILE: /.pass
+    volumes:
+# Vinculamos archivo .pass del HOST con el espejo del CONTENEDOR
+      - ./.pass:/.pass
+    ports:
+# Vinculamos puerto del HOST con el puerto del CONTENEDOR 
+      - 5432:5432
+    networks:
+      - postgre
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+# Publicamos adminer en puerto 80. Si está ocupado deberemos mover el número de la izquierda.
+      - 80:8080
+    networks:
+      - postgre
+
+
+networks:
+   postgre:
+      driver: bridge
