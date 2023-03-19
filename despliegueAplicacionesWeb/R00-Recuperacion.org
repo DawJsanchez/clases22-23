@@ -1,0 +1,43 @@
+#+Title: RECUPERACIÓN
+
+* NORMAS
++ Prohibido el uso de equipos particulares.
++ Todo debe subirse a GIT y MOODLE.
++ TODAS las prácticas deben ser DEFENDIDAS _antes_ del día de entrega.
++ Los plazos están en el MOODLE.
++ *TODAS* las prácticas son _obligatorias_ para evitar el exámen.
+
+* ENTREGAS
+[[https://github.com/luiscastelar/clases22-23/tree/main/despliegueAplicacionesWeb][GitHub]]
+
+** P1 a P4 (6 abril 00:00)
+El plazo máximo será el 6 de abril a las 00:00, esto es, dentro del primer minuto del día 6.
+Quien no lo tenga subido en ese momento habrá suspendido *TODO* el módulo.
+
+** ...
+
+
+* CALENDARIO de trabajo
+
+| P.... | Fecha | Nombre         |
+|-------+-------+----------------|
+| P1    | 21 m  | Bases          |
+| P2    | 21 m  | Git            |
+| P3    | 27 m  | Vagrant        |
+| P4    | 28 m  | SSH            |
+|-------+-------+----------------|
+| P5    | 11 a  | Docker         |
+| P6    | 11 a  | Docker-compose |
+|-------+-------+----------------|
+| P7    | 17 a  | DNS            |
+| P8    | 17 a  | Nginx          |
+|-------+-------+----------------|
+| P10   | 24 a  | Serv App       |
+| P9    | 8 m   | Proxy          |
+| P11   | 8 m   | Desp Git       |
+|-------+-------+----------------|
+| P12   | 15 m  | Apache         |
+| P12b  | 22 m  | Balanceador    |
+|-------+-------+----------------|
+| T     | -     | Igualdad       |
+|-------+-------+----------------|
