@@ -13,9 +13,13 @@ services:
       #POSTGRES_PASSWORD: ${PASS}
 # Pass a través de archivo
       POSTGRES_PASSWORD_FILE: /.pass
+      PGDATA: /var/lib/postgresql/data/pgdata
+      LANG: es_ES.utf8
+      POSTGRES_INITDB_ARGS: "--locale-provider=icu --icu-locale=es-ES"
     volumes:
 # Vinculamos archivo .pass del HOST con el espejo del CONTENEDOR
       - ./.pass:/.pass
+      - ./data15:/var/lib/postgresql/data
     ports:
 # Vinculamos puerto del HOST con el puerto del CONTENEDOR 
       - 5432:5432
