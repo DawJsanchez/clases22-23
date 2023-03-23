@@ -18,7 +18,7 @@ Para el enfoque de este tema utilizaremos el servidor Nginx por su simplicidad, 
 ** Enfoque
 Si bien como siempre os comento la mayor simplicidad para nuestras pruebas la realizaremos mediante un VPS.
 
-Dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública y el servicio [[https://github.com/ekzhang/bore][Bore]], [[http://localhost.run/docs/][localhost.run]], [[https://github.com/azimjohn/jprq][jprq]] o [[https://ngrok.com/][ngrok]].
+Dada la alternativa elegida por el global de la clase trataremos el tema desde la otra alternativa: Vagrant con ip pública y el servicio [[https://github.com/ekzhang/bore][Bore]], [[http://localhost.run/docs/][localhost.run]], o el conocido [[https://ngrok.com/][ngrok]]... [[https://github.com/anderspitman/awesome-tunneling][+ fuentes]].
 
 Ejemplo:
 #+BEGIN_SRC bash
