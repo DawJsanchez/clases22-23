@@ -50,7 +50,7 @@ _actualiza_repo(){
 	sleep 1
 	for F in `ls $1/` ; do
 		if [[ -d $1 ]]; then
-			cd "$PWD/${1}/${F}"
+		  cd "$PWD/${1}/${F}" 2>/dev/null || continue
 
 			git pull 1>"$HOME/salida.txt" 2> /dev/null;
 			salida=$(cat ~/salida.txt);
