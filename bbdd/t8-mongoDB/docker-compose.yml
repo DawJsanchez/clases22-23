@@ -1,0 +1,20 @@
+# crear un .env con las credenciales "admin" para usuario administrador y "admin_pass" para su password
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+#    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${admin}
+      MONGO_INITDB_ROOT_PASSWORD: ${admin_pass}
+    volumes:
+      - ./datos:/data/db
+    ports:
+#      - 45684:27017
+      - 27017:27017
+
+# URI => mongodb://${admin}:${admin_pass}@mongo:27017/
+#        mongodb://${admin}:${admin_pass}@localhost:27017/
+
