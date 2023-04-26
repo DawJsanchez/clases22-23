@@ -3,25 +3,37 @@
 
 
 ## Java
-```
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
-```
-**IMPORTANTE**: se requiere librería jar.
-### lib vía MVN:
-Dentro del archivo `pom.xml` encontraremos `<dependencies></dependencies>`. Ahí deberemos añadir:
-```
-<!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync -->
-<dependency>
-    <groupId>org.mongodb</groupId>
-    <artifactId>mongodb-driver-sync</artifactId>
-    <version>4.9.1</version>
-</dependency>
++ Requisitos:
+    ```
+    import com.mongodb.client.MongoClient;
+    import com.mongodb.client.MongoClients;
+    import com.mongodb.client.MongoCollection;
+    import com.mongodb.client.MongoDatabase;
+    import org.bson.Document;
+    ```
+    **IMPORTANTE**: se requiere librería jar.
+    ### lib vía MVN:
+    Dentro del archivo `pom.xml` encontraremos `<dependencies></dependencies>`. Ahí deberemos añadir:
+    ```
+    <!-- https://mvnrepository.com/artifact/org.mongodb/mongodb-driver-sync -->
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-sync</artifactId>
+        <version>4.9.1</version>
+    </dependency>
 
-```
+    ```
++ Pasos:
+    1. Cliente: `MongoClient mongoClient = MongoClients.create( URI )`
+    2. DB: `MongoDatabase db = mongoClient.getDatabase( URI )`
+    3. Colleción "pruebas": `MongoCollection<Document> pruebasCollection = sampleTrainingDB.getCollection("pruebas")`
+    4. "Select": 
+       ```
+       pruebasCollection
+               .find()
+               .forEach(e -> p(e.toJson() ) )```
+
++ Resto => [Abril Code](https://adatos.abrilcode.com/doku.php?id=apuntes:mongodb)
 
 
 ## PHP
@@ -43,4 +55,3 @@ Si tu servidor no tiene composer, pero tienes docker instalado puedes correrlo v
 
 # Referencias
 + [Doc oficial](https://www.mongodb.com/docs/)
-+ [Abril Code](https://adatos.abrilcode.com/doku.php?id=apuntes:mongodb)
