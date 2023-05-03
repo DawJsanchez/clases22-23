@@ -162,6 +162,10 @@ $ nmap IP/CIDR
 >
 > Extra: Información sobre los procesos
 >> CMD:	tasklist /FI "pid eq NUM_PID_DEL_PROCESO" /V /FO List
+>
+>> **Localizar y matar procesos**
+>> PS: Get-NetTCPConnection -LocalPort PUERTO
+>> PS o CMD: taskkill /F /PID PID_PROCESO
 
 # Tareas (entregables):
 1. Dado el mapa de red, asigna direcciones de forma coherente y razonada a TODOS los dispositivos en sus interfaces de capa 3. \
